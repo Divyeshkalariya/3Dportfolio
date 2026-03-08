@@ -1,0 +1,47 @@
+import type { Config } from "tailwindcss";
+
+const config: Config = {
+  content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        "neon-cyan": "#00f5ff",
+        "neon-purple": "#bf00ff",
+        "neon-pink": "#ff0080",
+        "neon-blue": "#0080ff",
+        "neon-green": "#00ff88",
+        "bg-dark": "#020008",
+        "bg-card": "rgba(10, 6, 25, 0.8)",
+      },
+      fontFamily: {
+        orbitron: ["Orbitron", "monospace"],
+        inter: ["Inter", "sans-serif"],
+        space: ["Space Grotesk", "sans-serif"],
+      },
+      boxShadow: {
+        "neon-cyan": "0 0 20px rgba(0, 245, 255, 0.5)",
+        "neon-purple": "0 0 20px rgba(191, 0, 255, 0.5)",
+        "neon-pink": "0 0 20px rgba(255, 0, 128, 0.5)",
+        "neon-cyan-lg": "0 0 40px rgba(0, 245, 255, 0.6), 0 0 80px rgba(0, 245, 255, 0.3)",
+      },
+      backgroundImage: {
+        "gradient-cyber": "linear-gradient(135deg, #00f5ff, #bf00ff, #ff0080)",
+        "gradient-dark": "linear-gradient(135deg, #020008, #0a0618)",
+        "gradient-card": "linear-gradient(135deg, rgba(0,245,255,0.05), rgba(191,0,255,0.05))",
+      },
+      animation: {
+        "spin-slow": "spin 20s linear infinite",
+        "float": "float 4s ease-in-out infinite",
+        "pulse-glow": "pulse-glow 2s ease-in-out infinite",
+        "gradient-shift": "gradient-shift 4s ease infinite",
+      },
+    },
+  },
+  plugins: [],
+};
+
+export default config;
