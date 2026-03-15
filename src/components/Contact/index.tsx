@@ -55,26 +55,26 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-32 grid-bg overflow-hidden">
+    <section id="contact" className="section-wrapper grid-bg">
       {/* BG orbs */}
       <div
         className="orb w-[600px] h-[600px] top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.07]"
         style={{ background: "radial-gradient(circle, #00f5ff, transparent)" }}
       />
 
-      <div className="relative max-w-6xl mx-auto px-6" ref={ref}>
+      <div className="section-container" ref={ref}>
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="text-center mb-20"
+          className="section-header"
         >
           <p className="section-subtitle">Get In Touch</p>
           <h2 className="section-title">
             Contact <span className="gradient-text">Me</span>
           </h2>
-          <div className="flex items-center justify-center gap-4 mt-4">
+          <div className="section-header-divider">
             <div className="h-[1px] w-24 bg-gradient-to-r from-transparent to-[#00f5ff]/50" />
             <HiSparkles className="text-[#00f5ff]" size={18} />
             <div className="h-[1px] w-24 bg-gradient-to-l from-transparent to-[#00f5ff]/50" />
@@ -84,15 +84,15 @@ export default function Contact() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
           {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-5"
+            className="space-y-4"
           >
-            <div className="mb-8">
+            <div className="mb-7">
               <h3 className="font-orbitron text-lg font-bold text-white mb-3">
                 Let&apos;s Build Together
               </h3>
@@ -110,24 +110,24 @@ export default function Contact() {
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
                   whileHover={{ x: 6, scale: 1.02 }}
-                  className="flex items-center gap-5 glass rounded-xl p-5 border border-white/5 group cursor-pointer transition-all duration-300"
+                  className="flex items-center gap-4 glass rounded-xl p-4 border border-white/5 group cursor-pointer transition-all duration-300"
                   style={{
                     background: `linear-gradient(135deg, ${item.color}08, rgba(10,6,25,0.7))`,
                   }}
                 >
                   <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 group-hover:scale-110"
+                    className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 group-hover:scale-110"
                     style={{
                       background: `${item.color}15`,
                       border: `1px solid ${item.color}30`,
                       boxShadow: `0 0 15px ${item.color}20`,
                     }}
                   >
-                    <Icon size={18} style={{ color: item.color }} />
+                    <Icon size={16} style={{ color: item.color }} />
                   </div>
                   <div>
                     <p
-                      className="font-orbitron text-[11px] tracking-[2px] uppercase mb-1"
+                      className="font-orbitron text-[11px] tracking-[2px] uppercase mb-0.5"
                       style={{ color: item.color }}
                     >
                       {item.label}
@@ -155,7 +155,7 @@ export default function Contact() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <div className="glass-strong rounded-2xl p-8 relative overflow-hidden"
+            <div className="glass-strong rounded-2xl p-6 lg:p-8 relative overflow-hidden"
               style={{
                 border: "1px solid rgba(0,245,255,0.15)",
                 background: "linear-gradient(135deg, rgba(0,245,255,0.03), rgba(10,6,25,0.95))",

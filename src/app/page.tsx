@@ -28,7 +28,7 @@ export default function Home() {
       <Loader isLoading={isLoading} />
       <main className={`transition-opacity duration-700 ${isLoading ? "opacity-0" : "opacity-100"}`}>
         <Navbar />
-        <Hero />
+        <Hero isReady={!isLoading} />
         <About />
         <Skills />
         <Projects />

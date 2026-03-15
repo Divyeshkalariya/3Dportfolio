@@ -10,7 +10,7 @@ export default function Projects() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="projects" className="relative py-32 grid-bg overflow-hidden">
+    <section id="projects" className="section-wrapper grid-bg">
       {/* BG Orbs */}
       <div
         className="orb w-[500px] h-[500px] -top-20 -right-40 opacity-10"
@@ -21,19 +21,19 @@ export default function Projects() {
         style={{ background: "radial-gradient(circle, #ff0080, transparent)" }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-6" ref={ref}>
+      <div className="section-container" ref={ref}>
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="text-center mb-20"
+          className="section-header"
         >
-          <p className="section-subtitle">What I've Built</p>
+          <p className="section-subtitle">What I&apos;ve Built</p>
           <h2 className="section-title">
             Featured <span className="gradient-text">Projects</span>
           </h2>
-          <div className="flex items-center justify-center gap-4 mt-4">
+          <div className="section-header-divider">
             <div className="h-[1px] w-24 bg-gradient-to-r from-transparent to-[#00f5ff]/50" />
             <HiSparkles className="text-[#00f5ff]" size={18} />
             <div className="h-[1px] w-24 bg-gradient-to-l from-transparent to-[#00f5ff]/50" />
@@ -41,7 +41,7 @@ export default function Projects() {
         </motion.div>
 
         {/* Project Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {projects.map((project, i) => (
             <motion.div
               key={project.id}
@@ -83,10 +83,10 @@ export default function Projects() {
                 </span>
               </div>
 
-              <div className="p-8">
+              <div className="p-6 lg:p-8">
                 {/* Title */}
                 <h3
-                  className="font-orbitron text-xl font-bold mb-3 group-hover:opacity-100 transition-all duration-300"
+                  className="font-orbitron text-lg lg:text-xl font-bold mb-3 group-hover:opacity-100 transition-all duration-300"
                   style={{
                     color: project.color,
                     textShadow: `0 0 20px ${project.color}40`,
@@ -96,12 +96,12 @@ export default function Projects() {
                 </h3>
 
                 {/* Description */}
-                <p className="font-inter text-white/50 text-sm leading-relaxed mb-6">
+                <p className="font-inter text-white/50 text-sm leading-relaxed mb-5">
                   {project.description}
                 </p>
 
                 {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2 mb-8">
+                <div className="flex flex-wrap gap-2 mb-6">
                   {project.tech.map((tech) => (
                     <span
                       key={tech}

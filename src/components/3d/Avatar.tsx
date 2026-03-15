@@ -42,8 +42,13 @@ function AvatarModel() {
 
 export default function Avatar() {
   return (
-    <div className="w-full h-[400px] lg:h-[500px] relative">
-      <Canvas camera={{ position: [0, 0, 5], fov: 45 }} gl={{ antialias: false, powerPreference: "high-performance" }} dpr={1}>
+    <div className="w-full h-full min-h-[300px]">
+      <Canvas
+        camera={{ position: [0, 0, 5], fov: 45 }}
+        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+        style={{ background: "transparent" }}
+        dpr={[1, 1.5]}
+      >
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} color="#00f5ff" intensity={2} />
         <pointLight position={[-10, -10, -10]} color="#bf00ff" intensity={2} />

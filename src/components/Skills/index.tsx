@@ -39,7 +39,7 @@ export default function Skills() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="skills" className="relative py-32 overflow-hidden">
+    <section id="skills" className="section-wrapper">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#020008] via-[#080015] to-[#020008]" />
 
@@ -48,35 +48,35 @@ export default function Skills() {
         style={{ background: "radial-gradient(circle, #bf00ff, transparent)" }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-6" ref={ref}>
+      <div className="section-container" ref={ref}>
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="text-center mb-20"
+          className="section-header"
         >
           <p className="section-subtitle">What I Know</p>
           <h2 className="section-title">
             Tech <span className="gradient-text">Skills</span>
           </h2>
-          <div className="flex items-center justify-center gap-4 mt-4">
+          <div className="section-header-divider">
             <div className="h-[1px] w-24 bg-gradient-to-r from-transparent to-[#bf00ff]/50" />
             <HiSparkles className="text-[#bf00ff]" size={18} />
             <div className="h-[1px] w-24 bg-gradient-to-l from-transparent to-[#bf00ff]/50" />
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* 3D Sphere */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.8 }}
-            className="relative h-[420px] rounded-2xl overflow-hidden glass border border-[#bf00ff]/10"
+            className="relative w-full h-[400px] lg:h-[500px] overflow-visible flex flex-col items-center justify-center"
           >
-            <div className="absolute inset-0 flex items-center justify-center">
-              <Canvas camera={{ position: [0, 0, 7], fov: 55 }}>
+            <div className="absolute inset-0 w-full h-full overflow-visible">
+              <Canvas className="w-full h-full pointer-events-auto" camera={{ position: [0, 0, 8.5], fov: 50 }} style={{ overflow: "visible" }}>
                 <ambientLight intensity={0.4} />
                 <pointLight position={[5, 5, 5]} color="#00f5ff" intensity={1.5} />
                 <pointLight position={[-5, -5, -5]} color="#bf00ff" intensity={1.5} />
@@ -93,7 +93,7 @@ export default function Skills() {
               </Canvas>
             </div>
             {/* Label */}
-            <div className="absolute bottom-4 left-0 right-0 text-center">
+            <div className="absolute -bottom-6 left-0 right-0 text-center pointer-events-none">
               <span className="font-orbitron text-[10px] tracking-[3px] text-white/30 uppercase">
                 Drag to Explore
               </span>
@@ -107,7 +107,7 @@ export default function Skills() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             {skillCategories.map((category, ci) => (
-              <div key={category.title} className="mb-8">
+              <div key={category.title} className="mb-7">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-lg">{category.icon}</span>
                   <h3 className="font-orbitron text-sm font-semibold text-white/60 tracking-[2px] uppercase">
@@ -137,7 +137,7 @@ export default function Skills() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.4 }}
-          className="mt-16 flex flex-wrap gap-3 justify-center"
+          className="mt-14 flex flex-wrap gap-3 justify-center"
         >
           {skills.map((skill, i) => (
             <motion.span
