@@ -4,13 +4,14 @@ import dynamic from "next/dynamic";
 import { motion, useInView } from "framer-motion";
 import { FaCode, FaRocket, FaBriefcase } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi";
+import { calculateExperience } from "@/utils/calculateExperience";
 
 const Avatar = dynamic(() => import("@/components/3d/Avatar"), { ssr: false });
 
 const cards = [
   {
     icon: FaBriefcase,
-    title: "2.5+ Years",
+    title: calculateExperience("01/09/2023", "Present").formatted,
     subtitle: "Professional Experience",
     description:
       "Over two and a half years building production-ready web applications with React & Next.js, delivering real client projects across multiple industries.",
@@ -44,7 +45,7 @@ const cards = [
 ];
 
 const stats = [
-  { end: 2.5, decimals: 1, suffix: "+", label: "Years Exp." },
+  { end: calculateExperience("01/09/2023", "Present").yearsAsNumber, decimals: 1, suffix: "+", label: "Years Exp." },
   { end: 15, decimals: 0, suffix: "+", label: "Projects" },
   { end: 3, decimals: 0, suffix: "+", label: "Industries" },
   { end: 100, decimals: 0, suffix: "%", label: "Dedication" },
@@ -237,10 +238,7 @@ export default function About() {
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.5, delay: 0.6 + i * 0.12 }}
-              whileHover={{ scale: 1.06, y: -4 }}
+              initial={{ opacity: 1, scale: 1 }}
               className="glass rounded-xl p-6 text-center border border-white/5 cursor-default"
             >
               <div

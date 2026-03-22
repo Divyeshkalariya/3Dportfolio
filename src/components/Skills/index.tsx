@@ -67,16 +67,16 @@ export default function Skills() {
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">
           {/* 3D Sphere */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.8 }}
-            className="relative w-full h-[400px] lg:h-[500px] overflow-visible flex flex-col items-center justify-center"
+            className="lg:col-span-2 relative w-full h-[400px] lg:h-[500px] overflow-visible flex flex-col items-center justify-center mt-0 lg:mt-12"
           >
             <div className="absolute inset-0 w-full h-full overflow-visible">
-              <Canvas className="w-full h-full pointer-events-auto" camera={{ position: [0, 0, 8.5], fov: 50 }} style={{ overflow: "visible" }}>
+              <Canvas className="w-full h-full pointer-events-auto" camera={{ position: [0, 0, 10.5], fov: 50 }} style={{ overflow: "visible" }}>
                 <ambientLight intensity={0.4} />
                 <pointLight position={[5, 5, 5]} color="#00f5ff" intensity={1.5} />
                 <pointLight position={[-5, -5, -5]} color="#bf00ff" intensity={1.5} />
@@ -105,6 +105,7 @@ export default function Skills() {
             initial={{ opacity: 0, x: 40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
+            className="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2"
           >
             {skillCategories.map((category, ci) => (
               <div key={category.title} className="mb-7">
@@ -116,8 +117,8 @@ export default function Skills() {
                   <div className="flex-1 h-[1px] bg-gradient-to-r from-white/10 to-transparent ml-2" />
                 </div>
                 {skills
-                  .filter((s) => category.skills.includes(s.name))
-                  .map((skill, i) => (
+                  ?.filter((s) => category.skills.includes(s.name))
+                  ?.map((skill, i) => (
                     <motion.div
                       key={skill.name}
                       initial={{ opacity: 0, x: 20 }}
@@ -142,10 +143,7 @@ export default function Skills() {
           {skills.map((skill, i) => (
             <motion.span
               key={skill.name}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.4, delay: 0.5 + i * 0.05 }}
-              whileHover={{ scale: 1.1, y: -3 }}
+              initial={{ opacity: 1, scale: 1 }}
               className="px-4 py-2 rounded-full font-space text-xs font-medium tracking-wider uppercase cursor-default transition-all duration-300"
               style={{
                 background: `${skill.color}12`,

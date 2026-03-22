@@ -2,6 +2,14 @@
 
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Kregan';
+  src: url('/fonts/kregan.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
   --color-neon-cyan: #00f5ff;
   --color-neon-purple: #bf00ff;
@@ -12,6 +20,7 @@
   --font-orbitron: 'Orbitron', monospace;
   --font-inter: 'Inter', sans-serif;
   --font-space: 'Space Grotesk', sans-serif;
+  --font-kregan: 'Kregan', sans-serif;
 }
 
 :root {
@@ -40,18 +49,50 @@ body {
   overflow-x: hidden;
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar — thin + glowing */
 ::-webkit-scrollbar {
-  width: 6px;
+  display: none;
+  width: 3px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #020008;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(to bottom, var(--neon-cyan), var(--neon-purple));
   border-radius: 3px;
+  box-shadow: 0 0 6px 2px rgba(0, 245, 255, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #00f5ff, #ff00c8);
+  box-shadow: 0 0 10px 3px rgba(0, 245, 255, 0.8);
+}
+
+/* Scroll-to-top — spinning conic border */
+@keyframes spin-border {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.scroll-btn-ring {
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  /* conic-gradient sweeps from transparent → cyan → purple → transparent */
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    #00f5ff 90deg,
+    #bf00ff 180deg,
+    transparent 260deg
+  );
+  animation: spin-border 2s linear infinite;
+  pointer-events: none;
+  /* mask inner hole so only the border ring shows */
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px));
+          mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px));
 }
 
 /* Glassmorphism */

@@ -3,24 +3,22 @@ import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
 import * as THREE from "three";
-import * as Si from "react-icons/si";
-import { IconType } from "react-icons";
 import { sphereTechs } from "@/data/techLogos";
 
-// ── Single glass ball with HTML icon inside ───────────────────────────
+// ── Single glass ball with inline-SVG icon inside ───────────────────────
 interface BallProps {
   position: [number, number, number];
-  icon: IconType;
+  svg: string;
   color: string;
   name: string;
 }
 
-function LogoBall({ position, icon: Icon, color, name }: BallProps) {
+function LogoBall({ position, svg, color, name }: BallProps) {
   const tc = useMemo(() => new THREE.Color(color), [color]);
 
   return (
     <group position={position}>
-      {/* ① Inner glowing core (made lighter & transparent instead of dark) */}
+      {/* ① Inner glowing core */}
       <mesh>
         <sphereGeometry args={[0.38, 20, 20]} />
         <meshStandardMaterial
@@ -34,7 +32,7 @@ function LogoBall({ position, icon: Icon, color, name }: BallProps) {
         />
       </mesh>
 
-      {/* ② Outer glass bubble (more opaque for a lighter glassy feel) */}
+      {/* ② Outer glass bubble */}
       <mesh>
         <sphereGeometry args={[0.44, 20, 20]} />
         <meshPhongMaterial
@@ -59,36 +57,26 @@ function LogoBall({ position, icon: Icon, color, name }: BallProps) {
         />
       </mesh>
 
-      {/* ④ Icon rendered as real HTML inside the ball — perfectly scaled to the 3D scene */}
+      {/* ④ Inline SVG icon — perfectly centered, always facing camera */}
       <Html
         center
-        // transform
-        sprite // Ensures the HTML always faces the camera (billboarding)
-        scale={0.4} // Native 3D scaling (1px = 0.015 scene units) so it perfectly scales with the scene
+        sprite
+        scale={0.4}
         style={{ pointerEvents: "none" }}
         occlude={false}
       >
         <div
           style={{
+            width: "30px",
+            height: "30px",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            pointerEvents: 'none',
+            filter: `drop-shadow(0 0 10px ${color})`,
+            pointerEvents: "none",
           }}
-        >
-          <Icon
-            size={30} // 36px * 0.015 = 0.54 units diameter (fits perfectly inside 0.88 unit ball)
-            color={color}
-            style={{
-              display: "block",
-              // transform: "translate(-15px, -55px)",
-              // position: "absolute",
-              // left: '0px',
-              // top: '0px',
-              filter: `drop-shadow(0 0 12px ${color})`,
-            }}
-          />
-        </div>
+          dangerouslySetInnerHTML={{ __html: svg }}
+        />
       </Html>
 
       {/* ⑤ Equator glow ring */}
@@ -96,12 +84,6 @@ function LogoBall({ position, icon: Icon, color, name }: BallProps) {
         <ringGeometry args={[0.42, 0.47, 40]} />
         <meshBasicMaterial color={color} transparent opacity={0.6} side={THREE.DoubleSide} />
       </mesh>
-
-      {/* ⑥ Specular highlight dot */}
-      {/* <mesh position={[0.14, 0.2, 0.36]}>
-        <sphereGeometry args={[0.055, 8, 8]} />
-        <meshBasicMaterial color="#ffffff" transparent opacity={0.8} />
-      </mesh> */}
     </group>
   );
 }
@@ -119,14 +101,6 @@ export default function SkillSphere() {
       const r = Math.sqrt(1 - y * y);
       const theta = phi * i;
       return [radius * r * Math.cos(theta), radius * y, radius * r * Math.sin(theta)];
-    });
-  }, []);
-
-  // Map siKey → actual icon component
-  const icons = useMemo<IconType[]>(() => {
-    return sphereTechs.map((t) => {
-      const icon = (Si as Record<string, IconType>)[t.siKey];
-      return icon ?? Si.SiJavascript; // fallback
     });
   }, []);
 
@@ -156,7 +130,7 @@ export default function SkillSphere() {
         <LogoBall
           key={tech.name}
           position={positions[i]}
-          icon={icons[i]}
+          svg={tech.svg}
           color={tech.color}
           name={tech.name}
         />

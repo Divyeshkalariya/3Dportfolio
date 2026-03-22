@@ -9,6 +9,7 @@ import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import ScrollUI from "@/components/ScrollUI";
 
 // Dynamically import Loader to avoid SSR issues with Three.js
 const Loader = dynamic(() => import("@/components/Loader"), { ssr: false });
@@ -25,6 +26,7 @@ export default function Home() {
 
   return (
     <>
+      <ScrollUI />
       <Loader isLoading={isLoading} />
       <main className={`transition-opacity duration-700 ${isLoading ? "opacity-0" : "opacity-100"}`}>
         <Navbar />

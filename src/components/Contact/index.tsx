@@ -10,26 +10,26 @@ const contactInfo = [
     label: "Email",
     value: "divyesh.patel@example.com",
     color: "#00f5ff",
-    href: "mailto:divyesh.patel@example.com",
+    href: "mailto:divyeshkalariya26@gmail.com",
   },
   {
     icon: FaGithub,
     label: "GitHub",
     value: "github.com/divyeshpatel",
     color: "#bf00ff",
-    href: "https://github.com/divyeshpatel",
+    href: "https://github.com/Divyeshkalariya?tab=repositories",
   },
   {
     icon: FaLinkedin,
     label: "LinkedIn",
     value: "linkedin.com/in/divyeshpatel",
     color: "#ff0080",
-    href: "https://linkedin.com/in/divyeshpatel",
+    href: "https://www.linkedin.com/in/divyesh-kalariya-579a16257",
   },
   {
     icon: FaMapMarkerAlt,
     label: "Location",
-    value: "India",
+    value: "Rajkot, Gujarat",
     color: "#00ff88",
     href: null,
   },
@@ -39,19 +39,34 @@ export default function Contact() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", mobile: "", message: "" });
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSending(true);
-    // Simulate sending
-    await new Promise((r) => setTimeout(r, 2000));
-    setSending(false);
-    setSent(true);
-    setTimeout(() => setSent(false), 4000);
-    setFormData({ name: "", email: "", message: "" });
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSent(true);
+        setTimeout(() => setSent(false), 4000);
+        setFormData({ name: "", email: "", mobile: "", message: "" });
+      } else {
+        alert("Failed to send email");
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert("Failed to send email");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -106,10 +121,7 @@ export default function Contact() {
               const Icon = item.icon;
               const content = (
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-                  whileHover={{ x: 6, scale: 1.02 }}
+                  initial={{ opacity: 1, y: 0 }}
                   className="flex items-center gap-4 glass rounded-xl p-4 border border-white/5 group cursor-pointer transition-all duration-300"
                   style={{
                     background: `linear-gradient(135deg, ${item.color}08, rgba(10,6,25,0.7))`,
@@ -200,6 +212,21 @@ export default function Contact() {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="you@example.com"
+                    className="neon-input w-full px-4 py-3 rounded-xl font-space text-sm"
+                  />
+                </div>
+
+                {/* Mobile */}
+                <div>
+                  <label className="font-space text-xs text-white/40 tracking-[2px] uppercase mb-2 block">
+                    Mobile Number <span className="text-white/20 lowercase">(Optional)</span>
+                  </label>
+                  <input
+                    type="tel"
+                    id="contact-mobile"
+                    value={formData.mobile}
+                    onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
+                    placeholder="+91 98765 43210"
                     className="neon-input w-full px-4 py-3 rounded-xl font-space text-sm"
                   />
                 </div>

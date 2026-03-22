@@ -35,3 +35,11 @@ export default function RootLayout({
     </html>
   );
 }
+
+
+
+// "mailto:divyeshkalariya26@gmail.com"
+// "https://www.linkedin.com/in/divyesh-kalariya-579a16257"
+// "https://github.com/Divyeshkalariya?tab=repositories"
+// "https://www.facebook.com/deep.kalariya.752?mibextid=ZbWKwL"
+// "https://instagram.com/_divyesh_patel_26_?igshid=ZDdkNTZiNTM="

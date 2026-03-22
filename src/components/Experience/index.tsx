@@ -3,14 +3,15 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { FaBriefcase, FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa";
 import { HiSparkles, HiCheckCircle } from "react-icons/hi";
+import { calculateExperience, formatDateForDisplay } from "@/utils/calculateExperience";
 
 const experiences = [
   {
     role: "Frontend Developer",
     company: "LNX Cloud Technology",
-    duration: "2022 — Present",
-    period: "2.5+ Years",
-    location: "India",
+    startDate: "01/01/2024",
+    endDate: "Present",
+    location: "Rajkot , India",
     type: "Full-Time",
     color: "#00f5ff",
     description:
@@ -23,7 +24,43 @@ const experiences = [
       "Migrated legacy codebases to Next.js App Router architecture",
       "Improved page load performance by 40% through code splitting and lazy loading",
     ],
-    tech: ["React", "Next.js", "TypeScript", "Redux Toolkit", "MUI", "Tailwind CSS"],
+    tech: ["React", "Next.js", "TypeScript", "Redux Toolkit", "Bootstrap", "MUI", "Scss", "Tailwind CSS"],
+  },
+  {
+    role: "Web Designer",
+    company: "Techerudite",
+    startDate: "01/09/2023",
+    endDate: "31/12/2023",
+    location: "Ahmedabad , India",
+    type: "Full-Time",
+    color: "#bf00ff",
+    description:
+      "Worked as a Web Designer at Techerudite — a leading software application development company. Contributed to updating and improving the UI of existing client projects, translating design requirements into clean, responsive interfaces.",
+    achievements: [
+      "Updated and enhanced UI of existing projects using HTML & CSS",
+      "Implemented responsive layouts ensuring cross-device compatibility",
+      "Integrated UI components using React.js for dynamic interfaces",
+      "Collaborated with senior developers to align front-end with back-end APIs",
+    ],
+    tech: ["HTML5", "CSS3", "React.js", "Responsive Design"],
+  },
+  {
+    role: "Frontend Developer Trainee",
+    company: "Tops Technology Pvt. Ltd.",
+    startDate: "01/04/2023",
+    endDate: "31/08/2023",
+    location: "Rajkot , India",
+    type: "Full-Time",
+    color: "#00ff88",
+    description:
+      "Completed an intensive full-time training program in web design and development at Tops Technology Pvt. Ltd. Gained hands-on experience building modern, responsive web interfaces and understanding industry-standard development workflows.",
+    achievements: [
+      "Trained in web design fundamentals including HTML5, CSS3, and UI principles",
+      "Learned JavaScript and React.js for building interactive web applications",
+      "Completed multiple hands-on projects covering responsive design patterns",
+      "Explored version control workflows using Git and GitHub",
+    ],
+    tech: ["HTML5", "CSS3", "JavaScript", "React.js", "Git"],
   },
 ];
 
@@ -125,7 +162,9 @@ export default function Experience() {
                     <div className="flex flex-wrap gap-4">
                       <div className="flex items-center gap-1.5">
                         <FaCalendarAlt size={11} className="text-white/30" />
-                        <span className="font-space text-xs text-white/40">{exp.duration}</span>
+                        <span className="font-space text-xs text-white/40">
+                          {formatDateForDisplay(exp.startDate)} — {formatDateForDisplay(exp.endDate)}
+                        </span>
                       </div>
                       <div className="flex items-center gap-1.5">
                         <FaMapMarkerAlt size={11} className="text-white/30" />
@@ -142,7 +181,7 @@ export default function Experience() {
                         color: exp.color,
                       }}
                     >
-                      {exp.period}
+                      {calculateExperience(exp.startDate, exp.endDate).formatted}
                     </span>
                     <span className="px-3 py-1 rounded-full font-space text-xs bg-white/5 border border-white/10 text-white/40">
                       {exp.type}

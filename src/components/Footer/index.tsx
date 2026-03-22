@@ -6,7 +6,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative border-t border-white/5 py-10 overflow-hidden">
+    <footer className="relative border-t border-white/5 pt-10 pb-4 overflow-hidden">
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -19,10 +19,9 @@ export default function Footer() {
           {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="font-orbitron font-bold text-xl"
+            className="font-kregan text-3xl tracking-wide"
           >
-            <span className="gradient-text">DP</span>
-            <span className="text-white/30">.</span>
+            <span className="gradient-text">dp</span>
           </motion.div>
 
           {/* Center text */}
@@ -37,8 +36,8 @@ export default function Footer() {
           {/* Social */}
           <div className="flex gap-4">
             {[
-              { icon: FaGithub, href: "https://github.com/divyeshpatel", label: "GitHub" },
-              { icon: FaLinkedin, href: "https://linkedin.com/in/divyeshpatel", label: "LinkedIn" },
+              { icon: FaGithub, href: "https://github.com/Divyeshkalariya?tab=repositories", label: "GitHub" },
+              { icon: FaLinkedin, href: "https://www.linkedin.com/in/divyesh-kalariya-579a16257", label: "LinkedIn" },
             ].map(({ icon: Icon, href, label }) => (
               <a
                 key={label}

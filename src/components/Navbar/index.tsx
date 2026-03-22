@@ -20,30 +20,28 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+
+      const navSectionIds = navLinks.map((link) => link.href.substring(1));
+      let currentSection = activeSection;
+
+      // Find the section that occupies the most space in the top portion of the viewport
+      for (const id of navSectionIds) {
+        const element = document.getElementById(id);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          // If the top of the element is above the middle of screen, and bottom is below top of screen
+          if (rect.top <= window.innerHeight * 0.4 && rect.bottom >= 100) {
+            currentSection = id;
+          }
+        }
+      }
+      
+      setActiveSection(currentSection);
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { threshold: 0.4, rootMargin: "-10% 0px -60% 0px" }
-    );
-
-    navLinks.forEach(({ href }) => {
-      const el = document.querySelector(href);
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
+  }, [activeSection]);
 
   const scrollTo = useCallback((href: string) => {
     const el = document.querySelector(href);
@@ -57,21 +55,18 @@ export default function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? "glass-strong py-3 shadow-[0_4px_30px_rgba(0,245,255,0.1)]" : "py-5"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "glass-strong py-3 shadow-[0_4px_30px_rgba(0,245,255,0.1)]" : "py-5"
+          }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
           <motion.button
             onClick={() => scrollTo("#home")}
-            className="font-orbitron font-bold text-lg relative group"
+            className="font-kregan text-3xl relative group tracking-wide cursor-pointer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <span className="gradient-text">DP</span>
-            <span className="text-white/60">.</span>
-            <div className="absolute -bottom-1 left-0 h-[2px] w-0 group-hover:w-full transition-all duration-300 bg-gradient-to-r from-[#00f5ff] to-[#bf00ff]" />
+            <span className="gradient-text">dp</span>
           </motion.button>
 
           {/* Desktop Links */}
@@ -82,12 +77,11 @@ export default function Navbar() {
                 <button
                   key={link.label}
                   onClick={() => scrollTo(link.href)}
-                  className="relative font-space text-sm font-medium tracking-wider uppercase transition-all duration-300 group"
+                  className="relative font-space text-sm font-medium tracking-wider uppercase transition-all duration-300 group cursor-pointer"
                 >
                   <span
-                    className={`transition-colors duration-300 ${
-                      isActive ? "text-[#00f5ff]" : "text-white/60 hover:text-white"
-                    }`}
+                    className={`transition-colors duration-300 ${isActive ? "text-[#00f5ff]" : "text-white/60 hover:text-white"
+                      }`}
                     style={
                       isActive
                         ? { textShadow: "0 0 10px #00f5ff, 0 0 20px #00f5ff" }
@@ -97,9 +91,8 @@ export default function Navbar() {
                     {link.label}
                   </span>
                   <div
-                    className={`absolute -bottom-1 left-0 h-[1px] transition-all duration-300 bg-[#00f5ff] ${
-                      isActive ? "w-full" : "w-0 group-hover:w-full"
-                    }`}
+                    className={`absolute -bottom-1 left-0 h-[1px] transition-all duration-300 bg-[#00f5ff] ${isActive ? "w-full" : "w-0 group-hover:w-full"
+                      }`}
                     style={isActive ? { boxShadow: "0 0 8px #00f5ff" } : {}}
                   />
                 </button>
@@ -113,7 +106,7 @@ export default function Navbar() {
               onClick={() => scrollTo("#contact")}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="btn-neon btn-neon-primary text-xs py-2.5 px-6"
+              className="btn-neon btn-neon-primary text-xs py-2.5 px-6 cursor-pointer"
             >
               Hire Me
             </motion.button>
@@ -122,7 +115,7 @@ export default function Navbar() {
           {/* Mobile hamburger */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden text-white/80 hover:text-[#00f5ff] transition-colors"
+            className="md:hidden text-white/80 hover:text-[#00f5ff] transition-colors cursor-pointer"
           >
             {menuOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
           </button>
@@ -149,12 +142,11 @@ export default function Navbar() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.07 }}
                     onClick={() => scrollTo(link.href)}
-                    className="block w-full text-left font-orbitron text-sm tracking-widest uppercase"
+                    className="block w-full text-left font-orbitron text-sm tracking-widest uppercase cursor-pointer"
                   >
                     <span
-                      className={`transition-colors duration-300 ${
-                        isActive ? "text-[#00f5ff]" : "text-white/60"
-                      }`}
+                      className={`transition-colors duration-300 ${isActive ? "text-[#00f5ff]" : "text-white/60"
+                        }`}
                       style={isActive ? { textShadow: "0 0 10px #00f5ff" } : {}}
                     >
                       {link.label}
@@ -166,7 +158,7 @@ export default function Navbar() {
             <div className="mt-auto">
               <button
                 onClick={() => scrollTo("#contact")}
-                className="btn-neon btn-neon-primary w-full text-xs py-3"
+                className="btn-neon btn-neon-primary w-full text-xs py-3 cursor-pointer"
               >
                 Hire Me
               </button>

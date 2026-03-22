@@ -18,6 +18,9 @@ export const skills: Skill[] = [
   { name: "Git", color: "#f05032", level: 88 },
   { name: "GitHub", color: "#ffffff", level: 87 },
   { name: "NPM", color: "#cb3837", level: 85 },
+  { name: "Vs-Code", color: "#007acc", level: 95 },
+  { name: "Cursor", color: "#ffffff", level: 95 },
+  { name: "Antigravity", color: "#bf00ff", level: 95 },
 ];
 
 export const skillCategories = [
@@ -35,5 +38,10 @@ export const skillCategories = [
     title: "UI Libraries & Tools",
     skills: ["Material UI", "Tailwind", "Git", "GitHub", "NPM"],
     icon: "🛠️",
+  },
+  {
+    title: "Coding Tools",
+    skills: ["Vs-Code", "Cursor", "Antigravity"],
+    icon: "💻",
   },
 ];
