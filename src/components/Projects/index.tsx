@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { FaExternalLinkAlt, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi";
@@ -162,21 +162,34 @@ export default function Projects() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const sliderRef = useRef<any>(null);
 
+  const [sliderConfig, setSliderConfig] = useState({
+    slidesToShow: 3,
+    isMobile: false,
+  });
+
+  useEffect(() => {
+    const check = () => {
+      const w = window.innerWidth;
+      setSliderConfig({
+        slidesToShow: w < 768 ? 1 : w < 1024 ? 2 : 3,
+        isMobile: w < 768,
+      });
+    };
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   const sliderSettings: Settings = {
     dots: true,
     infinite: true,
     speed: 600,
-    slidesToShow: 3,
+    slidesToShow: sliderConfig.slidesToShow,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 4000,
     pauseOnHover: true,
     arrows: false, // arrows handled externally
-    responsive: [
-      { breakpoint: 1280, settings: { slidesToShow: 3 } },
-      { breakpoint: 1024, settings: { slidesToShow: 2 } },
-      { breakpoint: 640,  settings: { slidesToShow: 1 } },
-    ],
   };
 
   return (
@@ -215,24 +228,28 @@ export default function Projects() {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
-          style={{ display: "flex", alignItems: "center", gap: "16px" }}
+          style={{ display: "flex", alignItems: "center", gap: sliderConfig.isMobile ? 0 : "16px" }}
         >
-          {/* Prev arrow — OUTSIDE slider */}
-          <ArrowBtn direction="prev" onClick={() => sliderRef.current?.slickPrev()} />
+          {/* Prev arrow — hidden on mobile (1 card shown) */}
+          {!sliderConfig.isMobile && (
+            <ArrowBtn direction="prev" onClick={() => sliderRef.current?.slickPrev()} />
+          )}
 
           {/* Slider — takes the remaining width */}
           <div className="project-slider-wrapper" style={{ flex: 1, minWidth: 0 }}>
-            <Slider ref={sliderRef} {...sliderSettings}>
+            <Slider key={sliderConfig.slidesToShow} ref={sliderRef} {...sliderSettings}>
               {projects.map((project) => (
-                <div key={project.id} className="px-3 py-2">
+                <div key={project.id} className={sliderConfig.isMobile ? "px-1 py-2" : "px-3 py-2"}>
                   <ProjectCard project={project} />
                 </div>
               ))}
             </Slider>
           </div>
 
-          {/* Next arrow — OUTSIDE slider */}
-          <ArrowBtn direction="next" onClick={() => sliderRef.current?.slickNext()} />
+          {/* Next arrow — hidden on mobile (1 card shown) */}
+          {!sliderConfig.isMobile && (
+            <ArrowBtn direction="next" onClick={() => sliderRef.current?.slickNext()} />
+          )}
         </motion.div>
       </div>
 
@@ -252,6 +269,12 @@ export default function Projects() {
         .project-slider-wrapper .slick-track { display: flex !important; }
         .project-slider-wrapper .slick-slide { height: inherit !important; }
         .project-slider-wrapper .slick-slide > div { height: 100%; }
+        /* Mobile: full-width single card, more breathing room for dots */
+        @media (max-width: 639px) {
+          .project-slider-wrapper { width: 100%; }
+          .project-slider-wrapper .slick-dots { bottom: -40px; }
+          .project-slider-wrapper .slick-slide > div { padding: 0 4px; }
+        }
       `}</style>
     </section>
   );
