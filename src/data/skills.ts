@@ -30,14 +30,14 @@ export const skillCategories = [
     icon: "🎨",
   },
   {
-    title: "Frameworks",
-    skills: ["React", "Next.js", "Redux"],
-    icon: "⚛️",
-  },
-  {
     title: "UI Libraries & Tools",
     skills: ["Material UI", "Tailwind", "Git", "GitHub", "NPM"],
     icon: "🛠️",
+  },
+  {
+    title: "Frameworks",
+    skills: ["React", "Next.js", "Redux"],
+    icon: "⚛️",
   },
   {
     title: "Coding Tools",
