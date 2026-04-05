@@ -42,20 +42,20 @@ export async function POST(req: Request) {
             <div style="background-color: #f8fafc; border-radius: 8px; padding: 25px; margin-bottom: 30px; border-left: 4px solid #00f5ff; box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1);">
               <h3 style="color: #64748b; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; margin: 0 0 15px 0;">Contact Details</h3>
               
-              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="table-layout: fixed; width: 100%;">
                 <tr>
-                  <td width="80" style="padding-bottom: 12px; color: #94a3b8; font-size: 14px; font-weight: 500;">Name:</td>
-                  <td style="padding-bottom: 12px; color: #0f172a; font-size: 15px; font-weight: 600;">${name}</td>
+                  <td width="80" style="padding-bottom: 12px; color: #94a3b8; font-size: 14px; font-weight: 500; white-space: nowrap; vertical-align: top;">Name:</td>
+                  <td style="padding-bottom: 12px; color: #0f172a; font-size: 15px; font-weight: 600; word-break: break-word; overflow-wrap: break-word; max-width: 0;">${name}</td>
                 </tr>
                 <tr>
-                  <td style="padding-bottom: 12px; color: #94a3b8; font-size: 14px; font-weight: 500;">Email:</td>
-                  <td style="padding-bottom: 12px; font-size: 15px; font-weight: 600;">
-                    <a href="mailto:${email}" style="color: #bf00ff; text-decoration: none;">${email}</a>
+                  <td style="padding-bottom: 12px; color: #94a3b8; font-size: 14px; font-weight: 500; white-space: nowrap; vertical-align: top;">Email:</td>
+                  <td style="padding-bottom: 12px; font-size: 15px; font-weight: 600; word-break: break-word; overflow-wrap: break-word; max-width: 0;">
+                    <a href="mailto:${email}" style="color: #bf00ff; text-decoration: none; word-break: break-all;">${email}</a>
                   </td>
                 </tr>
                 <tr>
-                  <td style="color: #94a3b8; font-size: 14px; font-weight: 500;">Mobile:</td>
-                  <td style="color: #0f172a; font-size: 15px; font-weight: 600;">${mobile || '<span style="color: #cbd5e1; font-weight: 400;">Not provided</span>'}</td>
+                  <td style="color: #94a3b8; font-size: 14px; font-weight: 500; white-space: nowrap; vertical-align: top;">Mobile:</td>
+                  <td style="color: #0f172a; font-size: 15px; font-weight: 600; word-break: break-word; overflow-wrap: break-word; max-width: 0;">${mobile || '<span style="color: #cbd5e1; font-weight: 400;">Not provided</span>'}</td>
                 </tr>
               </table>
             </div>
