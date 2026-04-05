@@ -1,6 +1,6 @@
 "use client";
 import { useRef, useState, useEffect } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { FaExternalLinkAlt, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi";
 import Slider from "react-slick";
@@ -64,10 +64,15 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
 
         {/* Tech badges */}
         <div className="flex flex-wrap gap-2 mb-6">
-          {project.tech.map((tech) => (
-            <span
+          {project.tech.map((tech, ti) => (
+            <motion.span
               key={tech}
-              className="px-3 py-1 rounded-full font-space text-[11px] font-medium tracking-wider"
+              initial={{ opacity: 0, scale: 0.5 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.3, delay: ti * 0.05, type: "spring", stiffness: 200 }}
+              whileHover={{ scale: 1.05 }}
+              className="px-3 py-1 rounded-full font-space text-[11px] font-medium tracking-wider cursor-default shadow-sm"
               style={{
                 background: `${project.color}12`,
                 border: `1px solid ${project.color}25`,
@@ -75,18 +80,23 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
               }}
             >
               {tech}
-            </span>
+            </motion.span>
           ))}
         </div>
 
         {/* Action button */}
         <div className="flex gap-3 mt-auto">
           {project.live ? (
-            <a
+            <motion.a
               href={project.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2.5 rounded-lg font-space text-xs font-medium tracking-wider transition-all duration-300 hover:scale-105"
+              initial={{ opacity: 0, scale: 0.5 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.4, type: "spring", stiffness: 200 }}
+              whileHover={{ scale: 1.05 }}
+              className="flex items-center gap-2 px-4 py-2.5 rounded-lg font-space text-xs font-medium tracking-wider"
               style={{
                 background: `${project.color}18`,
                 border: `1px solid ${project.color}40`,
@@ -95,12 +105,18 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
             >
               <FaExternalLinkAlt size={12} />
               Live Demo
-            </a>
+            </motion.a>
           ) : (
-            <span className="flex items-center gap-2 px-4 py-2.5 rounded-lg font-space text-xs font-medium tracking-wider text-white/20 border border-white/10 cursor-not-allowed select-none">
+            <motion.span 
+              initial={{ opacity: 0, scale: 0.5 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.4, type: "spring", stiffness: 200 }}
+              className="flex items-center gap-2 px-4 py-2.5 rounded-lg font-space text-xs font-medium tracking-wider text-white/20 border border-white/10 cursor-not-allowed select-none"
+            >
               <FaExternalLinkAlt size={12} />
               Coming Soon
-            </span>
+            </motion.span>
           )}
         </div>
       </div>
@@ -157,8 +173,6 @@ function ArrowBtn({
 
 // ── Main component ─────────────────────────────────────────────────────
 export default function Projects() {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const sliderRef = useRef<any>(null);
 
@@ -204,11 +218,12 @@ export default function Projects() {
         style={{ background: "radial-gradient(circle, #ff0080, transparent)" }}
       />
 
-      <div className="section-container" ref={ref}>
+      <div className="section-container">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.7 }}
           className="section-header"
         >
@@ -226,7 +241,8 @@ export default function Projects() {
         {/* ── Slider row: [prev] [cards] [next] ─────────────────────────── */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, delay: 0.2 }}
           style={{ display: "flex", alignItems: "center", gap: sliderConfig.isMobile ? 0 : "16px" }}
         >

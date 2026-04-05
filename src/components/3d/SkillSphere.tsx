@@ -64,6 +64,7 @@ function LogoBall({ position, svg, color, name }: BallProps) {
         scale={0.4}
         style={{ pointerEvents: "none" }}
         occlude={false}
+        zIndexRange={[1, 10]}
       >
         <div
           style={{

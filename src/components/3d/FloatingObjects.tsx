@@ -53,24 +53,24 @@ function FloatingObject({ position, geometry, color, speed = 1, scale = 1 }: Flo
   );
 }
 
-function NeonGrid() {
-  const gridRef = useRef<THREE.GridHelper>(null);
+// function NeonGrid() {
+//   const gridRef = useRef<THREE.GridHelper>(null);
 
-  useFrame(({ clock }) => {
-    if (gridRef.current) {
-      gridRef.current.position.z = (clock.getElapsedTime() * 0.5) % 2;
-    }
-  });
+//   useFrame(({ clock }) => {
+//     if (gridRef.current) {
+//       gridRef.current.position.z = (clock.getElapsedTime() * 0.5) % 2;
+//     }
+//   });
 
-  return (
-    <gridHelper
-      ref={gridRef}
-      args={[40, 40, "#00f5ff", "#1a003a"]}
-      position={[0, -4, 0]}
-      rotation={[0, 0, 0]}
-    />
-  );
-}
+//   return (
+//     <gridHelper
+//       ref={gridRef}
+//       args={[40, 40, "#00f5ff", "#1a003a"]}
+//       position={[0, -4, 0]}
+//       rotation={[0, 0, 0]}
+//     />
+//   );
+// }
 
 export default function FloatingObjects() {
   const objects: FloatingObjectProps[] = [
@@ -85,7 +85,7 @@ export default function FloatingObjects() {
 
   return (
     <>
-      <NeonGrid />
+      {/* <NeonGrid /> */}
       {objects.map((obj, i) => (
         <FloatingObject key={i} {...obj} />
       ))}

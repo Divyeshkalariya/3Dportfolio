@@ -89,8 +89,8 @@ function CountUp({
 }
 
 export default function About() {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const statsRef = useRef<HTMLDivElement>(null);
+  const statsInView = useInView(statsRef, { once: true, margin: "-50px" });
 
   const containerVariants = {
     hidden: {},
@@ -121,13 +121,14 @@ export default function About() {
         style={{ background: "radial-gradient(circle, #bf00ff, transparent)" }}
       />
 
-      <div className="section-container" ref={ref}>
+      <div className="section-container">
         {/* Two-Column About Introduction */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Avatar / 3D Visual on Left */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.7 }}
             className="w-full relative h-[400px] lg:h-[480px]"
           >
@@ -138,7 +139,8 @@ export default function About() {
           {/* Text Content on Right */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.7, delay: 0.2 }}
             className="text-left"
           >
@@ -169,7 +171,8 @@ export default function About() {
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
           className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6"
         >
           {cards.map((card) => {
@@ -228,10 +231,11 @@ export default function About() {
           })}
         </motion.div>
 
-        {/* Stats with count-up animation */}
         <motion.div
+          ref={statsRef}
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.7, delay: 0.5 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-6"
         >
@@ -254,7 +258,7 @@ export default function About() {
                   decimals={stat.decimals}
                   suffix={stat.suffix}
                   duration={1600 + i * 200}
-                  start={isInView}
+                  start={statsInView}
                 />
               </div>
               <div className="font-space text-xs text-white/40 tracking-[2px] uppercase">

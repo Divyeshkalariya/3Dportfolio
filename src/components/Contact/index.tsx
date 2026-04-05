@@ -1,6 +1,6 @@
 "use client";
 import { useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { FaEnvelope, FaMapMarkerAlt, FaGithub, FaLinkedin, FaPaperPlane } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi";
 
@@ -36,8 +36,6 @@ const contactInfo = [
 ];
 
 export default function Contact() {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   const [formData, setFormData] = useState({ name: "", email: "", mobile: "", message: "" });
   const [sending, setSending] = useState(false);
@@ -77,11 +75,12 @@ export default function Contact() {
         style={{ background: "radial-gradient(circle, #00f5ff, transparent)" }}
       />
 
-      <div className="section-container" ref={ref}>
+      <div className="section-container">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.7 }}
           className="section-header"
         >
@@ -101,13 +100,14 @@ export default function Contact() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
           {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-4"
-          >
-            <div className="mb-7">
+          <div className="space-y-4">
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="mb-7"
+            >
               <h3 className="font-orbitron text-lg font-bold text-white mb-3">
                 Let&apos;s Build Together
               </h3>
@@ -115,14 +115,17 @@ export default function Contact() {
                 I&apos;m currently open to new opportunities. Whether you have a project, a question,
                 or just want to say hi — my inbox is always open.
               </p>
-            </div>
+            </motion.div>
 
             {contactInfo.map((item, i) => {
               const Icon = item.icon;
               const content = (
                 <motion.div
-                  initial={{ opacity: 1, y: 0 }}
-                  className="flex items-center gap-4 glass rounded-xl p-4 border border-white/5 group cursor-pointer transition-all duration-300"
+                  initial={{ opacity: 0, x: -40 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: 0.4 + i * 0.15, type: "spring", stiffness: 100 }}
+                  className="flex items-center gap-4 glass rounded-xl p-4 border border-white/5 group cursor-pointer transition-shadow transition-colors duration-300 hover:shadow-[0_0_20px_rgba(0,245,255,0.1)]"
                   style={{
                     background: `linear-gradient(135deg, ${item.color}08, rgba(10,6,25,0.7))`,
                   }}
@@ -151,20 +154,29 @@ export default function Contact() {
                 </motion.div>
               );
 
+              const isMailto = item?.href?.startsWith("mailto:");
+              
               return item.href ? (
-                <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer" className="block">
+                <a 
+                  key={item.label} 
+                  href={item.href} 
+                  target={isMailto ? undefined : "_blank"} 
+                  rel={isMailto ? undefined : "noopener noreferrer"} 
+                  className="block"
+                >
                   {content}
                 </a>
               ) : (
                 <div key={item.label}>{content}</div>
               );
             })}
-          </motion.div>
+          </div>
 
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <div className="glass-strong rounded-2xl p-6 lg:p-8 relative overflow-hidden"

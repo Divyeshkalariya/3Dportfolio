@@ -1,6 +1,6 @@
 "use client";
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { FaBriefcase, FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa";
 import { HiSparkles, HiCheckCircle } from "react-icons/hi";
 import { calculateExperience, formatDateForDisplay } from "@/utils/calculateExperience";
@@ -65,8 +65,6 @@ const experiences = [
 ];
 
 export default function Experience() {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
     <section id="experience" className="section-wrapper">
@@ -78,11 +76,12 @@ export default function Experience() {
         style={{ background: "radial-gradient(circle, #00f5ff, transparent)" }}
       />
 
-      <div className="section-container" ref={ref}>
+      <div className="section-container">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.7 }}
           className="section-header"
         >
@@ -102,7 +101,8 @@ export default function Experience() {
           {/* Vertical line */}
           <motion.div
             initial={{ scaleY: 0 }}
-            animate={isInView ? { scaleY: 1 } : {}}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 1.2, ease: "easeInOut", delay: 0.3 }}
             className="absolute left-6 md:left-8 top-0 bottom-0 w-[2px] timeline-line origin-top"
           />
@@ -111,8 +111,9 @@ export default function Experience() {
             <motion.div
               key={i}
               initial={{ opacity: 0, x: -50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 + i * 0.2 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8, delay: 0.2 }}
               className="relative pl-16 md:pl-20 mb-10 last:mb-0"
             >
               {/* Timeline node */}
@@ -173,7 +174,11 @@ export default function Experience() {
                     </div>
                   </div>
                   <div className="flex flex-row sm:flex-col gap-2 items-start sm:items-end shrink-0">
-                    <span
+                    <motion.span
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.4, delay: 0.2, type: "spring", stiffness: 200 }}
                       className="px-3 py-1 rounded-full font-orbitron text-xs font-bold"
                       style={{
                         background: `${exp.color}15`,
@@ -182,10 +187,16 @@ export default function Experience() {
                       }}
                     >
                       {calculateExperience(exp.startDate, exp.endDate).formatted}
-                    </span>
-                    <span className="px-3 py-1 rounded-full font-space text-xs bg-white/5 border border-white/10 text-white/40">
+                    </motion.span>
+                    <motion.span 
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.4, delay: 0.3, type: "spring", stiffness: 200 }}
+                      className="px-3 py-1 rounded-full font-space text-xs bg-white/5 border border-white/10 text-white/40"
+                    >
                       {exp.type}
-                    </span>
+                    </motion.span>
                   </div>
                 </div>
 
@@ -200,8 +211,9 @@ export default function Experience() {
                     <motion.div
                       key={ai}
                       initial={{ opacity: 0, x: -10 }}
-                      animate={isInView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ duration: 0.4, delay: 0.6 + ai * 0.06 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.4, delay: ai * 0.06 }}
                       className="flex items-start gap-3"
                     >
                       <HiCheckCircle
@@ -218,9 +230,13 @@ export default function Experience() {
 
                 {/* Tech pills */}
                 <div className="flex flex-wrap gap-2">
-                  {exp.tech.map((t) => (
-                    <span
+                  {exp.tech.map((t, ti) => (
+                    <motion.span
                       key={t}
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.3, delay: ti * 0.05, type: "spring", stiffness: 200 }}
                       className="px-3 py-1 rounded-full font-space text-[11px] tracking-wider"
                       style={{
                         background: `${exp.color}10`,
@@ -229,7 +245,7 @@ export default function Experience() {
                       }}
                     >
                       {t}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
 

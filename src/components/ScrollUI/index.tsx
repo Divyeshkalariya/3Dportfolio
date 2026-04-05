@@ -9,45 +9,86 @@ export default function ScrollUI() {
   const { scrollYProgress } = useScroll();
   const scaleY = useSpring(scrollYProgress, { stiffness: 200, damping: 30 });
 
+  const [activeSection, setActiveSection] = useState("home");
+
+  const sections = [
+    { id: "home", label: "Home" },
+    { id: "about", label: "About" },
+    { id: "skills", label: "Skills" },
+    { id: "projects", label: "Projects" },
+    { id: "experience", label: "Experience" },
+    { id: "contact", label: "Contact" },
+  ];
+
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 300);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    const handleScroll = () => {
+      setVisible(window.scrollY > 300);
+      let currentSection = activeSection;
+      for (const section of sections) {
+        const element = document.getElementById(section.id);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= window.innerHeight * 0.4 && rect.bottom >= 100) {
+            currentSection = section.id;
+          }
+        }
+      }
+      setActiveSection(currentSection);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [activeSection]);
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  const scrollTo = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <>
-      {/* ── Scroll progress bar (right edge) ──────────────────────── */}
+      {/* ── Custom Navigation Sidebar (right edge) ──────────────────────── */}
       <div
-        aria-hidden
+        className="hidden md:flex"
         style={{
           position: "fixed",
-          top: '2vh',
-          right: '5px',
-          width: "3px",
-          height: "96vh",
+          top: "50%",
+          right: "20px",
+          transform: "translateY(-50%)",
           zIndex: 9999,
-          background: "rgba(0,245,255,0.08)",
-          pointerEvents: "none",
-          borderRadius: '10px'
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "24px",
         }}
       >
-        <motion.div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            scaleY,
-            originY: 0,
-            height: "100%",
-            background: "linear-gradient(180deg, #00f5ff 0%, #bf00ff 100%)",
-            boxShadow: "0 0 8px 2px rgba(0,245,255,0.7), 0 0 18px 4px rgba(191,0,255,0.4)",
-            borderRadius: "0 0 2px 2px",
-          }}
-        />
+        {sections.map((section) => {
+          const isActive = activeSection === section.id;
+          return (
+            <motion.button
+              key={section.id}
+              onClick={() => scrollTo(section.id)}
+              // whileHover={{ scale: 1.5 }}
+              whileTap={{ scale: 0.9 }}
+              className="group relative flex items-center justify-center cursor-pointer"
+              style={{
+                width: "12px",
+                height: "12px",
+                borderRadius: "50%",
+                background: isActive ? "linear-gradient(180deg, #00f5ff 0%, #bf00ff 100%)" : "rgba(255,255,255,0.15)",
+                border: isActive ? "none" : "1px solid rgba(255,255,255,0.3)",
+                boxShadow: isActive ? "0 0 12px rgba(0,245,255,0.6)" : "none",
+                transition: "all 0.3s ease",
+              }}
+              aria-label={`Scroll to ${section.label}`}
+            >
+              <div
+                className={`absolute right-7 px-3 py-1.5 rounded-md bg-black/80 backdrop-blur-md text-white/90 text-xs font-space tracking-wider border border-white/10 opacity-0 transform translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none whitespace-nowrap shadow-lg ${isActive ? 'text-[#00f5ff] border-[#00f5ff]/30' : ''}`}
+              >
+                {section.label}
+              </div>
+            </motion.button>
+          );
+        })}
       </div>
 
       {/* ── Scroll-to-top button ─────────────────────────────────────── */}

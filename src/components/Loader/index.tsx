@@ -129,14 +129,10 @@ export default function Loader({ isLoading }: LoaderProps) {
           </motion.div>
 
           {/* Corner decorations */}
-          {["top-4 left-4", "top-4 right-4", "bottom-4 left-4", "bottom-4 right-4"].map(
-            (pos, i) => (
-              <div key={i} className={`absolute ${pos} w-8 h-8`}>
-                <div className="absolute top-0 left-0 w-full h-[2px] bg-[#00f5ff]/60" />
-                <div className="absolute top-0 left-0 h-full w-[2px] bg-[#00f5ff]/60" />
-              </div>
-            )
-          )}
+          <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-[#00f5ff]/60" />
+          <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-[#00f5ff]/60" />
+          <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-[#00f5ff]/60" />
+          <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-[#00f5ff]/60" />
         </motion.div>
       )}
     </AnimatePresence>
