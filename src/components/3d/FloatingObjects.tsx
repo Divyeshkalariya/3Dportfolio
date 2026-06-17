@@ -86,9 +86,9 @@ export default function FloatingObjects() {
   return (
     <>
       {/* <NeonGrid /> */}
-      {objects.map((obj, i) => (
+      {/* {objects?.map((obj, i) => (
         <FloatingObject key={i} {...obj} />
-      ))}
+      ))} */}
     </>
   );
 }

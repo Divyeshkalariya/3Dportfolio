@@ -1,64 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Canvas, useFrame } from "@react-three/fiber";
-import * as THREE from "three";
-import { useRef as useThreeRef } from "react";
-
-function LoaderParticles() {
-  const group = useThreeRef<THREE.Group>(null);
-  const torusRef = useThreeRef<THREE.Mesh>(null);
-  const innerTorusRef = useThreeRef<THREE.Mesh>(null);
-
-  useFrame(({ clock }) => {
-    const t = clock.getElapsedTime();
-    if (group.current) group.current.rotation.y = t * 0.5;
-    if (torusRef.current) {
-      torusRef.current.rotation.x = t * 1.2;
-      torusRef.current.rotation.z = t * 0.7;
-    }
-    if (innerTorusRef.current) {
-      innerTorusRef.current.rotation.x = -t * 1.5;
-      innerTorusRef.current.rotation.z = t * 1.0;
-    }
-  });
-
-  return (
-    <group ref={group}>
-      {/* Outer ring */}
-      <mesh ref={torusRef}>
-        <torusGeometry args={[1.5, 0.04, 16, 100]} />
-        <meshStandardMaterial
-          color="#00f5ff"
-          emissive="#00f5ff"
-          emissiveIntensity={2}
-        />
-      </mesh>
-      {/* Middle ring */}
-      <mesh ref={innerTorusRef}>
-        <torusGeometry args={[1.0, 0.04, 16, 100]} />
-        <meshStandardMaterial
-          color="#bf00ff"
-          emissive="#bf00ff"
-          emissiveIntensity={2}
-        />
-      </mesh>
-      {/* Inner sphere */}
-      <mesh>
-        <sphereGeometry args={[0.4, 32, 32]} />
-        <meshStandardMaterial
-          color="#ff0080"
-          emissive="#ff0080"
-          emissiveIntensity={1.5}
-          wireframe
-        />
-      </mesh>
-      {/* Point lights */}
-      <pointLight position={[3, 3, 3]} color="#00f5ff" intensity={2} />
-      <pointLight position={[-3, -3, -3]} color="#bf00ff" intensity={2} />
-    </group>
-  );
-}
 
 interface LoaderProps {
   isLoading: boolean;
@@ -83,19 +24,59 @@ export default function Loader({ isLoading }: LoaderProps) {
             }}
           />
 
-          {/* Three.js Loader */}
-          <div className="w-48 h-48 relative">
-            <Canvas camera={{ position: [0, 0, 4], fov: 50 }}>
-              <ambientLight intensity={0.1} />
-              <LoaderParticles />
-            </Canvas>
+          {/* Futuristic Concentric Spinner (SVG & CSS) */}
+          <div className="relative w-48 h-48 flex items-center justify-center">
+            {/* Outer Cyan Ring */}
+            <svg className="absolute w-40 h-40 animate-[spin_3s_linear_infinite]" viewBox="0 0 100 100">
+              <circle
+                cx="50"
+                cy="50"
+                r="45"
+                fill="none"
+                stroke="#00f5ff"
+                strokeWidth="1.5"
+                strokeDasharray="200 80"
+                strokeLinecap="round"
+                style={{
+                  filter: "drop-shadow(0 0 8px #00f5ff)",
+                }}
+              />
+            </svg>
+
+            {/* Middle Purple Ring */}
+            <svg className="absolute w-32 h-32 animate-[spin_2s_linear_infinite_reverse]" viewBox="0 0 100 100">
+              <circle
+                cx="50"
+                cy="50"
+                r="40"
+                fill="none"
+                stroke="#bf00ff"
+                strokeWidth="1.5"
+                strokeDasharray="140 60"
+                strokeLinecap="round"
+                style={{
+                  filter: "drop-shadow(0 0 8px #bf00ff)",
+                }}
+              />
+            </svg>
+
+            {/* Inner Pink Sphere (pulsing) */}
+            <div
+              className="w-12 h-12 rounded-full border border-[#ff0080]/30 animate-pulse flex items-center justify-center"
+              style={{
+                background: "rgba(255, 0, 128, 0.1)",
+                boxShadow: "0 0 20px rgba(255, 0, 128, 0.4)",
+              }}
+            >
+              <div className="w-4 h-4 rounded-full bg-[#ff0080]" style={{ boxShadow: "0 0 10px #ff0080" }} />
+            </div>
           </div>
 
           {/* Loading text */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+            transition={{ delay: 0.2 }}
             className="mt-8 text-center"
           >
             <p className="font-orbitron text-xs tracking-[6px] text-[#00f5ff] mb-4 uppercase">
@@ -118,7 +99,7 @@ export default function Loader({ isLoading }: LoaderProps) {
               <motion.div
                 initial={{ width: "0%" }}
                 animate={{ width: "100%" }}
-                transition={{ duration: 2, ease: "easeInOut" }}
+                transition={{ duration: 0.8, ease: "easeInOut" }}
                 className="h-full rounded-full"
                 style={{
                   background: "linear-gradient(90deg, #00f5ff, #bf00ff, #ff0080)",

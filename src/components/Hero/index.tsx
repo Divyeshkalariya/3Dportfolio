@@ -162,16 +162,27 @@ export default function Hero({ isReady = false }: { isReady?: boolean }) {
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
             onClick={scrollToProjects}
-            className="btn-neon btn-neon-primary group"
+            className="btn-neon btn-neon-primary group cursor-pointer"
           >
             View Projects
             <HiArrowRight className="group-hover:translate-x-1 transition-transform" />
           </motion.button>
+
+          <motion.a
+            href="/resume.pdf"
+            download="Divyesh_Patel_Resume.pdf"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            className="btn-neon btn-neon-secondary flex items-center gap-2 cursor-pointer"
+          >
+            Download Resume
+          </motion.a>
+
           <motion.button
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
             onClick={scrollToContact}
-            className="btn-neon btn-neon-secondary"
+            className="btn-neon btn-neon-secondary cursor-pointer"
           >
             Contact Me
           </motion.button>

@@ -35,7 +35,7 @@ export default function Navbar() {
           }
         }
       }
-      
+
       setActiveSection(currentSection);
     };
 
@@ -100,8 +100,17 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
+          {/* CTA Buttons */}
+          <div className="hidden md:flex items-center gap-3">
+            <motion.a
+              href="/resume.pdf"
+              download="Divyesh_Patel_Resume.pdf"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="btn-neon btn-neon-secondary text-xs py-2.5 px-6 cursor-pointer flex items-center justify-center"
+            >
+              Resume
+            </motion.a>
             <motion.button
               onClick={() => scrollTo("#contact")}
               whileHover={{ scale: 1.05 }}
@@ -155,7 +164,14 @@ export default function Navbar() {
                 );
               })}
             </div>
-            <div className="mt-auto">
+            <div className="mt-auto space-y-3">
+              <a
+                href="/resume.pdf"
+                download="Divyesh_Patel_Resume.pdf"
+                className="btn-neon btn-neon-secondary w-full text-xs py-3 cursor-pointer flex items-center justify-center"
+              >
+                Resume
+              </a>
               <button
                 onClick={() => scrollTo("#contact")}
                 className="btn-neon btn-neon-primary w-full text-xs py-3 cursor-pointer"
