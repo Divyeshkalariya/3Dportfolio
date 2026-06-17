@@ -47,13 +47,12 @@ export default function ScrollUI() {
 
   return (
     <>
-      {/* ── Custom Navigation Sidebar (right edge) ──────────────────────── */}
       <div
-        className="hidden md:flex"
+        className="flex"
         style={{
           position: "fixed",
           top: "50%",
-          right: "20px",
+          right: "16px",
           transform: "translateY(-50%)",
           zIndex: 9999,
           flexDirection: "column",

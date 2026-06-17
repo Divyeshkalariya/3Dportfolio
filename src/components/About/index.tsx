@@ -6,7 +6,7 @@ import { FaCode, FaRocket, FaBriefcase } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi";
 import { calculateExperience } from "@/utils/calculateExperience";
 
-const Avatar = dynamic(() => import("@/components/3d/Avatar"), { ssr: false });
+
 
 const cards = [
   {
@@ -116,44 +116,31 @@ export default function About() {
       />
 
       <div className="section-container">
-        {/* Two-Column About Introduction */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Avatar / 3D Visual on Left */}
+        {/* About Introduction - Centered Sleek Content */}
+        <div className="max-w-3xl mx-auto text-center flex flex-col items-center">
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.7 }}
-            className="w-full relative h-[400px] lg:h-[480px]"
-          >
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#0ce6f2]/5 to-[#8b5cf6]/5 rounded-full blur-[80px]" />
-            <Avatar />
-          </motion.div>
-
-          {/* Text Content on Right */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-left"
           >
             <p className="section-subtitle font-space font-semibold text-white/40">Get To Know</p>
-            <h2 className="section-title mb-6 font-space text-white" style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}>
+            <h2 className="section-title mb-4 font-space text-white" style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}>
               About <span className="gradient-text">Me</span>
             </h2>
-            <div className="flex items-center gap-4 mb-8">
-              <div className="h-[1px] w-24 bg-gradient-to-r from-[#0ce6f2] to-transparent" />
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <div className="h-[1px] w-24 bg-gradient-to-r from-transparent via-[#0ce6f2] to-transparent" />
               <HiSparkles className="text-[#0ce6f2]" size={18} />
+              <div className="h-[1px] w-24 bg-gradient-to-l from-transparent via-[#0ce6f2] to-transparent" />
             </div>
 
-            <p className="text-white/60 font-inter leading-relaxed text-base lg:text-lg mb-5">
+            <p className="text-white/70 font-inter leading-relaxed text-base lg:text-lg mb-6 max-w-2xl mx-auto">
               I am a passionate <span className="text-[#0ce6f2] font-semibold">Frontend Developer</span> specializing
               in <span className="text-[#8b5cf6] font-semibold">React</span> and{" "}
               <span className="text-[#8b5cf6] font-semibold">Next.js</span>. I build fast, responsive,
               and visually stunning web applications — from sleek static sites to fully animated UIs.
             </p>
-            <p className="text-white/60 font-inter leading-relaxed text-base lg:text-lg">
+            <p className="text-white/70 font-inter leading-relaxed text-base lg:text-lg max-w-2xl mx-auto">
               My core expertise lies in <span className="text-[#0ce6f2] font-semibold">Admin Dashboards</span>,{" "}
               <span className="text-[#f43f5e] font-semibold">CRM systems</span>, and pixel-perfect animated
               websites. I turn ideas into production-ready products using clean code and modern tooling.
