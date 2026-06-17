@@ -13,7 +13,7 @@ const experiences = [
     endDate: "Present",
     location: "Rajkot , India",
     type: "Full-Time",
-    color: "#00f5ff",
+    color: "#0ce6f2",
     description:
       "Leading frontend development for enterprise-grade web applications including CRM systems, admin dashboards, and client-facing portals. Working closely with design and backend teams to deliver performant, accessible, and visually compelling UI/UX.",
     achievements: [
@@ -33,7 +33,7 @@ const experiences = [
     endDate: "31/12/2023",
     location: "Ahmedabad , India",
     type: "Full-Time",
-    color: "#bf00ff",
+    color: "#8b5cf6",
     description:
       "Worked as a Web Designer at Techerudite — a leading software application development company. Contributed to updating and improving the UI of existing client projects, translating design requirements into clean, responsive interfaces.",
     achievements: [
@@ -51,7 +51,7 @@ const experiences = [
     endDate: "31/08/2023",
     location: "Rajkot , India",
     type: "Full-Time",
-    color: "#00ff88",
+    color: "#10b981",
     description:
       "Completed an intensive full-time training program in web design and development at Tops Technology Pvt. Ltd. Gained hands-on experience building modern, responsive web interfaces and understanding industry-standard development workflows.",
     achievements: [
@@ -68,12 +68,12 @@ export default function Experience() {
 
   return (
     <section id="experience" className="section-wrapper">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#020008] via-[#06000f] to-[#020008]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#080710] via-[#0b0a1b] to-[#080710]" />
 
       {/* BG orbs */}
       <div
-        className="orb w-96 h-96 top-20 left-10 opacity-[0.08]"
-        style={{ background: "radial-gradient(circle, #00f5ff, transparent)" }}
+        className="orb w-96 h-96 top-20 left-10 opacity-[0.05]"
+        style={{ background: "radial-gradient(circle, #0ce6f2, transparent)" }}
       />
 
       <div className="section-container">
@@ -85,14 +85,14 @@ export default function Experience() {
           transition={{ duration: 0.7 }}
           className="section-header"
         >
-          <p className="section-subtitle">Where I&apos;ve Worked</p>
+          <p className="section-subtitle font-space font-semibold text-white/40">Where I&apos;ve Worked</p>
           <h2 className="section-title">
             Work <span className="gradient-text">Experience</span>
           </h2>
           <div className="section-header-divider">
-            <div className="h-[1px] w-24 bg-gradient-to-r from-transparent to-[#00f5ff]/50" />
-            <HiSparkles className="text-[#00f5ff]" size={18} />
-            <div className="h-[1px] w-24 bg-gradient-to-l from-transparent to-[#00f5ff]/50" />
+            <div className="h-[1px] w-24 bg-gradient-to-r from-transparent to-[#0ce6f2]/50" />
+            <HiSparkles className="text-[#0ce6f2]" size={18} />
+            <div className="h-[1px] w-24 bg-gradient-to-l from-transparent to-[#0ce6f2]/50" />
           </div>
         </motion.div>
 
@@ -110,55 +110,47 @@ export default function Experience() {
           {experiences.map((exp, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, x: -50 }}
+              initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative pl-16 md:pl-20 mb-10 last:mb-0"
             >
-              {/* Timeline node */}
+              {/* Timeline node - sleek glass bead */}
               <div
-                className="absolute left-6 md:left-8 top-8 w-4 h-4 rounded-full -translate-x-1/2 z-10"
+                className="absolute left-6 md:left-8 top-8 w-4 h-4 rounded-full -translate-x-1/2 z-10 glass border border-white/20 flex items-center justify-center"
                 style={{
-                  background: exp.color,
-                  boxShadow: `0 0 0 4px ${exp.color}30, 0 0 20px ${exp.color}60`,
+                  boxShadow: `0 0 16px ${exp.color}40`,
                 }}
               >
-                <motion.div
-                  animate={{ scale: [1, 1.8, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute inset-0 rounded-full"
-                  style={{ background: exp.color, opacity: 0.4 }}
+                <div
+                  className="w-1.5 h-1.5 rounded-full"
+                  style={{ background: exp.color }}
                 />
               </div>
 
               {/* Card — full width */}
               <motion.div
-                whileHover={{ y: -4 }}
-                className="glass rounded-2xl p-6 lg:p-8 relative overflow-hidden group"
-                style={{
-                  border: `1px solid ${exp.color}20`,
-                  background: `linear-gradient(135deg, ${exp.color}08, rgba(10,6,25,0.9))`,
-                }}
+                whileHover={{ y: -3, scale: 1.005 }}
+                className="glass rounded-3xl p-7 lg:p-9 relative overflow-hidden group border border-white/8 transition-all duration-300"
               >
-                {/* Hover glow */}
+                {/* Soft colored spotlight backlight on card hover */}
                 <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none"
-                  style={{ boxShadow: `0 0 40px ${exp.color}15, inset 0 0 40px ${exp.color}05` }}
+                  className="absolute -bottom-20 -right-20 w-40 h-40 rounded-full blur-[45px] opacity-0 group-hover:opacity-15 transition-opacity duration-500 pointer-events-none"
+                  style={{
+                    background: exp.color,
+                  }}
                 />
 
                 {/* Header */}
                 <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
                   <div>
-                    <h3
-                      className="font-orbitron text-xl font-bold mb-1"
-                      style={{ color: exp.color, textShadow: `0 0 15px ${exp.color}40` }}
-                    >
+                    <h3 className="font-space text-lg font-bold mb-1.5 text-white">
                       {exp.role}
                     </h3>
                     <div className="flex items-center gap-2 mb-3">
                       <FaBriefcase size={12} className="text-white/40" />
-                      <span className="font-space text-white/70 font-medium">{exp.company}</span>
+                      <span className="font-space text-white/70 font-semibold text-xs tracking-wider uppercase">{exp.company}</span>
                     </div>
                     <div className="flex flex-wrap gap-4">
                       <div className="flex items-center gap-1.5">
@@ -173,27 +165,26 @@ export default function Experience() {
                       </div>
                     </div>
                   </div>
-                  <div className="flex flex-row sm:flex-col gap-2 items-start sm:items-end shrink-0">
+                  <div className="flex flex-row sm:flex-col gap-2.5 items-start sm:items-end shrink-0">
                     <motion.span
-                      initial={{ opacity: 0, scale: 0.5 }}
+                      initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true, margin: "-50px" }}
-                      transition={{ duration: 0.4, delay: 0.2, type: "spring", stiffness: 200 }}
-                      className="px-3 py-1 rounded-full font-orbitron text-xs font-bold"
+                      transition={{ duration: 0.4, delay: 0.2, type: "spring", stiffness: 150 }}
+                      className="px-3 py-1 rounded-full font-space text-[10px] font-semibold tracking-wider glass"
                       style={{
-                        background: `${exp.color}15`,
-                        border: `1px solid ${exp.color}30`,
+                        borderColor: `${exp.color}30`,
                         color: exp.color,
                       }}
                     >
                       {calculateExperience(exp.startDate, exp.endDate).formatted}
                     </motion.span>
                     <motion.span 
-                      initial={{ opacity: 0, scale: 0.5 }}
+                      initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true, margin: "-50px" }}
-                      transition={{ duration: 0.4, delay: 0.3, type: "spring", stiffness: 200 }}
-                      className="px-3 py-1 rounded-full font-space text-xs bg-white/5 border border-white/10 text-white/40"
+                      transition={{ duration: 0.4, delay: 0.3, type: "spring", stiffness: 150 }}
+                      className="px-3 py-1 rounded-full font-space text-[10px] bg-white/2 border border-white/5 text-white/40 font-semibold tracking-wider uppercase"
                     >
                       {exp.type}
                     </motion.span>
@@ -206,18 +197,18 @@ export default function Experience() {
                 </p>
 
                 {/* Achievements */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
                   {exp.achievements.map((achievement, ai) => (
                     <motion.div
                       key={ai}
                       initial={{ opacity: 0, x: -10 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true, margin: "-50px" }}
-                      transition={{ duration: 0.4, delay: ai * 0.06 }}
-                      className="flex items-start gap-3"
+                      transition={{ duration: 0.4, delay: ai * 0.05 }}
+                      className="flex items-start gap-2.5"
                     >
                       <HiCheckCircle
-                        size={16}
+                        size={15}
                         className="shrink-0 mt-0.5"
                         style={{ color: exp.color }}
                       />
@@ -233,27 +224,20 @@ export default function Experience() {
                   {exp.tech.map((t, ti) => (
                     <motion.span
                       key={t}
-                      initial={{ opacity: 0, scale: 0.5 }}
+                      initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true, margin: "-50px" }}
-                      transition={{ duration: 0.3, delay: ti * 0.05, type: "spring", stiffness: 200 }}
-                      className="px-3 py-1 rounded-full font-space text-[11px] tracking-wider"
+                      transition={{ duration: 0.3, delay: ti * 0.04, type: "spring", stiffness: 150 }}
+                      className="px-3 py-1 rounded-full font-space text-[10px] font-semibold tracking-wider glass"
                       style={{
-                        background: `${exp.color}10`,
-                        border: `1px solid ${exp.color}20`,
-                        color: `${exp.color}aa`,
+                        borderColor: `${exp.color}20`,
+                        color: exp.color === "#ffffff" ? "rgba(255, 255, 255, 0.7)" : exp.color,
                       }}
                     >
                       {t}
                     </motion.span>
                   ))}
                 </div>
-
-                {/* Bottom bar */}
-                <div
-                  className="absolute bottom-0 left-0 right-0 h-[2px]"
-                  style={{ background: `linear-gradient(90deg, transparent, ${exp.color}60, transparent)` }}
-                />
               </motion.div>
             </motion.div>
           ))}

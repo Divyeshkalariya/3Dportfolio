@@ -10,7 +10,7 @@ export default function Footer() {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: "linear-gradient(to top, rgba(0,245,255,0.02), transparent)",
+          background: "linear-gradient(to top, rgba(12, 230, 242, 0.01), transparent)",
         }}
       />
 
@@ -19,7 +19,7 @@ export default function Footer() {
           {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="font-kregan text-3xl tracking-wide"
+            className="font-space text-2xl font-bold tracking-wide"
           >
             <span className="gradient-text">dp</span>
           </motion.div>
@@ -29,7 +29,7 @@ export default function Footer() {
             <span>© {currentYear} Divyesh Patel</span>
             <span className="text-white/10">·</span>
             <span className="flex items-center gap-1">
-              Built with <FaHeart size={10} className="text-[#ff0080]" /> & Next.js
+              Built with <FaHeart size={10} className="text-[#f43f5e]" /> & Next.js
             </span>
           </div>
 
@@ -45,7 +45,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="w-8 h-8 glass rounded-full flex items-center justify-center text-white/40 hover:text-[#00f5ff] transition-all duration-300 hover:shadow-[0_0_10px_rgba(0,245,255,0.3)]"
+                className="w-8 h-8 glass rounded-full flex items-center justify-center text-white/40 hover:text-[#0ce6f2] transition-all duration-300 hover:shadow-[0_4px_12px_rgba(0,0,0,0.2)]"
               >
                 <Icon size={14} />
               </a>
@@ -54,9 +54,9 @@ export default function Footer() {
         </div>
 
         {/* Bottom line */}
-        <div className="mt-8 h-[1px] bg-gradient-to-r from-transparent via-[#00f5ff]/20 to-transparent" />
-        <p className="font-orbitron text-[10px] text-center text-white/10 tracking-[4px] uppercase mt-4">
-          Futuristic Portfolio v1.0
+        <div className="mt-8 h-[1px] bg-gradient-to-r from-transparent via-[#0ce6f2]/10 to-transparent" />
+        <p className="font-space text-[9px] text-center text-white/10 tracking-[4px] uppercase mt-4 font-semibold">
+          Liquid Glass Portfolio v2.0
         </p>
       </div>
     </footer>

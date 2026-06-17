@@ -9,28 +9,28 @@ const contactInfo = [
     icon: FaEnvelope,
     label: "Email",
     value: "divyeshkalariya26@gmail.com",
-    color: "#00f5ff",
+    color: "#0ce6f2",
     href: "mailto:divyeshkalariya26@gmail.com",
   },
   {
     icon: FaGithub,
     label: "GitHub",
     value: "github.com/Divyeshkalariya",
-    color: "#bf00ff",
+    color: "#8b5cf6",
     href: "https://github.com/Divyeshkalariya?tab=repositories",
   },
   {
     icon: FaLinkedin,
     label: "LinkedIn",
     value: "linkedin.com/in/divyesh-kalariya-579a16257",
-    color: "#ff0080",
+    color: "#f43f5e",
     href: "https://www.linkedin.com/in/divyesh-kalariya-579a16257",
   },
   {
     icon: FaMapMarkerAlt,
     label: "Location",
     value: "Rajkot, Gujarat",
-    color: "#00ff88",
+    color: "#10b981",
     href: null,
   },
 ];
@@ -71,8 +71,8 @@ export default function Contact() {
     <section id="contact" className="section-wrapper grid-bg">
       {/* BG orbs */}
       <div
-        className="orb w-[600px] h-[600px] top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.07]"
-        style={{ background: "radial-gradient(circle, #00f5ff, transparent)" }}
+        className="orb w-[600px] h-[600px] top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.04]"
+        style={{ background: "radial-gradient(circle, #0ce6f2, transparent)" }}
       />
 
       <div className="section-container">
@@ -84,16 +84,16 @@ export default function Contact() {
           transition={{ duration: 0.7 }}
           className="section-header"
         >
-          <p className="section-subtitle">Get In Touch</p>
+          <p className="section-subtitle font-space font-semibold text-white/40">Get In Touch</p>
           <h2 className="section-title">
             Contact <span className="gradient-text">Me</span>
           </h2>
           <div className="section-header-divider">
-            <div className="h-[1px] w-24 bg-gradient-to-r from-transparent to-[#00f5ff]/50" />
-            <HiSparkles className="text-[#00f5ff]" size={18} />
-            <div className="h-[1px] w-24 bg-gradient-to-l from-transparent to-[#00f5ff]/50" />
+            <div className="h-[1px] w-24 bg-gradient-to-r from-transparent to-[#0ce6f2]/50" />
+            <HiSparkles className="text-[#0ce6f2]" size={18} />
+            <div className="h-[1px] w-24 bg-gradient-to-l from-transparent to-[#0ce6f2]/50" />
           </div>
-          <p className="font-inter text-white/40 text-sm mt-4 max-w-md mx-auto">
+          <p className="font-inter text-white/45 text-sm mt-4 max-w-md mx-auto leading-relaxed">
             Have a project in mind? Let&apos;s build something amazing together.
           </p>
         </motion.div>
@@ -108,7 +108,7 @@ export default function Contact() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="mb-7"
             >
-              <h3 className="font-orbitron text-lg font-bold text-white mb-3">
+              <h3 className="font-space text-lg font-bold text-white mb-3">
                 Let&apos;s Build Together
               </h3>
               <p className="font-inter text-white/50 text-sm leading-relaxed">
@@ -124,30 +124,26 @@ export default function Contact() {
                   initial={{ opacity: 0, x: -40 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: 0.4 + i * 0.15, type: "spring", stiffness: 100 }}
-                  className="flex items-center gap-4 glass rounded-xl p-4 border border-white/5 group cursor-pointer transition-shadow transition-colors duration-300 hover:shadow-[0_0_20px_rgba(0,245,255,0.1)]"
-                  style={{
-                    background: `linear-gradient(135deg, ${item.color}08, rgba(10,6,25,0.7))`,
-                  }}
+                  transition={{ duration: 0.5, delay: 0.4 + i * 0.1, type: "spring", stiffness: 100 }}
+                  className="flex items-center gap-4.5 glass rounded-2xl p-4.5 border border-white/8 group cursor-pointer transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)]"
                 >
                   <div
-                    className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 group-hover:scale-110"
+                    className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 group-hover:scale-105"
                     style={{
-                      background: `${item.color}15`,
-                      border: `1px solid ${item.color}30`,
-                      boxShadow: `0 0 15px ${item.color}20`,
+                      background: `${item.color}10`,
+                      border: `1px solid ${item.color}25`,
                     }}
                   >
                     <Icon size={16} style={{ color: item.color }} />
                   </div>
                   <div>
                     <p
-                      className="font-orbitron text-[11px] tracking-[2px] uppercase mb-0.5"
+                      className="font-space text-[9px] tracking-[2.5px] font-bold uppercase mb-0.5"
                       style={{ color: item.color }}
                     >
                       {item.label}
                     </p>
-                    <p className="font-inter text-white/60 text-sm group-hover:text-white/80 transition-colors">
+                    <p className="font-space text-white/70 text-sm font-semibold tracking-wide transition-colors group-hover:text-white">
                       {item.value}
                     </p>
                   </div>
@@ -179,26 +175,15 @@ export default function Contact() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <div className="glass-strong rounded-2xl p-6 lg:p-8 relative overflow-hidden"
-              style={{
-                border: "1px solid rgba(0,245,255,0.15)",
-                background: "linear-gradient(135deg, rgba(0,245,255,0.03), rgba(10,6,25,0.95))",
-              }}
-            >
-              {/* Top glow bar */}
-              <div
-                className="absolute top-0 left-0 right-0 h-[2px]"
-                style={{ background: "linear-gradient(90deg, transparent, #00f5ff, #bf00ff, transparent)" }}
-              />
-
-              <h3 className="font-orbitron text-base font-semibold text-white mb-6 tracking-wider">
+            <div className="glass rounded-3xl p-7 lg:p-9 border border-white/8 shadow-[0_20px_50px_rgba(0,0,0,0.4)]">
+              <h3 className="font-space text-base font-bold text-white mb-6 tracking-widest uppercase">
                 Send Message
               </h3>
 
               <form onSubmit={handleSubmit} className="space-y-5">
                 {/* Name */}
                 <div>
-                  <label className="font-space text-xs text-white/40 tracking-[2px] uppercase mb-2 block">
+                  <label className="font-space text-[10px] text-white/40 tracking-[2px] font-semibold uppercase mb-2 block">
                     Your Name
                   </label>
                   <input
@@ -208,13 +193,13 @@ export default function Contact() {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="Divyesh Patel"
-                    className="neon-input w-full px-4 py-3 rounded-xl font-space text-sm"
+                    className="neon-input w-full px-4.5 py-3 rounded-2xl font-space text-sm"
                   />
                 </div>
 
                 {/* Email */}
                 <div>
-                  <label className="font-space text-xs text-white/40 tracking-[2px] uppercase mb-2 block">
+                  <label className="font-space text-[10px] text-white/40 tracking-[2px] font-semibold uppercase mb-2 block">
                     Your Email
                   </label>
                   <input
@@ -224,14 +209,14 @@ export default function Contact() {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="you@example.com"
-                    className="neon-input w-full px-4 py-3 rounded-xl font-space text-sm"
+                    className="neon-input w-full px-4.5 py-3 rounded-2xl font-space text-sm"
                   />
                 </div>
 
                 {/* Mobile */}
                 <div>
-                  <label className="font-space text-xs text-white/40 tracking-[2px] uppercase mb-2 block">
-                    Mobile Number <span className="text-white/20 lowercase">(Optional)</span>
+                  <label className="font-space text-[10px] text-white/40 tracking-[2px] font-semibold uppercase mb-2 block">
+                    Mobile Number <span className="text-white/20 lowercase font-normal">(Optional)</span>
                   </label>
                   <input
                     type="tel"
@@ -239,23 +224,23 @@ export default function Contact() {
                     value={formData.mobile}
                     onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
                     placeholder="+91 98765 43210"
-                    className="neon-input w-full px-4 py-3 rounded-xl font-space text-sm"
+                    className="neon-input w-full px-4.5 py-3 rounded-2xl font-space text-sm"
                   />
                 </div>
 
                 {/* Message */}
                 <div>
-                  <label className="font-space text-xs text-white/40 tracking-[2px] uppercase mb-2 block">
+                  <label className="font-space text-[10px] text-white/40 tracking-[2px] font-semibold uppercase mb-2 block">
                     Message
                   </label>
                   <textarea
                     id="contact-message"
                     required
-                    rows={5}
+                    rows={4}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Tell me about your project..."
-                    className="neon-input w-full px-4 py-3 rounded-xl font-space text-sm resize-none"
+                    className="neon-input w-full px-4.5 py-3 rounded-2xl font-space text-sm resize-none"
                   />
                 </div>
 
@@ -265,26 +250,18 @@ export default function Contact() {
                   disabled={sending || sent}
                   whileHover={!sending && !sent ? { scale: 1.02 } : {}}
                   whileTap={!sending && !sent ? { scale: 0.98 } : {}}
-                  className="w-full py-4 rounded-xl font-orbitron text-sm font-semibold tracking-wider uppercase transition-all duration-300 relative overflow-hidden"
-                  style={{
-                    background: sent
-                      ? "linear-gradient(135deg, rgba(0,255,136,0.2), rgba(0,255,136,0.1))"
-                      : "linear-gradient(135deg, rgba(0,245,255,0.2), rgba(191,0,255,0.15))",
-                    border: sent
-                      ? "1px solid rgba(0,255,136,0.4)"
-                      : "1px solid rgba(0,245,255,0.4)",
-                    color: sent ? "#00ff88" : "#00f5ff",
-                    boxShadow: sent
-                      ? "0 0 30px rgba(0,255,136,0.3)"
-                      : "0 0 30px rgba(0,245,255,0.2)",
-                  }}
+                  className={`w-full py-4 font-space text-xs tracking-widest font-bold uppercase transition-all duration-300 relative overflow-hidden cursor-pointer ${
+                    sent 
+                      ? "bg-gradient-to-tr from-[#10b981]/30 to-[#10b981]/15 text-[#10b981] border border-[#10b981]/40 shadow-[0_8px_24px_rgba(16,185,129,0.2)] rounded-full" 
+                      : "btn-neon btn-neon-primary"
+                  }`}
                 >
                   {sending ? (
                     <span className="flex items-center justify-center gap-3">
                       <motion.div
                         animate={{ rotate: 360 }}
                         transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                        className="w-5 h-5 border-2 border-[#00f5ff]/30 border-t-[#00f5ff] rounded-full"
+                        className="w-4.5 h-4.5 border-2 border-white/30 border-t-white rounded-full"
                       />
                       Transmitting...
                     </span>
@@ -292,7 +269,7 @@ export default function Contact() {
                     "Message Sent! ✓"
                   ) : (
                     <span className="flex items-center justify-center gap-2">
-                      <FaPaperPlane size={14} />
+                      <FaPaperPlane size={11} className="text-white" />
                       Send Message
                     </span>
                   )}

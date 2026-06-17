@@ -29,7 +29,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="bg-[#020008] text-white antialiased scanline" suppressHydrationWarning>
+      <body className="bg-[#080710] text-white antialiased" suppressHydrationWarning>
         {children}
       </body>
     </html>

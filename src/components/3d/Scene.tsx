@@ -13,18 +13,18 @@ export default function Scene() {
       style={{ position: "absolute", inset: 0 }}
     >
       <PerspectiveCamera makeDefault position={[0, 0, 10]} fov={60} />
-      <ambientLight intensity={0.2} />
-      <pointLight position={[10, 10, 10]} intensity={1} color="#00f5ff" />
-      <pointLight position={[-10, -10, -10]} intensity={0.5} color="#bf00ff" />
-      <pointLight position={[0, 5, 5]} intensity={0.8} color="#ff0080" />
+      <ambientLight intensity={0.5} />
+      <pointLight position={[10, 10, 10]} intensity={2.5} color="#0ce6f2" />
+      <pointLight position={[-10, -10, -10]} intensity={1.5} color="#8b5cf6" />
+      <pointLight position={[0, 5, 5]} intensity={2.0} color="#f43f5e" />
       <Stars
-        radius={50}
-        depth={20}
-        count={800}
-        factor={3}
+        radius={80}
+        depth={25}
+        count={250}
+        factor={1.5}
         saturation={0}
         fade
-        speed={0.2}
+        speed={0.1}
       />
       <Suspense fallback={null}>
         <ParticleBackground />
@@ -32,13 +32,13 @@ export default function Scene() {
       </Suspense>
       <OrbitControls
         autoRotate
-        autoRotateSpeed={0.5}
+        autoRotateSpeed={0.3}
         enableZoom={false}
         enablePan={false}
         maxPolarAngle={Math.PI / 1.5}
         minPolarAngle={Math.PI / 3}
       />
-      <fog attach="fog" args={["#020008", 20, 60]} />
+      <fog attach="fog" args={["#080710", 20, 60]} />
     </Canvas>
   );
 }

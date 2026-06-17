@@ -55,14 +55,15 @@ export default function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${scrolled ? "glass-strong py-3 shadow-[0_4px_30px_rgba(0,245,255,0.1)]" : "py-5"
-          }`}
+        className={`fixed top-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-6xl z-[100] transition-all duration-500 rounded-full ${
+          scrolled ? "glass-strong py-2.5 shadow-[0_8px_32px_rgba(0,0,0,0.35)] border border-white/10" : "glass py-3.5 border border-white/5"
+        }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
           <motion.button
             onClick={() => scrollTo("#home")}
-            className="font-kregan text-3xl relative group tracking-wide cursor-pointer"
+            className="font-space text-2xl font-bold relative group tracking-wide cursor-pointer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -77,23 +78,17 @@ export default function Navbar() {
                 <button
                   key={link.label}
                   onClick={() => scrollTo(link.href)}
-                  className="relative font-space text-sm font-medium tracking-wider uppercase transition-all duration-300 group cursor-pointer"
+                  className="relative font-space text-xs font-semibold tracking-wider uppercase transition-all duration-300 group cursor-pointer"
                 >
                   <span
-                    className={`transition-colors duration-300 ${isActive ? "text-[#00f5ff]" : "text-white/60 hover:text-white"
+                    className={`transition-colors duration-300 ${isActive ? "text-[#0ce6f2]" : "text-white/60 hover:text-white"
                       }`}
-                    style={
-                      isActive
-                        ? { textShadow: "0 0 10px #00f5ff, 0 0 20px #00f5ff" }
-                        : {}
-                    }
                   >
                     {link.label}
                   </span>
                   <div
-                    className={`absolute -bottom-1 left-0 h-[1px] transition-all duration-300 bg-[#00f5ff] ${isActive ? "w-full" : "w-0 group-hover:w-full"
+                    className={`absolute -bottom-1 left-0 h-[1.5px] transition-all duration-300 bg-[#0ce6f2] ${isActive ? "w-full" : "w-0 group-hover:w-full"
                       }`}
-                    style={isActive ? { boxShadow: "0 0 8px #00f5ff" } : {}}
                   />
                 </button>
               );
@@ -107,7 +102,7 @@ export default function Navbar() {
               download="Divyesh_Patel_Resume.pdf"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="btn-neon btn-neon-secondary text-xs py-2.5 px-6 cursor-pointer flex items-center justify-center"
+              className="btn-neon btn-neon-secondary text-[10px] py-2 px-5 cursor-pointer flex items-center justify-center"
             >
               Resume
             </motion.a>
@@ -115,7 +110,7 @@ export default function Navbar() {
               onClick={() => scrollTo("#contact")}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="btn-neon btn-neon-primary text-xs py-2.5 px-6 cursor-pointer"
+              className="btn-neon btn-neon-primary text-[10px] py-2 px-5 cursor-pointer"
             >
               Hire Me
             </motion.button>
@@ -124,9 +119,9 @@ export default function Navbar() {
           {/* Mobile hamburger */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden text-white/80 hover:text-[#00f5ff] transition-colors cursor-pointer"
+            className="md:hidden text-white/80 hover:text-[#0ce6f2] transition-colors cursor-pointer"
           >
-            {menuOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
+            {menuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
           </button>
         </div>
       </motion.nav>
@@ -151,12 +146,11 @@ export default function Navbar() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.07 }}
                     onClick={() => scrollTo(link.href)}
-                    className="block w-full text-left font-orbitron text-sm tracking-widest uppercase cursor-pointer"
+                    className="block w-full text-left font-space text-sm font-semibold tracking-widest uppercase cursor-pointer"
                   >
                     <span
-                      className={`transition-colors duration-300 ${isActive ? "text-[#00f5ff]" : "text-white/60"
+                      className={`transition-colors duration-300 ${isActive ? "text-[#0ce6f2]" : "text-white/60"
                         }`}
-                      style={isActive ? { textShadow: "0 0 10px #00f5ff" } : {}}
                     >
                       {link.label}
                     </span>
@@ -168,13 +162,13 @@ export default function Navbar() {
               <a
                 href="/resume.pdf"
                 download="Divyesh_Patel_Resume.pdf"
-                className="btn-neon btn-neon-secondary w-full text-xs py-3 cursor-pointer flex items-center justify-center"
+                className="btn-neon btn-neon-secondary w-full text-[10px] py-3.5 cursor-pointer flex items-center justify-center"
               >
                 Resume
               </a>
               <button
                 onClick={() => scrollTo("#contact")}
-                className="btn-neon btn-neon-primary w-full text-xs py-3 cursor-pointer"
+                className="btn-neon btn-neon-primary w-full text-[10px] py-3.5 cursor-pointer"
               >
                 Hire Me
               </button>

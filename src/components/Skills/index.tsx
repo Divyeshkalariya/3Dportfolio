@@ -11,14 +11,14 @@ const SkillSphere = dynamic(() => import("@/components/3d/SkillSphere"), { ssr: 
 
 function SkillBar({ skill }: { skill: (typeof skills)[0] }) {
   return (
-    <div className="mb-4">
+    <div className="mb-5">
       <div className="flex justify-between items-center mb-2">
-        <span className="font-space text-sm font-medium text-white/80">{skill.name}</span>
-        <span className="font-orbitron text-xs" style={{ color: skill.color }}>
+        <span className="font-space text-xs font-semibold text-white/70 tracking-wider uppercase">{skill.name}</span>
+        <span className="font-space text-xs font-bold" style={{ color: skill.color }}>
           {skill.level}%
         </span>
       </div>
-      <div className="skill-bar">
+      <div className="skill-bar bg-white/5">
         <motion.div
           initial={{ width: 0 }}
           whileInView={{ width: `${skill.level}%` }}
@@ -26,8 +26,7 @@ function SkillBar({ skill }: { skill: (typeof skills)[0] }) {
           transition={{ duration: 1.4, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
           className="skill-bar-fill"
           style={{
-            background: `linear-gradient(90deg, ${skill.color}80, ${skill.color})`,
-            boxShadow: `0 0 8px ${skill.color}60`,
+            background: `linear-gradient(90deg, ${skill.color}20, ${skill.color}cc)`,
           }}
         />
       </div>
@@ -141,17 +140,15 @@ export default function Skills() {
           {skills.map((skill, i) => (
             <motion.span
               key={skill.name}
-              initial={{ opacity: 0, scale: 0.5 }}
+              initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.4, delay: i * 0.05, type: "spring", stiffness: 200 }}
-              whileHover={{ scale: 1.05 }}
-              className="px-4 py-2 rounded-full font-space text-xs font-medium tracking-wider uppercase cursor-default"
+              transition={{ duration: 0.4, delay: i * 0.03, type: "spring", stiffness: 150 }}
+              whileHover={{ scale: 1.05, background: "rgba(255, 255, 255, 0.08)" }}
+              className="px-4.5 py-2 rounded-full font-space text-[10px] font-semibold tracking-widest uppercase cursor-default glass transition-all duration-300"
               style={{
-                background: `${skill.color}12`,
-                border: `1px solid ${skill.color}30`,
-                color: skill.color,
-                boxShadow: `0 0 10px ${skill.color}20`,
+                borderColor: `${skill.color}25`,
+                color: skill.color === "#ffffff" ? "rgba(255, 255, 255, 0.8)" : skill.color,
               }}
             >
               {skill.name}

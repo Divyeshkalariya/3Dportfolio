@@ -118,12 +118,12 @@ export default function SkillSphere() {
       <mesh>
         <sphereGeometry args={[3.2, 32, 32]} />
         <meshStandardMaterial
-          color="#00f5ff"
+          color="#ffffff"
           wireframe
           transparent
-          opacity={0.05}
-          emissive="#00f5ff"
-          emissiveIntensity={0.2}
+          opacity={0.02}
+          emissive="#ffffff"
+          emissiveIntensity={0.1}
         />
       </mesh>
 

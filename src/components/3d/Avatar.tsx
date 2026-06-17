@@ -16,25 +16,24 @@ function AvatarModel() {
 
   return (
     <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>
-      {/* Outer Head Shell / Cyber Frame */}
+      {/* Outer Liquid Glass Bubble */}
       <mesh ref={meshRef}>
-        <icosahedronGeometry args={[1.6, 2]} />
+        <icosahedronGeometry args={[1.6, 3]} />
         <MeshDistortMaterial
-          color="#00f5ff"
-          envMapIntensity={1}
-          clearcoat={1}
-          clearcoatRoughness={0.1}
-          metalness={0.9}
-          roughness={0.2}
-          wireframe
-          distort={0.4}
-          speed={2}
+          color="#ffffff"
+          transmission={0.92}
+          thickness={1.5}
+          roughness={0.06}
+          clearcoat={1.0}
+          clearcoatRoughness={0.04}
+          distort={0.35}
+          speed={1.8}
         />
       </mesh>
-      {/* Inner Avatar Core */}
+      {/* Inner Glowing Core */}
       <mesh>
-        <octahedronGeometry args={[0.9, 0]} />
-        <meshStandardMaterial color="#bf00ff" emissive="#bf00ff" emissiveIntensity={2} wireframe />
+        <octahedronGeometry args={[0.7, 0]} />
+        <meshStandardMaterial color="#8b5cf6" emissive="#8b5cf6" emissiveIntensity={2.0} roughness={0.1} />
       </mesh>
     </Float>
   );

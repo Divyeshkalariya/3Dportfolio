@@ -67,22 +67,21 @@ export default function ScrollUI() {
             <motion.button
               key={section.id}
               onClick={() => scrollTo(section.id)}
-              // whileHover={{ scale: 1.5 }}
               whileTap={{ scale: 0.9 }}
               className="group relative flex items-center justify-center cursor-pointer"
               style={{
-                width: "12px",
-                height: "12px",
+                width: "10px",
+                height: "10px",
                 borderRadius: "50%",
-                background: isActive ? "linear-gradient(180deg, #00f5ff 0%, #bf00ff 100%)" : "rgba(255,255,255,0.15)",
-                border: isActive ? "none" : "1px solid rgba(255,255,255,0.3)",
-                boxShadow: isActive ? "0 0 12px rgba(0,245,255,0.6)" : "none",
+                background: isActive ? "linear-gradient(180deg, #0ce6f2 0%, #8b5cf6 100%)" : "rgba(255,255,255,0.12)",
+                border: isActive ? "none" : "1px solid rgba(255,255,255,0.2)",
+                boxShadow: isActive ? "0 0 10px rgba(12, 230, 242, 0.4)" : "none",
                 transition: "all 0.3s ease",
               }}
               aria-label={`Scroll to ${section.label}`}
             >
               <div
-                className={`absolute right-7 px-3 py-1.5 rounded-md bg-black/80 backdrop-blur-md text-white/90 text-xs font-space tracking-wider border border-white/10 opacity-0 transform translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none whitespace-nowrap shadow-lg ${isActive ? 'text-[#00f5ff] border-[#00f5ff]/30' : ''}`}
+                className={`absolute right-7 px-3 py-1.5 rounded-md bg-black/80 backdrop-blur-md text-white/90 text-xs font-space tracking-wider border border-white/10 opacity-0 transform translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none whitespace-nowrap shadow-lg ${isActive ? 'text-[#0ce6f2] border-[#0ce6f2]/30' : ''}`}
               >
                 {section.label}
               </div>
@@ -125,7 +124,7 @@ export default function ScrollUI() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                background: "rgba(8, 4, 20, 0.9)",
+                background: "rgba(8, 7, 18, 0.9)",
                 border: "none",
                 cursor: "pointer",
                 outline: "none",
@@ -146,8 +145,8 @@ export default function ScrollUI() {
               >
                 <defs>
                   <linearGradient id="chevron-grad" x1="0" y1="24" x2="0" y2="0">
-                    <stop offset="0%" stopColor="#bf00ff" />
-                    <stop offset="100%" stopColor="#00f5ff" />
+                    <stop offset="0%" stopColor="#8b5cf6" />
+                    <stop offset="100%" stopColor="#0ce6f2" />
                   </linearGradient>
                 </defs>
                 <polyline points="18 15 12 9 6 15" />

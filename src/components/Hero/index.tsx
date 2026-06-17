@@ -101,142 +101,137 @@ export default function Hero({ isReady = false }: { isReady?: boolean }) {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={isReady ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="inline-flex items-center gap-2 glass rounded-full px-5 py-2 mb-2 border border-[#00f5ff]/20"
+          className="inline-flex items-center gap-2 glass rounded-full px-5 py-2 mb-4 border border-white/10"
         >
-          <span className="w-2 h-2 rounded-full bg-[#00ff88] animate-pulse" />
-          <span className="font-space text-xs tracking-[3px] text-white/70 uppercase">
+          <span className="w-2 h-2 rounded-full bg-[#10b981] animate-pulse" />
+          <span className="font-space text-xs tracking-[2.5px] text-white/80 uppercase">
             Available for Work
           </span>
         </motion.div>
 
-        {/* Main Title */}
-        <div className="overflow-hidden mb-2">
-          <h1
-            ref={titleRef}
-            className="section-title text-white"
-            style={{ fontSize: "clamp(2.5rem, 7vw, 5.5rem)", lineHeight: 1.1 }}
-          >
-            {splitChars("Hi, I'm")}
-            <span className="char inline-block">&nbsp;</span>
-            <span className="char inline-block gradient-text">Divyesh</span>
-            <br />
-            <span className="char inline-block gradient-text">Patel</span>
-          </h1>
-        </div>
-
-        {/* Animated Role */}
-        <div className="h-10 flex items-center justify-center mb-4 overflow-hidden">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-[2px] bg-gradient-to-r from-transparent to-[#00f5ff]" />
-            <span
-              ref={roleRef}
-              className="font-space text-lg md:text-xl text-[#00f5ff] font-medium tracking-wider"
-              style={{ textShadow: "0 0 20px rgba(0,245,255,0.5)" }}
+          {/* Main Title */}
+          <div className="overflow-hidden mb-2">
+            <h1
+              ref={titleRef}
+              className="section-title text-white font-space font-bold"
+              style={{ fontSize: "clamp(2.5rem, 7vw, 5.5rem)", lineHeight: 1.1 }}
             >
-              {roles[0]}
-            </span>
-            <div className="w-8 h-[2px] bg-gradient-to-l from-transparent to-[#00f5ff]" />
+              {splitChars("Hi, I'm")}
+              <span className="char inline-block">&nbsp;</span>
+              <span className="char inline-block gradient-text">Divyesh</span>
+              <br />
+              <span className="char inline-block gradient-text">Patel</span>
+            </h1>
           </div>
-        </div>
 
-        {/* Description */}
-        <motion.p
-          ref={subtitleRef}
-          initial={{ opacity: 0, y: 20 }}
-          animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.7, delay: 0.6 }}
-          className="font-inter text-white/50 text-sm md:text-base max-w-lg mx-auto mb-5 leading-relaxed"
-        >
-          Crafting pixel-perfect, high-performance web experiences with React &amp; Next.js.
-          Specializing in dashboards, CRM systems, and futuristic UIs.
-        </motion.p>
+          {/* Animated Role */}
+          <div className="h-10 flex items-center justify-center mb-6 overflow-hidden">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-[1px] bg-gradient-to-r from-transparent to-[#0ce6f2]" />
+              <span
+                ref={roleRef}
+                className="font-space text-base md:text-lg text-[#0ce6f2] font-semibold tracking-widest uppercase"
+              >
+                {roles[0]}
+              </span>
+              <div className="w-8 h-[1px] bg-gradient-to-l from-transparent to-[#0ce6f2]" />
+            </div>
+          </div>
 
-        {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.7, delay: 0.75 }}
-          className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-6"
-        >
-          <motion.button
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={scrollToProjects}
-            className="btn-neon btn-neon-primary group cursor-pointer"
+          {/* Description */}
+          <motion.p
+            ref={subtitleRef}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.7, delay: 0.6 }}
+            className="font-inter text-white/60 text-sm md:text-base max-w-lg mx-auto mb-8 leading-relaxed"
           >
-            View Projects
-            <HiArrowRight className="group-hover:translate-x-1 transition-transform" />
-          </motion.button>
+            Crafting pixel-perfect, high-performance web experiences with React &amp; Next.js.
+            Specializing in dashboards, CRM systems, and futuristic UIs.
+          </motion.p>
 
-          <motion.a
-            href="/resume.pdf"
-            download="Divyesh_Patel_Resume.pdf"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            className="btn-neon btn-neon-secondary flex items-center gap-2 cursor-pointer"
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.7, delay: 0.75 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-10"
           >
-            Download Resume
-          </motion.a>
-
-          <motion.button
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={scrollToContact}
-            className="btn-neon btn-neon-secondary cursor-pointer"
-          >
-            Contact Me
-          </motion.button>
-        </motion.div>
-
-        {/* Social Links + Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isReady ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.7, delay: 0.9 }}
-          className="flex items-center gap-5 justify-center"
-        >
-          {/* GitHub */}
-          <a
-            href="https://github.com/Divyeshkalariya?tab=repositories"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            className="w-10 h-10 glass rounded-full flex items-center justify-center text-white/50 hover:text-[#00f5ff] hover:border-[#00f5ff]/50 transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,245,255,0.3)]"
-          >
-            <FaGithub size={18} />
-          </a>
-
-          {/* Scroll indicator — between the two icons */}
-          <motion.button
-            onClick={scrollToAbout}
-            className="flex flex-col items-center gap-1 text-white/30 hover:text-[#00f5ff] transition-colors cursor-pointer"
-          >
-            <span className="font-orbitron text-[9px] tracking-[3px] uppercase">Scroll</span>
-            <motion.div
-              animate={{ y: [0, 6, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            <motion.button
+              whileHover={{ scale: 1.03, y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              onClick={scrollToProjects}
+              className="btn-neon btn-neon-primary group cursor-pointer"
             >
-              <FaArrowDown size={13} />
-            </motion.div>
-          </motion.button>
+              View Projects
+              <HiArrowRight className="group-hover:translate-x-1 transition-transform" />
+            </motion.button>
 
-          {/* LinkedIn */}
-          <a
-            href="https://www.linkedin.com/in/divyesh-kalariya-579a16257"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            className="w-10 h-10 glass rounded-full flex items-center justify-center text-white/50 hover:text-[#00f5ff] hover:border-[#00f5ff]/50 transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,245,255,0.3)]"
+            <motion.a
+              href="/resume.pdf"
+              download="Divyesh_Patel_Resume.pdf"
+              whileHover={{ scale: 1.03, y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              className="btn-neon btn-neon-secondary flex items-center gap-2 cursor-pointer"
+            >
+              Download Resume
+            </motion.a>
+
+            <motion.button
+              whileHover={{ scale: 1.03, y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              onClick={scrollToContact}
+              className="btn-neon btn-neon-secondary cursor-pointer"
+            >
+              Contact Me
+            </motion.button>
+          </motion.div>
+
+          {/* Social Links + Scroll indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={isReady ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 0.7, delay: 0.9 }}
+            className="flex items-center gap-5 justify-center"
           >
-            <FaLinkedin size={18} />
-          </a>
-        </motion.div>
-      </div>
+            {/* GitHub */}
+            <a
+              href="https://github.com/Divyeshkalariya?tab=repositories"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className="w-10 h-10 glass rounded-full flex items-center justify-center text-white/60 hover:text-[#0ce6f2] hover:border-white/20 transition-all duration-300 hover:shadow-[0_8px_24px_rgba(0,0,0,0.3)]"
+            >
+              <FaGithub size={18} />
+            </a>
 
-      {/* Corner tech decorations */}
-      <div className="absolute bottom-0 left-0 w-32 h-32 border-l border-b border-[#00f5ff]/10 z-10" />
-      <div className="absolute bottom-0 right-0 w-32 h-32 border-r border-b border-[#bf00ff]/10 z-10" />
-    </section>
+            {/* Scroll indicator — between the two icons */}
+            <motion.button
+              onClick={scrollToAbout}
+              className="flex flex-col items-center gap-1.5 text-white/40 hover:text-[#0ce6f2] transition-colors cursor-pointer"
+            >
+              <span className="font-space text-[9px] tracking-[4px] uppercase font-semibold">Scroll</span>
+              <motion.div
+                animate={{ y: [0, 6, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <FaArrowDown size={12} />
+              </motion.div>
+            </motion.button>
+
+            {/* LinkedIn */}
+            <a
+              href="https://www.linkedin.com/in/divyesh-kalariya-579a16257"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="w-10 h-10 glass rounded-full flex items-center justify-center text-white/60 hover:text-[#0ce6f2] hover:border-white/20 transition-all duration-300 hover:shadow-[0_8px_24px_rgba(0,0,0,0.3)]"
+            >
+              <FaLinkedin size={18} />
+            </a>
+          </motion.div>
+        </div>
+      </section>
   );
 }
 

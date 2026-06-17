@@ -13,47 +13,32 @@ import { projects } from "@/data/projects";
 function ProjectCard({ project }: { project: (typeof projects)[0] }) {
   return (
     <div
-      className="project-card relative glass rounded-2xl overflow-hidden group flex flex-col"
+      className="project-card relative glass rounded-3xl overflow-hidden group flex flex-col border border-white/8 transition-all duration-500"
       style={{
-        border: `1px solid ${project.color}20`,
-        background: `linear-gradient(135deg, ${project.color}08, rgba(10,6,25,0.9))`,
         minHeight: "340px",
       }}
     >
-      {/* Hover glow */}
+      {/* Soft color spotlight backlight on card hover */}
       <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl pointer-events-none"
+        className="absolute -bottom-20 -right-20 w-44 h-44 rounded-full blur-[45px] opacity-0 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none"
         style={{
-          boxShadow: `0 0 40px ${project.color}25, inset 0 0 40px ${project.color}08`,
-          border: `1px solid ${project.color}40`,
-        }}
-      />
-
-      {/* Top accent bar */}
-      <div
-        className="h-[3px] w-full flex-shrink-0"
-        style={{
-          background: `linear-gradient(90deg, transparent, ${project.color}, transparent)`,
-          boxShadow: `0 0 15px ${project.color}80`,
+          background: project.color,
         }}
       />
 
       {/* Project number */}
-      <div className="absolute top-5 right-5">
+      <div className="absolute top-5 right-6">
         <span
-          className="font-orbitron text-5xl font-black opacity-10 select-none"
+          className="font-space text-5xl font-black opacity-[0.06] select-none"
           style={{ color: project.color }}
         >
           0{project.id}
         </span>
       </div>
 
-      <div className="p-6 lg:p-8 flex flex-col flex-1">
+      <div className="p-7 lg:p-9 flex flex-col flex-1">
         {/* Title */}
-        <h3
-          className="font-orbitron text-lg font-bold mb-3"
-          style={{ color: project.color, textShadow: `0 0 20px ${project.color}40` }}
-        >
+        <h3 className="font-space text-lg font-bold mb-3 text-white">
           {project.title}
         </h3>
 
@@ -67,16 +52,15 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
           {project.tech.map((tech, ti) => (
             <motion.span
               key={tech}
-              initial={{ opacity: 0, scale: 0.5 }}
+              initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.3, delay: ti * 0.05, type: "spring", stiffness: 200 }}
+              transition={{ duration: 0.3, delay: ti * 0.04, type: "spring", stiffness: 150 }}
               whileHover={{ scale: 1.05 }}
-              className="px-3 py-1 rounded-full font-space text-[11px] font-medium tracking-wider cursor-default shadow-sm"
+              className="px-3 py-1 rounded-full font-space text-[10px] font-semibold tracking-wider glass"
               style={{
-                background: `${project.color}12`,
-                border: `1px solid ${project.color}25`,
-                color: `${project.color}cc`,
+                borderColor: `${project.color}25`,
+                color: project.color === "#ffffff" ? "rgba(255, 255, 255, 0.7)" : project.color,
               }}
             >
               {tech}
@@ -91,46 +75,38 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
               href={project.live}
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, scale: 0.5 }}
+              initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.4, type: "spring", stiffness: 200 }}
-              whileHover={{ scale: 1.05 }}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-lg font-space text-xs font-medium tracking-wider"
+              transition={{ duration: 0.4, type: "spring", stiffness: 150 }}
+              whileHover={{ scale: 1.03, background: `linear-gradient(135deg, ${project.color}45 0%, rgba(255,255,255,0.06) 100%)`, borderColor: "rgba(255,255,255,0.25)" }}
+              className="flex items-center gap-2 px-4.5 py-2 rounded-full font-space text-[10px] font-bold tracking-widest uppercase glass transition-all duration-300 border border-white/10"
               style={{
-                background: `${project.color}18`,
-                border: `1px solid ${project.color}40`,
-                color: project.color,
+                background: `linear-gradient(135deg, ${project.color}25 0%, rgba(255,255,255,0.02) 100%)`,
+                color: "#ffffff",
               }}
             >
-              <FaExternalLinkAlt size={12} />
+              <FaExternalLinkAlt size={10} className="text-white" />
               Live Demo
             </motion.a>
           ) : (
             <motion.span 
-              initial={{ opacity: 0, scale: 0.5 }}
+              initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.4, type: "spring", stiffness: 200 }}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-lg font-space text-xs font-medium tracking-wider text-white/20 border border-white/10 cursor-not-allowed select-none"
+              transition={{ duration: 0.4, type: "spring", stiffness: 150 }}
+              className="flex items-center gap-2 px-4.5 py-2 rounded-full font-space text-[10px] font-bold tracking-widest uppercase text-white/20 border border-white/5 cursor-not-allowed select-none bg-white/2"
             >
-              <FaExternalLinkAlt size={12} />
+              <FaExternalLinkAlt size={10} />
               Coming Soon
             </motion.span>
           )}
         </div>
       </div>
-
-      {/* Bottom accent */}
-      <div
-        className="absolute bottom-0 left-6 right-6 h-[1px] opacity-0 group-hover:opacity-100 transition-all duration-500"
-        style={{ background: `linear-gradient(90deg, transparent, ${project.color}60, transparent)` }}
-      />
     </div>
   );
 }
 
-// ── Arrow button (standalone, outside slider) ──────────────────────────
 function ArrowBtn({
   direction,
   onClick,
@@ -142,31 +118,33 @@ function ArrowBtn({
     <button
       onClick={onClick}
       aria-label={direction === "prev" ? "Previous project" : "Next project"}
+      className="glass"
       style={{
-        width: 42,
-        height: 42,
+        width: 44,
+        height: 44,
         borderRadius: "50%",
         flexShrink: 0,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background: "rgba(0,245,255,0.07)",
-        border: "1px solid rgba(0,245,255,0.35)",
-        color: "#00f5ff",
+        border: "1px solid rgba(255, 255, 255, 0.08)",
+        color: "#ffffff",
         cursor: "pointer",
-        transition: "background 0.2s, box-shadow 0.2s",
-        boxShadow: "0 0 12px rgba(0,245,255,0.15)",
+        transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+        boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.2)",
       }}
       onMouseEnter={(e) => {
-        (e.currentTarget as HTMLButtonElement).style.background = "rgba(0,245,255,0.18)";
-        (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 20px rgba(0,245,255,0.4)";
+        (e.currentTarget as HTMLButtonElement).style.background = "rgba(255, 255, 255, 0.08)";
+        (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255, 255, 255, 0.2)";
+        (e.currentTarget as HTMLButtonElement).style.transform = "scale(1.08)";
       }}
       onMouseLeave={(e) => {
-        (e.currentTarget as HTMLButtonElement).style.background = "rgba(0,245,255,0.07)";
-        (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 12px rgba(0,245,255,0.15)";
+        (e.currentTarget as HTMLButtonElement).style.background = "rgba(255, 255, 255, 0.02)";
+        (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255, 255, 255, 0.08)";
+        (e.currentTarget as HTMLButtonElement).style.transform = "scale(1)";
       }}
     >
-      {direction === "prev" ? <FaChevronLeft size={14} /> : <FaChevronRight size={14} />}
+      {direction === "prev" ? <FaChevronLeft size={13} /> : <FaChevronRight size={13} />}
     </button>
   );
 }
@@ -210,12 +188,12 @@ export default function Projects() {
     <section id="projects" className="section-wrapper grid-bg">
       {/* BG Orbs */}
       <div
-        className="orb w-[500px] h-[500px] -top-20 -right-40 opacity-10"
-        style={{ background: "radial-gradient(circle, #00f5ff, transparent)" }}
+        className="orb w-[500px] h-[500px] -top-20 -right-40 opacity-[0.06]"
+        style={{ background: "radial-gradient(circle, #0ce6f2, transparent)" }}
       />
       <div
-        className="orb w-80 h-80 bottom-0 -left-24 opacity-10"
-        style={{ background: "radial-gradient(circle, #ff0080, transparent)" }}
+        className="orb w-80 h-80 bottom-0 -left-24 opacity-[0.06]"
+        style={{ background: "radial-gradient(circle, #f43f5e, transparent)" }}
       />
 
       <div className="section-container">
@@ -232,9 +210,9 @@ export default function Projects() {
             Featured <span className="gradient-text">Projects</span>
           </h2>
           <div className="section-header-divider">
-            <div className="h-[1px] w-24 bg-gradient-to-r from-transparent to-[#00f5ff]/50" />
-            <HiSparkles className="text-[#00f5ff]" size={18} />
-            <div className="h-[1px] w-24 bg-gradient-to-l from-transparent to-[#00f5ff]/50" />
+            <div className="h-[1px] w-24 bg-gradient-to-r from-transparent to-[#0ce6f2]/50" />
+            <HiSparkles className="text-[#0ce6f2]" size={18} />
+            <div className="h-[1px] w-24 bg-gradient-to-l from-transparent to-[#0ce6f2]/50" />
           </div>
         </motion.div>
 
@@ -273,12 +251,12 @@ export default function Projects() {
       <style>{`
         .project-slider-wrapper .slick-dots { bottom: -36px; }
         .project-slider-wrapper .slick-dots li button:before {
-          color: #00f5ff;
+          color: #0ce6f2;
           opacity: 0.3;
           font-size: 8px;
         }
         .project-slider-wrapper .slick-dots li.slick-active button:before {
-          color: #00f5ff;
+          color: #0ce6f2;
           opacity: 1;
         }
         /* equal-height slides */

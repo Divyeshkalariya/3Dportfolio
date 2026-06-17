@@ -13,107 +13,75 @@ export default function Loader({ isLoading }: LoaderProps) {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#020008]"
+          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#080710]"
         >
-          {/* Scan lines overlay */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              backgroundImage:
-                "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,245,255,0.02) 2px, rgba(0,245,255,0.02) 4px)",
-            }}
-          />
+          {/* Ambient organic background glow */}
+          <div className="absolute w-[450px] h-[450px] rounded-full blur-[100px] bg-gradient-to-tr from-[#0ce6f2]/10 via-[#8b5cf6]/8 to-transparent opacity-70 pointer-events-none" />
 
-          {/* Futuristic Concentric Spinner (SVG & CSS) */}
-          <div className="relative w-48 h-48 flex items-center justify-center">
-            {/* Outer Cyan Ring */}
-            <svg className="absolute w-40 h-40 animate-[spin_3s_linear_infinite]" viewBox="0 0 100 100">
-              <circle
-                cx="50"
-                cy="50"
-                r="45"
-                fill="none"
-                stroke="#00f5ff"
-                strokeWidth="1.5"
-                strokeDasharray="200 80"
-                strokeLinecap="round"
+          {/* Frosted Glass Loading Panel */}
+          <div className="glass w-56 h-56 rounded-3xl flex flex-col items-center justify-center relative border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+            {/* Spinning Ring */}
+            <div className="relative w-28 h-28 flex items-center justify-center">
+              <svg className="absolute w-full h-full animate-[spin_2s_linear_infinite]" viewBox="0 0 100 100">
+                <defs>
+                  <linearGradient id="loader-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#0ce6f2" />
+                    <stop offset="100%" stopColor="#8b5cf6" />
+                  </linearGradient>
+                </defs>
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="42"
+                  fill="none"
+                  stroke="url(#loader-grad)"
+                  strokeWidth="2"
+                  strokeDasharray="180 80"
+                  strokeLinecap="round"
+                  style={{
+                    filter: "drop-shadow(0 0 6px rgba(12, 230, 242, 0.3))",
+                  }}
+                />
+              </svg>
+
+              {/* Pulsing Core */}
+              <div
+                className="w-10 h-10 rounded-full border border-white/10 animate-pulse flex items-center justify-center"
                 style={{
-                  filter: "drop-shadow(0 0 8px #00f5ff)",
+                  background: "rgba(255, 255, 255, 0.03)",
+                  boxShadow: "inset 0 1px 1px rgba(255, 255, 255, 0.1)",
                 }}
-              />
-            </svg>
-
-            {/* Middle Purple Ring */}
-            <svg className="absolute w-32 h-32 animate-[spin_2s_linear_infinite_reverse]" viewBox="0 0 100 100">
-              <circle
-                cx="50"
-                cy="50"
-                r="40"
-                fill="none"
-                stroke="#bf00ff"
-                strokeWidth="1.5"
-                strokeDasharray="140 60"
-                strokeLinecap="round"
-                style={{
-                  filter: "drop-shadow(0 0 8px #bf00ff)",
-                }}
-              />
-            </svg>
-
-            {/* Inner Pink Sphere (pulsing) */}
-            <div
-              className="w-12 h-12 rounded-full border border-[#ff0080]/30 animate-pulse flex items-center justify-center"
-              style={{
-                background: "rgba(255, 0, 128, 0.1)",
-                boxShadow: "0 0 20px rgba(255, 0, 128, 0.4)",
-              }}
-            >
-              <div className="w-4 h-4 rounded-full bg-[#ff0080]" style={{ boxShadow: "0 0 10px #ff0080" }} />
+              >
+                <div className="w-3.5 h-3.5 rounded-full bg-[#0ce6f2]" style={{ boxShadow: "0 0 12px #0ce6f2" }} />
+              </div>
             </div>
+
+            <p className="font-space text-[10px] tracking-[5px] text-white/80 mt-5 uppercase">
+              Loading
+            </p>
           </div>
 
-          {/* Loading text */}
+          {/* Loading details below card */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.15 }}
             className="mt-8 text-center"
           >
-            <p className="font-orbitron text-xs tracking-[6px] text-[#00f5ff] mb-4 uppercase">
-              Initializing
-            </p>
-
-            {/* Dots */}
-            <div className="flex gap-3 justify-center">
-              {[0, 1, 2, 3, 4].map((i) => (
-                <div
-                  key={i}
-                  className="loader-dot"
-                  style={{ animationDelay: `${i * 0.14}s` }}
-                />
-              ))}
-            </div>
-
             {/* Progress bar */}
-            <div className="mt-6 w-64 h-[2px] bg-white/10 rounded-full overflow-hidden mx-auto">
+            <div className="w-56 h-[2px] bg-white/5 rounded-full overflow-hidden mx-auto">
               <motion.div
                 initial={{ width: "0%" }}
                 animate={{ width: "100%" }}
                 transition={{ duration: 0.8, ease: "easeInOut" }}
                 className="h-full rounded-full"
                 style={{
-                  background: "linear-gradient(90deg, #00f5ff, #bf00ff, #ff0080)",
-                  boxShadow: "0 0 10px #00f5ff",
+                  background: "linear-gradient(90deg, #0ce6f2, #8b5cf6)",
+                  boxShadow: "0 0 8px rgba(12, 230, 242, 0.4)",
                 }}
               />
             </div>
           </motion.div>
-
-          {/* Corner decorations */}
-          <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-[#00f5ff]/60" />
-          <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-[#00f5ff]/60" />
-          <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-[#00f5ff]/60" />
-          <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-[#00f5ff]/60" />
         </motion.div>
       )}
     </AnimatePresence>
