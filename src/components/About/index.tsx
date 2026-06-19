@@ -154,7 +154,7 @@ export default function About() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 my-12"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 mb-6"
         >
           {cards.map((card) => {
             const Icon = card.icon;

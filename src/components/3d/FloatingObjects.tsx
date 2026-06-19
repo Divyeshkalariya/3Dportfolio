@@ -70,9 +70,9 @@ export default function FloatingObjects() {
 
   return (
     <>
-      {objects.map((obj, i) => (
+      {/* {objects.map((obj, i) => (
         <FloatingObject key={i} {...obj} />
-      ))}
+      ))} */}
     </>
   );
 }

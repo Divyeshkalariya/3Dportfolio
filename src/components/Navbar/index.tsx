@@ -13,14 +13,11 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-
       const navSectionIds = navLinks.map((link) => link.href.substring(1));
       let currentSection = activeSection;
 
@@ -55,9 +52,7 @@ export default function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className={`fixed top-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-6xl z-[100] transition-all duration-500 rounded-full ${
-          scrolled ? "glass-strong py-2.5 shadow-[0_8px_32px_rgba(0,0,0,0.35)] border border-white/10" : "glass py-3.5 border border-white/5"
-        }`}
+        className="fixed top-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-6xl z-[100] transition-all duration-500 rounded-full glass-strong py-2.5 shadow-[0_8px_32px_rgba(0,0,0,0.35)] border border-white/10"
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
