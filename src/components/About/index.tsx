@@ -163,43 +163,47 @@ export default function About() {
                 key={card.title}
                 variants={cardVariants}
                 whileHover={{ y: -6, scale: 1.01 }}
-                className="relative glass rounded-3xl p-7 lg:p-9 overflow-hidden group cursor-default flex flex-col transition-all duration-300"
+                className="relative liquid_glass rounded-3xl overflow-hidden group cursor-default flex flex-col transition-all duration-300"
               >
-                {/* Subtle soft colored ambient glow in bottom-right of the card on hover */}
-                <div
-                  className="absolute -bottom-20 -right-20 w-40 h-40 rounded-full blur-[40px] opacity-0 group-hover:opacity-25 transition-opacity duration-500 pointer-events-none"
-                  style={{
-                    background: card.color,
-                  }}
-                />
+                <div className="liquid_glass_filter" />
+                <div className="liquid_glass_overlay" />
+                <div className="liquid_glass_specular" style={{ boxShadow: `inset 1px 1px 0 ${card.color}35, inset 0 0 5px ${card.color}35` }} />
+                <div className="liquid_glass_content p-7 lg:p-9 flex flex-col flex-1 relative z-10">
+                  {/* Subtle soft colored ambient glow in bottom-right of the card on hover */}
+                  <div
+                    className="absolute -bottom-20 -right-20 w-40 h-40 rounded-full blur-[40px] opacity-0 group-hover:opacity-25 transition-opacity duration-500 pointer-events-none"
+                    style={{
+                      background: card.color,
+                    }}
+                  />
 
-                {/* Icon */}
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-6"
-                  style={{
-                    background: `${card.color}10`,
-                    border: `1px solid ${card.color}25`,
-                  }}
-                >
-                  <Icon size={20} style={{ color: card.color }} />
+                  {/* Icon */}
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-6"
+                    style={{
+                      background: `${card.color}10`,
+                      border: `1px solid ${card.color}25`,
+                    }}
+                  >
+                    <Icon size={20} style={{ color: card.color }} />
+                  </div>
+
+                  {/* Content */}
+                  <h3 className="font-space text-lg font-bold mb-1 text-white">
+                    {card.title}
+                  </h3>
+                  <p className="font-space text-[10px] tracking-[2px] font-semibold uppercase mb-3" style={{ color: card.color }}>
+                    {card.subtitle}
+                  </p>
+                  <p className="font-inter text-white/50 text-sm leading-relaxed flex-1">
+                    {card.description}
+                  </p>
                 </div>
-
-                {/* Content */}
-                <h3 className="font-space text-lg font-bold mb-1 text-white">
-                  {card.title}
-                </h3>
-                <p className="font-space text-[10px] tracking-[2px] font-semibold uppercase mb-3" style={{ color: card.color }}>
-                  {card.subtitle}
-                </p>
-                <p className="font-inter text-white/50 text-sm leading-relaxed flex-1">
-                  {card.description}
-                </p>
               </motion.div>
             );
           })}
         </motion.div>
 
-        {/* Stats Grid */}
         <motion.div
           ref={statsRef}
           initial={{ opacity: 0, y: 20 }}
@@ -211,26 +215,31 @@ export default function About() {
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
-              className="glass rounded-2xl p-6 text-center border border-white/8 cursor-default"
+              className="relative liquid_glass rounded-2xl cursor-default"
             >
-              <div
-                className="font-space text-3xl font-bold mb-1"
-                style={{
-                  background: `linear-gradient(135deg, #0ce6f2, #8b5cf6)`,
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                }}
-              >
-                <CountUp
-                  end={stat.end}
-                  decimals={stat.decimals}
-                  suffix={stat.suffix}
-                  duration={1600 + i * 200}
-                  start={statsInView}
-                />
-              </div>
-              <div className="font-space text-[10px] text-white/40 tracking-[2px] uppercase font-semibold">
-                {stat.label}
+              <div className="liquid_glass_filter" />
+              <div className="liquid_glass_overlay" />
+              <div className="liquid_glass_specular" />
+              <div className="liquid_glass_content p-6 text-center relative z-10">
+                <div
+                  className="font-space text-3xl font-bold mb-1"
+                  style={{
+                    background: `linear-gradient(135deg, #0ce6f2, #8b5cf6)`,
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  <CountUp
+                    end={stat.end}
+                    decimals={stat.decimals}
+                    suffix={stat.suffix}
+                    duration={1600 + i * 200}
+                    start={statsInView}
+                  />
+                </div>
+                <div className="font-space text-[10px] text-white/40 tracking-[2px] uppercase font-semibold">
+                  {stat.label}
+                </div>
               </div>
             </motion.div>
           ))}
