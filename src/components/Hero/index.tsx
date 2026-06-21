@@ -168,8 +168,8 @@ export default function Hero({ isReady = false }: { isReady?: boolean }) {
           </motion.button>
 
           <motion.a
-            href="/resume.pdf"
-            download="Divyesh_Patel_Resume.pdf"
+            href="/divyesh_kalariya_resume.pdf"
+            download="divyesh_kalariya_resume.pdf"
             whileHover={{ scale: 1.03, y: -2 }}
             whileTap={{ scale: 0.97 }}
             className="btn-neon btn-neon-secondary flex items-center gap-2 cursor-pointer"

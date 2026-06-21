@@ -96,8 +96,8 @@ export default function Navbar() {
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-3">
             <motion.a
-              href="/resume.pdf"
-              download="Divyesh_Patel_Resume.pdf"
+              href="/divyesh_kalariya_resume.pdf"
+              download="divyesh_kalariya_resume.pdf"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="btn-neon btn-neon-secondary text-[10px] py-2 px-5 cursor-pointer flex items-center justify-center"
@@ -166,8 +166,8 @@ export default function Navbar() {
             </div>
             <div className="mt-auto space-y-3">
               <a
-                href="/resume.pdf"
-                download="Divyesh_Patel_Resume.pdf"
+                href="/divyesh_kalariya_resume.pdf"
+                download="divyesh_kalariya_resume.pdf"
                 className="btn-neon btn-neon-secondary w-full text-[10px] py-3.5 cursor-pointer flex items-center justify-center"
               >
                 Resume
