@@ -31,6 +31,15 @@ export default function RootLayout({
       </head>
       <body className="bg-[#080710] text-white antialiased" suppressHydrationWarning>
         {children}
+        <svg xmlns="http://www.w3.org/2000/svg" style={{ display: "none" }}>
+          <filter id="lensFilter" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+            <feComponentTransfer in="SourceAlpha" result="alpha">
+              <feFuncA type="identity" />
+            </feComponentTransfer>
+            <feGaussianBlur in="alpha" stdDeviation="50" result="blur" />
+            <feDisplacementMap in="SourceGraphic" in2="blur" scale="50" xChannelSelector="A" yChannelSelector="A" />
+          </filter>
+        </svg>
       </body>
     </html>
   );

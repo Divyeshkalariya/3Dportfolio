@@ -13,30 +13,33 @@ import { projects } from "@/data/projects";
 function ProjectCard({ project }: { project: (typeof projects)[0] }) {
   return (
     <div
-      className="project-card relative glass rounded-3xl overflow-hidden group flex flex-col border border-white/8 transition-all duration-500"
+      className="project-card relative liquid_glass rounded-3xl overflow-hidden group flex flex-col transition-all duration-500"
       style={{
         minHeight: "340px",
       }}
     >
-      {/* Soft color spotlight backlight on card hover */}
-      <div
-        className="absolute -bottom-20 -right-20 w-44 h-44 rounded-full blur-[45px] opacity-0 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none"
-        style={{
-          background: project.color,
-        }}
-      />
+      <div className="liquid_glass_filter" />
+      <div className="liquid_glass_overlay" />
+      <div className="liquid_glass_specular" style={{ boxShadow: `inset 1px 1px 0 ${project.color}35, inset 0 0 5px ${project.color}35` }} />
+      <div className="liquid_glass_content p-7 lg:p-9 flex flex-col flex-1 relative z-10">
+        {/* Soft color spotlight backlight on card hover */}
+        <div
+          className="absolute -bottom-20 -right-20 w-44 h-44 rounded-full blur-[45px] opacity-0 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none"
+          style={{
+            background: project.color,
+          }}
+        />
 
-      {/* Project number */}
-      <div className="absolute top-5 right-6">
-        <span
-          className="font-space text-5xl font-black opacity-[0.06] select-none"
-          style={{ color: project.color }}
-        >
-          0{project.id}
-        </span>
-      </div>
+        {/* Project number */}
+        <div className="absolute top-5 right-6">
+          <span
+            className="font-space text-5xl font-black opacity-[0.06] select-none"
+            style={{ color: project.color }}
+          >
+            0{project.id}
+          </span>
+        </div>
 
-      <div className="p-7 lg:p-9 flex flex-col flex-1">
         {/* Title */}
         <h3 className="font-space text-lg font-bold mb-3 text-white">
           {project.title}
@@ -57,13 +60,17 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.3, delay: ti * 0.04, type: "spring", stiffness: 150 }}
               whileHover={{ scale: 1.05 }}
-              className="px-3 py-1 rounded-full font-space text-[10px] font-semibold tracking-wider glass"
+              className="relative px-3 py-1 rounded-full font-space text-[10px] font-semibold tracking-wider liquid_glass transition-all duration-300"
               style={{
-                borderColor: `${project.color}25`,
                 color: project.color === "#ffffff" ? "rgba(255, 255, 255, 0.7)" : project.color,
               }}
             >
-              {tech}
+              <span className="liquid_glass_filter" />
+              <span className="liquid_glass_overlay" />
+              <span className="liquid_glass_specular" style={{ boxShadow: `inset 1px 1px 0 ${project.color}35, inset 0 0 3px ${project.color}35` }} />
+              <span className="liquid_glass_content relative z-10">
+                {tech}
+              </span>
             </motion.span>
           ))}
         </div>
@@ -79,15 +86,19 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4, type: "spring", stiffness: 150 }}
-              whileHover={{ scale: 1.03, background: `linear-gradient(135deg, ${project.color}45 0%, rgba(255,255,255,0.06) 100%)`, borderColor: "rgba(255,255,255,0.25)" }}
-              className="flex items-center gap-2 px-4.5 py-2 rounded-full font-space text-[10px] font-bold tracking-widest uppercase glass transition-all duration-300 border border-white/10"
+              whileHover={{ scale: 1.03 }}
+              className="relative flex items-center gap-2 px-4.5 py-2 rounded-full font-space text-[10px] font-bold tracking-widest uppercase liquid_glass transition-all duration-300"
               style={{
-                background: `linear-gradient(135deg, ${project.color}25 0%, rgba(255,255,255,0.02) 100%)`,
                 color: "#ffffff",
               }}
             >
-              <FaExternalLinkAlt size={10} className="text-white" />
-              Live Demo
+              <span className="liquid_glass_filter" />
+              <span className="liquid_glass_overlay" />
+              <span className="liquid_glass_specular" style={{ boxShadow: `inset 1px 1px 0 ${project.color}45, inset 0 0 5px ${project.color}45` }} />
+              <span className="liquid_glass_content flex items-center gap-2 relative z-10">
+                <FaExternalLinkAlt size={10} className="text-white" />
+                Live Demo
+              </span>
             </motion.a>
           ) : (
             <motion.span 
@@ -118,33 +129,28 @@ function ArrowBtn({
     <button
       onClick={onClick}
       aria-label={direction === "prev" ? "Previous project" : "Next project"}
-      className="glass"
+      className="relative liquid_glass flex items-center justify-center transition-all duration-300"
       style={{
         width: 44,
         height: 44,
         borderRadius: "50%",
         flexShrink: 0,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        border: "1px solid rgba(255, 255, 255, 0.08)",
         color: "#ffffff",
         cursor: "pointer",
-        transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
-        boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.2)",
       }}
       onMouseEnter={(e) => {
-        (e.currentTarget as HTMLButtonElement).style.background = "rgba(255, 255, 255, 0.08)";
-        (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255, 255, 255, 0.2)";
         (e.currentTarget as HTMLButtonElement).style.transform = "scale(1.08)";
       }}
       onMouseLeave={(e) => {
-        (e.currentTarget as HTMLButtonElement).style.background = "rgba(255, 255, 255, 0.02)";
-        (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255, 255, 255, 0.08)";
         (e.currentTarget as HTMLButtonElement).style.transform = "scale(1)";
       }}
     >
-      {direction === "prev" ? <FaChevronLeft size={13} /> : <FaChevronRight size={13} />}
+      <span className="liquid_glass_filter" />
+      <span className="liquid_glass_overlay" />
+      <span className="liquid_glass_specular" />
+      <span className="liquid_glass_content flex items-center justify-center w-full h-full relative z-10">
+        {direction === "prev" ? <FaChevronLeft size={13} /> : <FaChevronRight size={13} />}
+      </span>
     </button>
   );
 }

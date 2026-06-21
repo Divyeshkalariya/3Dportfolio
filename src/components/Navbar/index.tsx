@@ -52,9 +52,12 @@ export default function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="fixed top-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-6xl z-[100] transition-all duration-500 rounded-full glass-strong py-2.5 shadow-[0_8px_32px_rgba(0,0,0,0.35)] border border-white/10"
+        className="fixed top-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-6xl z-40 rounded-full liquid_glass"
       >
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        <div className="liquid_glass_filter" />
+        <div className="liquid_glass_overlay" />
+        <div className="liquid_glass_specular" />
+        <div className="liquid_glass_content max-w-7xl mx-auto px-6 flex items-center justify-between py-2.5">
           {/* Logo */}
           <motion.button
             onClick={() => scrollTo("#home")}
@@ -129,8 +132,16 @@ export default function Navbar() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-y-0 right-0 w-72 z-40 glass-strong flex flex-col pt-24 pb-8 px-8"
+            className="fixed inset-y-0 right-0 w-72 z-50 bg-[#080710] border-l border-white/10 flex flex-col pt-24 pb-8 px-8 justify-between"
           >
+            {/* Close button inside drawer */}
+            <button
+              onClick={() => setMenuOpen(false)}
+              className="absolute top-6 right-6 text-white/80 hover:text-[#0ce6f2] transition-colors cursor-pointer"
+            >
+              <FaTimes size={20} />
+            </button>
+
             <div className="space-y-6">
               {navLinks.map((link, i) => {
                 const isActive = activeSection === link.href.replace("#", "");

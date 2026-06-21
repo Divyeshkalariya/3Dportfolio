@@ -54,7 +54,7 @@ export default function ScrollUI() {
           top: "50%",
           right: "16px",
           transform: "translateY(-50%)",
-          zIndex: 9999,
+          zIndex: 30,
           flexDirection: "column",
           alignItems: "center",
           gap: "24px",
@@ -102,7 +102,7 @@ export default function ScrollUI() {
               position: "fixed",
               bottom: "28px",
               right: "35px",
-              zIndex: 9999,
+              zIndex: 30,
               width: "40px",
               height: "40px",
             }}

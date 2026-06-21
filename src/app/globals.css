@@ -32,6 +32,8 @@
   --bg-dark: #080710;
   --bg-card: rgba(255, 255, 255, 0.03);
   --border-glow: rgba(255, 255, 255, 0.08);
+  --lg-bg-color: rgba(255, 255, 255, 0.25);
+  --lg-highlight: rgba(255, 255, 255, 0.75);
 }
 
 * {
@@ -80,21 +82,43 @@ body {
   mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px));
 }
 
-/* Glassmorphism */
-.glass {
-  /* background: rgba(255, 255, 255, 0.02); */
-  backdrop-filter: blur(2px) saturate(160%) !important;
-  -webkit-backdrop-filter: blur(5px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  /* box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3), inset 0 1px 0 0 rgba(255, 255, 255, 0.08); */
+
+.liquid_glass {
+  background: transparent !important;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
+  overflow: hidden;
 }
 
-.glass-strong {
-  /* background: rgba(8, 7, 18, 0.45);
-  backdrop-filter: blur(35px) saturate(180%);
-  -webkit-backdrop-filter: blur(35px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 16px 48px 0 rgba(0, 0, 0, 0.45), inset 0 1px 0 0 rgba(255, 255, 255, 0.15); */
+.liquid_glass_filter {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: 0;
+  backdrop-filter: blur(2px);
+  filter: url(#lensFilter) saturate(120%) brightness(1.15);
+}
+
+.liquid_glass_overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: 1;
+  /* background: var(--lg-bg-color); */
+}
+
+.liquid_glass_specular {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: 2;
+  box-shadow: inset 1px 1px 0 black;
+  pointer-events: none;
+}
+
+.liquid_glass_content {
+  position: relative;
+  z-index: 3;
 }
 
 /* Glass Text Glow (Softened for professional editorial feel) */
@@ -484,4 +508,4 @@ body {
   justify-content: center;
   gap: 1rem;
   margin-top: 1rem;
-}
+} 

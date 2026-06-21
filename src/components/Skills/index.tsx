@@ -144,14 +144,18 @@ export default function Skills() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4, delay: i * 0.03, type: "spring", stiffness: 150 }}
-              whileHover={{ scale: 1.05, background: "rgba(255, 255, 255, 0.08)" }}
-              className="px-4.5 py-2 rounded-full font-space text-[10px] font-semibold tracking-widest uppercase cursor-default glass transition-all duration-300"
+              whileHover={{ scale: 1.05 }}
+              className="relative px-4.5 py-2 rounded-full font-space text-[10px] font-semibold tracking-widest uppercase cursor-default liquid_glass transition-all duration-300"
               style={{
-                borderColor: `${skill.color}25`,
                 color: skill.color === "#ffffff" ? "rgba(255, 255, 255, 0.8)" : skill.color,
               }}
             >
-              {skill.name}
+              <span className="liquid_glass_filter" />
+              <span className="liquid_glass_overlay" />
+              <span className="liquid_glass_specular" style={{ boxShadow: `inset 1px 1px 0 ${skill.color}35, inset 0 0 5px ${skill.color}35` }} />
+              <span className="liquid_glass_content relative z-10">
+                {skill.name}
+              </span>
             </motion.span>
           ))}
         </div>

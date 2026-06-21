@@ -19,46 +19,51 @@ export default function Loader({ isLoading }: LoaderProps) {
           <div className="absolute w-[450px] h-[450px] rounded-full blur-[100px] bg-gradient-to-tr from-[#0ce6f2]/10 via-[#8b5cf6]/8 to-transparent opacity-70 pointer-events-none" />
 
           {/* Frosted Glass Loading Panel */}
-          <div className="glass w-56 h-56 rounded-3xl flex flex-col items-center justify-center relative border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
-            {/* Spinning Ring */}
-            <div className="relative w-28 h-28 flex items-center justify-center">
-              <svg className="absolute w-full h-full animate-[spin_2s_linear_infinite]" viewBox="0 0 100 100">
-                <defs>
-                  <linearGradient id="loader-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#0ce6f2" />
-                    <stop offset="100%" stopColor="#8b5cf6" />
-                  </linearGradient>
-                </defs>
-                <circle
-                  cx="50"
-                  cy="50"
-                  r="42"
-                  fill="none"
-                  stroke="url(#loader-grad)"
-                  strokeWidth="2"
-                  strokeDasharray="180 80"
-                  strokeLinecap="round"
+          <div className="liquid_glass w-56 h-56 rounded-3xl flex flex-col relative">
+            <div className="liquid_glass_filter" />
+            <div className="liquid_glass_overlay" />
+            <div className="liquid_glass_specular" />
+            <div className="liquid_glass_content w-full h-full flex flex-col items-center justify-center">
+              {/* Spinning Ring */}
+              <div className="relative w-28 h-28 flex items-center justify-center">
+                <svg className="absolute w-full h-full animate-[spin_2s_linear_infinite]" viewBox="0 0 100 100">
+                  <defs>
+                    <linearGradient id="loader-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#0ce6f2" />
+                      <stop offset="100%" stopColor="#8b5cf6" />
+                    </linearGradient>
+                  </defs>
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="42"
+                    fill="none"
+                    stroke="url(#loader-grad)"
+                    strokeWidth="2"
+                    strokeDasharray="180 80"
+                    strokeLinecap="round"
+                    style={{
+                      filter: "drop-shadow(0 0 6px rgba(12, 230, 242, 0.3))",
+                    }}
+                  />
+                </svg>
+
+                {/* Pulsing Core */}
+                <div
+                  className="w-10 h-10 rounded-full border border-white/10 animate-pulse flex items-center justify-center"
                   style={{
-                    filter: "drop-shadow(0 0 6px rgba(12, 230, 242, 0.3))",
+                    background: "rgba(255, 255, 255, 0.03)",
+                    boxShadow: "inset 0 1px 1px rgba(255, 255, 255, 0.1)",
                   }}
-                />
-              </svg>
-
-              {/* Pulsing Core */}
-              <div
-                className="w-10 h-10 rounded-full border border-white/10 animate-pulse flex items-center justify-center"
-                style={{
-                  background: "rgba(255, 255, 255, 0.03)",
-                  boxShadow: "inset 0 1px 1px rgba(255, 255, 255, 0.1)",
-                }}
-              >
-                <div className="w-3.5 h-3.5 rounded-full bg-[#0ce6f2]" style={{ boxShadow: "0 0 12px #0ce6f2" }} />
+                >
+                  <div className="w-3.5 h-3.5 rounded-full bg-[#0ce6f2]" style={{ boxShadow: "0 0 12px #0ce6f2" }} />
+                </div>
               </div>
-            </div>
 
-            <p className="font-space text-[10px] tracking-[5px] text-white/80 mt-5 uppercase">
-              Loading
-            </p>
+              <p className="font-space text-[10px] tracking-[5px] text-white/80 mt-5 uppercase">
+                Loading
+              </p>
+            </div>
           </div>
 
           {/* Loading details below card */}
