@@ -265,7 +265,7 @@ export default function Skills() {
       <div className="absolute top-1/3 left-0 w-[500px] h-[500px] bg-blue-100/40 rounded-full blur-[120px] pointer-events-none -z-0" />
       <div className="absolute bottom-10 right-0 w-[500px] h-[500px] bg-indigo-100/35 rounded-full blur-[120px] pointer-events-none -z-0" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="section-container relative z-10">
 
         {/* Section Header */}
         <motion.div

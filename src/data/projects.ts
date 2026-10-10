@@ -31,7 +31,7 @@ export const projects: Project[] = [
     title: "SMS Gateway",
     description:
       "Full-featured SMS campaign management platform with bulk messaging, scheduling, delivery tracking, and analytics dashboard for enterprise communication.",
-    tech: ["React", "Node.js", "Redux", "Material UI"],
+    tech: ["React", "Tailwind CSS", "Redux", "Material UI"],
     live: "",
     color: "#ff0080",
   },

@@ -119,7 +119,7 @@ export default function Hero({ isReady = true }: { isReady?: boolean }) {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-sky-50/50 rounded-full blur-[100px] pointer-events-none -z-0" />
 
       {/* Main 2-Column Container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full">
+      <div className="section-container relative z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
 
           {/* ──────────────── LEFT COLUMN: Typography & Actions ──────────────── */}

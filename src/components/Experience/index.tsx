@@ -1,6 +1,12 @@
 "use client";
 import { useRef } from "react";
-import { motion } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useSpring,
+  useTransform,
+  MotionValue,
+} from "framer-motion";
 import { FaBriefcase, FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa";
 import { HiSparkles, HiCheckCircle } from "react-icons/hi";
 import { calculateExperience, formatDateForDisplay } from "@/utils/calculateExperience";
@@ -64,7 +70,169 @@ const experiences = [
   },
 ];
 
+// ── Per-card scroll-synced animation ───────────────────────────────────
+function ExperienceCard({
+  exp,
+  smoothProgress,
+  threshold,
+}: {
+  exp: (typeof experiences)[0];
+  index: number;
+  smoothProgress: MotionValue<number>;
+  threshold: number;
+}) {
+  // Card slides from left + fades in when line tip crosses threshold
+  const opacity = useTransform(smoothProgress, [threshold - 0.01, threshold + 0.08], [0, 1]);
+  const x = useTransform(smoothProgress, [threshold - 0.01, threshold + 0.1], [-50, 0]);
+
+  // Dot scales + glows when line reaches it
+  const dotScale = useTransform(smoothProgress, [threshold - 0.02, threshold + 0.05], [0.6, 1]);
+  const dotGlow = useTransform(
+    smoothProgress,
+    [threshold - 0.02, threshold + 0.05],
+    [`0 0 0px ${exp.color}00`, `0 0 14px ${exp.color}80`]
+  );
+
+  return (
+    <motion.div
+      style={{ opacity, x }}
+      className="relative pl-16 md:pl-20 mb-10 last:mb-0"
+    >
+      {/* Timeline node */}
+      <motion.div
+        style={{ scale: dotScale, boxShadow: dotGlow }}
+        className="absolute left-6 md:left-8 top-8 w-4 h-4 rounded-full -translate-x-1/2 z-10 bg-white border border-[#E5E7EB] flex items-center justify-center"
+      >
+        <div className="w-1.5 h-1.5 rounded-full" style={{ background: exp.color }} />
+      </motion.div>
+
+      {/* Card */}
+      <motion.div
+        whileHover={{ y: -3, scale: 1.005 }}
+        className="bg-white rounded-3xl border border-[#E5E7EB] p-7 lg:p-9 relative overflow-hidden group shadow-sm hover:shadow-md transition-all duration-300"
+      >
+        {/* Soft colored spotlight on hover */}
+        <div
+          className="absolute -bottom-20 -right-20 w-40 h-40 rounded-full blur-[45px] opacity-0 group-hover:opacity-15 transition-opacity duration-500 pointer-events-none"
+          style={{ background: exp.color }}
+        />
+
+        {/* Header row */}
+        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
+          <div>
+            <h3 className="font-space text-lg font-bold mb-1.5 text-[#1A1A2E]">{exp.role}</h3>
+            <div className="flex items-center gap-2 mb-3">
+              <FaBriefcase size={12} className="text-[#9CA3AF]" />
+              <span className="font-space text-[#4B5563] font-semibold text-xs tracking-wider uppercase">
+                {exp.company}
+              </span>
+            </div>
+            <div className="flex flex-wrap gap-4">
+              <div className="flex items-center gap-1.5">
+                <FaCalendarAlt size={11} className="text-[#9CA3AF]" />
+                <span className="font-space text-xs text-[#9CA3AF]">
+                  {formatDateForDisplay(exp.startDate)} — {formatDateForDisplay(exp.endDate)}
+                </span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <FaMapMarkerAlt size={11} className="text-[#9CA3AF]" />
+                <span className="font-space text-xs text-[#9CA3AF]">{exp.location}</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-row sm:flex-col gap-2.5 items-start sm:items-end shrink-0">
+            <motion.span
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.4, delay: 0.2, type: "spring", stiffness: 150 }}
+              className="px-3 py-1 rounded-full font-space text-[10px] font-semibold tracking-wider glass"
+              style={{ borderColor: `${exp.color}30`, color: exp.color }}
+            >
+              {calculateExperience(exp.startDate, exp.endDate).formatted}
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.4, delay: 0.3, type: "spring", stiffness: 150 }}
+              className="px-3 py-1 rounded-full font-space text-[10px] bg-[#F3F4F6] border border-[#E5E7EB] text-[#6B7280] font-semibold tracking-wider uppercase"
+            >
+              {exp.type}
+            </motion.span>
+          </div>
+        </div>
+
+        {/* Description */}
+        <p className="font-inter text-[#6B7280] text-sm leading-relaxed mb-6">{exp.description}</p>
+
+        {/* Achievements */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+          {exp.achievements.map((achievement, ai) => (
+            <motion.div
+              key={ai}
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.4, delay: ai * 0.05 }}
+              className="flex items-start gap-2.5"
+            >
+              <HiCheckCircle size={15} className="shrink-0 mt-0.5" style={{ color: exp.color }} />
+              <span className="font-inter text-[#6B7280] text-xs leading-relaxed">{achievement}</span>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Tech pills */}
+        <div className="flex flex-wrap gap-2">
+          {exp.tech.map((t, ti) => (
+            <motion.span
+              key={t}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.3, delay: ti * 0.04, type: "spring", stiffness: 150 }}
+              className="px-3 py-1 rounded-full font-space text-[10px] font-semibold tracking-wider glass"
+              style={{
+                borderColor: `${exp.color}30`,
+                color: exp.color === "#ffffff" ? "#6B7280" : exp.color,
+              }}
+            >
+              {t}
+            </motion.span>
+          ))}
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+// ── Main component ─────────────────────────────────────────────────────
 export default function Experience() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  // Scroll progress scoped to the timeline container
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start 80%", "end 60%"],
+  });
+
+  // Spring-smooth the raw progress — drives both line AND cards
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 60,
+    damping: 20,
+    restDelta: 0.001,
+  });
+
+  // Timeline line scaleY: 0 → 1 as you scroll
+  const lineScaleY = useTransform(smoothProgress, [0, 1], [0, 1]);
+
+  // Card thresholds: evenly spaced 0.05 → 0.80 so all cards trigger before scroll ends
+  const n = experiences.length;
+  const cardThresholds = experiences.map((_, i) =>
+    n === 1 ? 0.05 : 0.05 + (i / (n - 1)) * 0.75
+  );
 
   return (
     <section id="experience" className="section-wrapper">
@@ -77,7 +245,7 @@ export default function Experience() {
       />
 
       <div className="section-container">
-        {/* Header */}
+        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -96,150 +264,24 @@ export default function Experience() {
           </div>
         </motion.div>
 
-        {/* Timeline — left-anchored, full content width */}
-        <div className="relative max-w-4xl mx-auto">
-          {/* Vertical line */}
+        {/* Timeline container */}
+        <div ref={sectionRef} className="relative max-w-4xl mx-auto">
+          {/* Track (faint grey background line) */}
+          <div className="absolute left-6 md:left-8 top-0 bottom-0 w-[2px] bg-[#E5E7EB]" />
+          {/* Scroll-driven coloured fill line */}
           <motion.div
-            initial={{ scaleY: 0 }}
-            whileInView={{ scaleY: 1 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 1.2, ease: "easeInOut", delay: 0.3 }}
-            className="absolute left-6 md:left-8 top-0 bottom-0 w-[2px] timeline-line origin-top"
+            style={{ scaleY: lineScaleY, originY: 0 }}
+            className="absolute left-6 md:left-8 top-0 bottom-0 w-[2px] timeline-line"
           />
 
           {experiences.map((exp, i) => (
-            <motion.div
+            <ExperienceCard
               key={i}
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative pl-16 md:pl-20 mb-10 last:mb-0"
-            >
-              {/* Timeline node - sleek glass bead */}
-              <div
-                className="absolute left-6 md:left-8 top-8 w-4 h-4 rounded-full -translate-x-1/2 z-10 bg-white border border-[#E5E7EB] flex items-center justify-center shadow-sm"
-                style={{
-                  boxShadow: `0 0 16px ${exp.color}40`,
-                }}
-              >
-                <div
-                  className="w-1.5 h-1.5 rounded-full"
-                  style={{ background: exp.color }}
-                />
-              </div>
-
-              {/* Card — full width */}
-              <motion.div
-                whileHover={{ y: -3, scale: 1.005 }}
-                className="bg-white rounded-3xl border border-[#E5E7EB] p-7 lg:p-9 relative overflow-hidden group shadow-sm hover:shadow-md transition-all duration-300"
-              >
-                {/* Soft colored spotlight backlight on card hover */}
-                <div
-                  className="absolute -bottom-20 -right-20 w-40 h-40 rounded-full blur-[45px] opacity-0 group-hover:opacity-15 transition-opacity duration-500 pointer-events-none"
-                  style={{
-                    background: exp.color,
-                  }}
-                />
-
-                {/* Header */}
-                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
-                  <div>
-                    <h3 className="font-space text-lg font-bold mb-1.5 text-[#1A1A2E]">
-                      {exp.role}
-                    </h3>
-                    <div className="flex items-center gap-2 mb-3">
-                      <FaBriefcase size={12} className="text-[#9CA3AF]" />
-                      <span className="font-space text-[#4B5563] font-semibold text-xs tracking-wider uppercase">{exp.company}</span>
-                    </div>
-                    <div className="flex flex-wrap gap-4">
-                      <div className="flex items-center gap-1.5">
-                        <FaCalendarAlt size={11} className="text-[#9CA3AF]" />
-                        <span className="font-space text-xs text-[#9CA3AF]">
-                          {formatDateForDisplay(exp.startDate)} — {formatDateForDisplay(exp.endDate)}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <FaMapMarkerAlt size={11} className="text-[#9CA3AF]" />
-                        <span className="font-space text-xs text-[#9CA3AF]">{exp.location}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex flex-row sm:flex-col gap-2.5 items-start sm:items-end shrink-0">
-                    <motion.span
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true, margin: "-50px" }}
-                      transition={{ duration: 0.4, delay: 0.2, type: "spring", stiffness: 150 }}
-                      className="px-3 py-1 rounded-full font-space text-[10px] font-semibold tracking-wider glass"
-                      style={{
-                        borderColor: `${exp.color}30`,
-                        color: exp.color,
-                      }}
-                    >
-                      {calculateExperience(exp.startDate, exp.endDate).formatted}
-                    </motion.span>
-                    <motion.span 
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true, margin: "-50px" }}
-                      transition={{ duration: 0.4, delay: 0.3, type: "spring", stiffness: 150 }}
-                      className="px-3 py-1 rounded-full font-space text-[10px] bg-[#F3F4F6] border border-[#E5E7EB] text-[#6B7280] font-semibold tracking-wider uppercase"
-                    >
-                      {exp.type}
-                    </motion.span>
-                  </div>
-                </div>
-
-                {/* Description */}
-                <p className="font-inter text-[#6B7280] text-sm leading-relaxed mb-6">
-                  {exp.description}
-                </p>
-
-                {/* Achievements */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
-                  {exp.achievements.map((achievement, ai) => (
-                    <motion.div
-                      key={ai}
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true, margin: "-50px" }}
-                      transition={{ duration: 0.4, delay: ai * 0.05 }}
-                      className="flex items-start gap-2.5"
-                    >
-                      <HiCheckCircle
-                        size={15}
-                        className="shrink-0 mt-0.5"
-                        style={{ color: exp.color }}
-                      />
-                      <span className="font-inter text-[#6B7280] text-xs leading-relaxed">
-                        {achievement}
-                      </span>
-                    </motion.div>
-                  ))}
-                </div>
-
-                {/* Tech pills */}
-                <div className="flex flex-wrap gap-2">
-                  {exp.tech.map((t, ti) => (
-                    <motion.span
-                      key={t}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true, margin: "-50px" }}
-                      transition={{ duration: 0.3, delay: ti * 0.04, type: "spring", stiffness: 150 }}
-                      className="px-3 py-1 rounded-full font-space text-[10px] font-semibold tracking-wider glass"
-                      style={{
-                        borderColor: `${exp.color}30`,
-                        color: exp.color === "#ffffff" ? "#6B7280" : exp.color,
-                      }}
-                    >
-                      {t}
-                    </motion.span>
-                  ))}
-                </div>
-              </motion.div>
-            </motion.div>
+              exp={exp}
+              index={i}
+              smoothProgress={smoothProgress}
+              threshold={cardThresholds[i]}
+            />
           ))}
         </div>
       </div>

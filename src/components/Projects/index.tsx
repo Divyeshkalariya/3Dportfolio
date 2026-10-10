@@ -38,8 +38,8 @@ function ProjectCard({
         {/* Number watermark */}
         <div className="absolute top-6 right-7">
           <span
-            className="font-space text-6xl font-black select-none leading-none"
-            style={{ color: project.color, opacity: 0.07 }}
+            className="font-space text-8xl font-black select-none leading-none"
+            style={{ color: project.color, opacity: 0.1 }}
           >
             {String(project.id).padStart(2, "0")}
           </span>
