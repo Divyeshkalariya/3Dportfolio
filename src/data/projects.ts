@@ -10,10 +10,10 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 1,
-    title: "Tiles Catalogue",
+    title: "Orbatic Catalogue",
     description:
-      "A comprehensive tiles catalogue CRM system built for managing product listings, customer inquiries, and sales pipeline with advanced filtering and real-time updates.",
-    tech: ["Next.js", "MUI", "Redux Toolkit", "CRM Integration"],
+      "A Multi-Industry ERP & Catalogue Management System for Tiles, Marble, Laminates, and Sanitaryware, featuring custom and full catalogue creation, customer and order management, stock management, and complete domestic and export documentation workflows.",
+    tech: ["Next.js", "Typescript", "MUI", "CSS", "Redux Toolkit", "Web Socket", "Chart.js", "CRM Integration"],
     live: "https://portal.tilescatalogue.com/",
     color: "#00f5ff",
   },
@@ -21,8 +21,8 @@ export const projects: Project[] = [
     id: 2,
     title: "SitePace.ai",
     description:
-      "AI-powered frontend dashboard for monitoring site performance metrics, real-time analytics, and intelligent recommendations for construction project management.",
-    tech: ["React", "TypeScript", "Tailwind CSS", "Chart.js"],
+      "An AI-powered construction monitoring platform featuring 360° virtual site tours, floor plan integration, progress tracking, digital annotations, and remote team collaboration. Designed to improve construction visibility, streamline inspections, and centralize project documentation.",
+    tech: ["React", "TypeScript", "Tailwind CSS", "Chart.js", "Web Socket", "Redux Toolkit"],
     live: "https://user.sitepace.ai/signin",
     color: "#bf00ff",
   },
