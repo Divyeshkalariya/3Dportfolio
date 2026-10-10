@@ -29,7 +29,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="bg-[#080710] text-white antialiased" suppressHydrationWarning>
+      <body className="bg-[#FAFAFA] text-[#1A1A2E] antialiased" suppressHydrationWarning>
         {children}
         <svg xmlns="http://www.w3.org/2000/svg" style={{ display: "none" }}>
           <filter id="lensFilter" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">

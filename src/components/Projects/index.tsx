@@ -13,15 +13,12 @@ import { projects } from "@/data/projects";
 function ProjectCard({ project }: { project: (typeof projects)[0] }) {
   return (
     <div
-      className="project-card relative liquid_glass rounded-3xl overflow-hidden group flex flex-col transition-all duration-500"
+      className="project-card relative bg-white border border-[#E5E7EB] rounded-3xl overflow-hidden group flex flex-col transition-all duration-500 shadow-sm hover:shadow-lg"
       style={{
         minHeight: "340px",
       }}
     >
-      <div className="liquid_glass_filter" />
-      <div className="liquid_glass_overlay" />
-      <div className="liquid_glass_specular" style={{ boxShadow: `inset 1px 1px 0 ${project.color}35, inset 0 0 5px ${project.color}35` }} />
-      <div className="liquid_glass_content p-7 lg:p-9 flex flex-col flex-1 relative z-10">
+      <div className="p-7 lg:p-9 flex flex-col flex-1 relative z-10">
         {/* Soft color spotlight backlight on card hover */}
         <div
           className="absolute -bottom-20 -right-20 w-44 h-44 rounded-full blur-[45px] opacity-0 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none"
@@ -41,12 +38,12 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
         </div>
 
         {/* Title */}
-        <h3 className="font-space text-lg font-bold mb-3 text-white">
+        <h3 className="font-space text-lg font-bold mb-3 text-[#1A1A2E]">
           {project.title}
         </h3>
 
         {/* Description */}
-        <p className="font-inter text-white/50 text-sm leading-relaxed mb-5 flex-1">
+        <p className="font-inter text-[#6B7280] text-sm leading-relaxed mb-5 flex-1">
           {project.description}
         </p>
 
@@ -62,7 +59,7 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
               whileHover={{ scale: 1.05 }}
               className="relative px-3 py-1 rounded-full font-space text-[10px] font-semibold tracking-wider liquid_glass transition-all duration-300"
               style={{
-                color: project.color === "#ffffff" ? "rgba(255, 255, 255, 0.7)" : project.color,
+                color: project.color === "#ffffff" ? "#6B7280" : project.color,
               }}
             >
               <span className="liquid_glass_filter" />
@@ -106,7 +103,7 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4, type: "spring", stiffness: 150 }}
-              className="flex items-center gap-2 px-4.5 py-2 rounded-full font-space text-[10px] font-bold tracking-widest uppercase text-white/20 border border-white/5 cursor-not-allowed select-none bg-white/2"
+              className="flex items-center gap-2 px-4.5 py-2 rounded-full font-space text-[10px] font-bold tracking-widest uppercase text-[#9CA3AF] border border-[#E5E7EB] cursor-not-allowed select-none bg-[#F9FAFB]"
             >
               <FaExternalLinkAlt size={10} />
               Coming Soon
@@ -195,11 +192,11 @@ export default function Projects() {
       {/* BG Orbs */}
       <div
         className="orb w-[500px] h-[500px] -top-20 -right-40 opacity-[0.06]"
-        style={{ background: "radial-gradient(circle, #0ce6f2, transparent)" }}
+        style={{ background: "radial-gradient(circle, rgba(37,99,235,0.06), transparent)" }}
       />
       <div
         className="orb w-80 h-80 bottom-0 -left-24 opacity-[0.06]"
-        style={{ background: "radial-gradient(circle, #f43f5e, transparent)" }}
+        style={{ background: "radial-gradient(circle, rgba(239,68,68,0.05), transparent)" }}
       />
 
       <div className="section-container">
@@ -216,9 +213,9 @@ export default function Projects() {
             Featured <span className="gradient-text">Projects</span>
           </h2>
           <div className="section-header-divider">
-            <div className="h-[1px] w-24 bg-gradient-to-r from-transparent to-[#0ce6f2]/50" />
-            <HiSparkles className="text-[#0ce6f2]" size={18} />
-            <div className="h-[1px] w-24 bg-gradient-to-l from-transparent to-[#0ce6f2]/50" />
+            <div className="h-[1px] w-24 bg-gradient-to-r from-transparent to-[#2563EB]/50" />
+            <HiSparkles className="text-[#2563EB]" size={18} />
+            <div className="h-[1px] w-24 bg-gradient-to-l from-transparent to-[#2563EB]/50" />
           </div>
         </motion.div>
 
@@ -257,12 +254,12 @@ export default function Projects() {
       <style>{`
         .project-slider-wrapper .slick-dots { bottom: -36px; }
         .project-slider-wrapper .slick-dots li button:before {
-          color: #0ce6f2;
+          color: #2563EB;
           opacity: 0.3;
           font-size: 8px;
         }
         .project-slider-wrapper .slick-dots li.slick-active button:before {
-          color: #0ce6f2;
+          color: #2563EB;
           opacity: 1;
         }
         /* equal-height slides */

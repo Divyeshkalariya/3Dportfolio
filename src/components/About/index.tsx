@@ -104,15 +104,15 @@ export default function About() {
   };
 
   return (
-    <section id="about" className="section-wrapper grid-bg">
+    <section id="about" className="section-wrapper" style={{ background: 'var(--pro-bg)' }}>
       {/* Background orbs */}
       <div
         className="orb w-96 h-96 top-20 -left-32 opacity-[0.08]"
-        style={{ background: "radial-gradient(circle, #0ce6f2, transparent)" }}
+        style={{ background: "radial-gradient(circle, rgba(37,99,235,0.06), transparent)" }}
       />
       <div
         className="orb w-80 h-80 bottom-0 -right-24 opacity-[0.08]"
-        style={{ background: "radial-gradient(circle, #8b5cf6, transparent)" }}
+        style={{ background: "radial-gradient(circle, rgba(99,102,241,0.06), transparent)" }}
       />
 
       <div className="section-container">
@@ -124,25 +124,25 @@ export default function About() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.7 }}
           >
-            <p className="section-subtitle font-space font-semibold text-white/40">Get To Know</p>
-            <h2 className="section-title mb-4 font-space text-white" style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}>
+            <p className="section-subtitle font-space font-semibold">Get To Know</p>
+            <h2 className="section-title mb-4 font-space" style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}>
               About <span className="gradient-text">Me</span>
             </h2>
             <div className="flex items-center justify-center gap-4 mb-8">
-              <div className="h-[1px] w-24 bg-gradient-to-r from-transparent via-[#0ce6f2] to-transparent" />
-              <HiSparkles className="text-[#0ce6f2]" size={18} />
-              <div className="h-[1px] w-24 bg-gradient-to-l from-transparent via-[#0ce6f2] to-transparent" />
+              <div className="h-[1px] w-24 bg-gradient-to-r from-transparent via-[#2563EB] to-transparent" />
+              <HiSparkles className="text-[#2563EB]" size={18} />
+              <div className="h-[1px] w-24 bg-gradient-to-l from-transparent via-[#2563EB] to-transparent" />
             </div>
 
-            <p className="text-white/70 font-inter leading-relaxed text-base lg:text-lg mb-6 max-w-2xl mx-auto">
-              I am a passionate <span className="text-[#0ce6f2] font-semibold">Frontend Developer</span> specializing
-              in <span className="text-[#8b5cf6] font-semibold">React</span> and{" "}
-              <span className="text-[#8b5cf6] font-semibold">Next.js</span>. I build fast, responsive,
+            <p className="text-[#4B5563] font-inter leading-relaxed text-base lg:text-lg mb-6 max-w-2xl mx-auto">
+              I am a passionate <span className="text-[#2563EB] font-semibold">Frontend Developer</span> specializing
+              in <span className="text-[#6366F1] font-semibold">React</span> and{" "}
+              <span className="text-[#6366F1] font-semibold">Next.js</span>. I build fast, responsive,
               and visually stunning web applications — from sleek static sites to fully animated UIs.
             </p>
-            <p className="text-white/70 font-inter leading-relaxed text-base lg:text-lg max-w-2xl mx-auto">
-              My core expertise lies in <span className="text-[#0ce6f2] font-semibold">Admin Dashboards</span>,{" "}
-              <span className="text-[#f43f5e] font-semibold">CRM systems</span>, and pixel-perfect animated
+            <p className="text-[#4B5563] font-inter leading-relaxed text-base lg:text-lg max-w-2xl mx-auto">
+              My core expertise lies in <span className="text-[#2563EB] font-semibold">Admin Dashboards</span>,{" "}
+              <span className="text-[#EF4444] font-semibold">CRM systems</span>, and pixel-perfect animated
               websites. I turn ideas into production-ready products using clean code and modern tooling.
             </p>
           </motion.div>
@@ -163,11 +163,8 @@ export default function About() {
                 key={card.title}
                 variants={cardVariants}
                 whileHover={{ y: -6, scale: 1.01 }}
-                className="relative liquid_glass rounded-3xl overflow-hidden group cursor-default flex flex-col transition-all duration-300"
+                className="relative bg-white border border-[#E5E7EB] rounded-3xl overflow-hidden group cursor-default flex flex-col transition-all duration-300 shadow-sm hover:shadow-md"
               >
-                <div className="liquid_glass_filter" />
-                <div className="liquid_glass_overlay" />
-                <div className="liquid_glass_specular" style={{ boxShadow: `inset 1px 1px 0 ${card.color}35, inset 0 0 5px ${card.color}35` }} />
                 <div className="liquid_glass_content p-7 lg:p-9 flex flex-col flex-1 relative z-10">
                   {/* Subtle soft colored ambient glow in bottom-right of the card on hover */}
                   <div
@@ -189,13 +186,13 @@ export default function About() {
                   </div>
 
                   {/* Content */}
-                  <h3 className="font-space text-lg font-bold mb-1 text-white">
+                  <h3 className="font-space text-lg font-bold mb-1 text-[#1A1A2E]">
                     {card.title}
                   </h3>
                   <p className="font-space text-[10px] tracking-[2px] font-semibold uppercase mb-3" style={{ color: card.color }}>
                     {card.subtitle}
                   </p>
-                  <p className="font-inter text-white/50 text-sm leading-relaxed flex-1">
+                  <p className="font-inter text-[#6B7280] text-sm leading-relaxed flex-1">
                     {card.description}
                   </p>
                 </div>
@@ -215,16 +212,13 @@ export default function About() {
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
-              className="relative liquid_glass rounded-2xl cursor-default"
+              className="relative bg-white border border-[#E5E7EB] rounded-2xl cursor-default shadow-sm"
             >
-              <div className="liquid_glass_filter" />
-              <div className="liquid_glass_overlay" />
-              <div className="liquid_glass_specular" />
               <div className="liquid_glass_content p-6 text-center relative z-10">
                 <div
                   className="font-space text-3xl font-bold mb-1"
                   style={{
-                    background: `linear-gradient(135deg, #0ce6f2, #8b5cf6)`,
+                    background: `linear-gradient(135deg, #2563EB, #6366F1)`,
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                   }}
@@ -237,7 +231,7 @@ export default function About() {
                     start={statsInView}
                   />
                 </div>
-                <div className="font-space text-[10px] text-white/40 tracking-[2px] uppercase font-semibold">
+                <div className="font-space text-[10px] text-[#9CA3AF] tracking-[2px] uppercase font-semibold">
                   {stat.label}
                 </div>
               </div>

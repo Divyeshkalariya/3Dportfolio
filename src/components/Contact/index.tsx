@@ -72,7 +72,7 @@ export default function Contact() {
       {/* BG orbs */}
       <div
         className="orb w-[600px] h-[600px] top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.04]"
-        style={{ background: "radial-gradient(circle, #0ce6f2, transparent)" }}
+        style={{ background: "radial-gradient(circle, rgba(37,99,235,0.05), transparent)" }}
       />
 
       <div className="section-container">
@@ -84,16 +84,16 @@ export default function Contact() {
           transition={{ duration: 0.7 }}
           className="section-header"
         >
-          <p className="section-subtitle font-space font-semibold text-white/40">Get In Touch</p>
+          <p className="section-subtitle font-space font-semibold">Get In Touch</p>
           <h2 className="section-title">
             Contact <span className="gradient-text">Me</span>
           </h2>
           <div className="section-header-divider">
-            <div className="h-[1px] w-24 bg-gradient-to-r from-transparent to-[#0ce6f2]/50" />
-            <HiSparkles className="text-[#0ce6f2]" size={18} />
-            <div className="h-[1px] w-24 bg-gradient-to-l from-transparent to-[#0ce6f2]/50" />
+            <div className="h-[1px] w-24 bg-gradient-to-r from-transparent to-[#2563EB]/50" />
+            <HiSparkles className="text-[#2563EB]" size={18} />
+            <div className="h-[1px] w-24 bg-gradient-to-l from-transparent to-[#2563EB]/50" />
           </div>
-          <p className="font-inter text-white/45 text-sm mt-4 max-w-md mx-auto leading-relaxed">
+          <p className="font-inter text-[#6B7280] text-sm mt-4 max-w-md mx-auto leading-relaxed">
             Have a project in mind? Let&apos;s build something amazing together.
           </p>
         </motion.div>
@@ -108,10 +108,10 @@ export default function Contact() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="mb-7"
             >
-              <h3 className="font-space text-lg font-bold text-white mb-3">
+              <h3 className="font-space text-lg font-bold text-[#1A1A2E] mb-3">
                 Let&apos;s Build Together
               </h3>
-              <p className="font-inter text-white/50 text-sm leading-relaxed">
+              <p className="font-inter text-[#6B7280] text-sm leading-relaxed">
                 I&apos;m currently open to new opportunities. Whether you have a project, a question,
                 or just want to say hi — my inbox is always open.
               </p>
@@ -125,7 +125,7 @@ export default function Contact() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: 0.4 + i * 0.1, type: "spring", stiffness: 100 }}
-                  className="flex items-center gap-4.5 glass rounded-2xl p-4.5 border border-white/8 group cursor-pointer transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)]"
+                  className="flex items-center gap-4.5 bg-white rounded-2xl p-4.5 border border-[#E5E7EB] shadow-sm group cursor-pointer transition-all duration-300 hover:shadow-md"
                 >
                   <div
                     className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 group-hover:scale-105"
@@ -143,7 +143,7 @@ export default function Contact() {
                     >
                       {item.label}
                     </p>
-                    <p className="font-space text-white/70 text-sm font-semibold tracking-wide transition-colors group-hover:text-white">
+                    <p className="font-space text-[#6B7280] text-sm font-semibold tracking-wide transition-colors group-hover:text-[#1A1A2E]">
                       {item.value}
                     </p>
                   </div>
@@ -175,15 +175,15 @@ export default function Contact() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <div className="glass rounded-3xl p-7 lg:p-9 border border-white/8 shadow-[0_20px_50px_rgba(0,0,0,0.4)]">
-              <h3 className="font-space text-base font-bold text-white mb-6 tracking-widest uppercase">
+            <div className="bg-white rounded-3xl p-7 lg:p-9 border border-[#E5E7EB] shadow-md">
+              <h3 className="font-space text-base font-bold text-[#1A1A2E] mb-6 tracking-widest uppercase">
                 Send Message
               </h3>
 
               <form onSubmit={handleSubmit} className="space-y-5">
                 {/* Name */}
                 <div>
-                  <label className="font-space text-[10px] text-white/40 tracking-[2px] font-semibold uppercase mb-2 block">
+                  <label className="font-space text-[10px] text-[#6B7280] tracking-[2px] font-semibold uppercase mb-2 block">
                     Your Name
                   </label>
                   <input
@@ -199,7 +199,7 @@ export default function Contact() {
 
                 {/* Email */}
                 <div>
-                  <label className="font-space text-[10px] text-white/40 tracking-[2px] font-semibold uppercase mb-2 block">
+                  <label className="font-space text-[10px] text-[#6B7280] tracking-[2px] font-semibold uppercase mb-2 block">
                     Your Email
                   </label>
                   <input
@@ -215,8 +215,8 @@ export default function Contact() {
 
                 {/* Mobile */}
                 <div>
-                  <label className="font-space text-[10px] text-white/40 tracking-[2px] font-semibold uppercase mb-2 block">
-                    Mobile Number <span className="text-white/20 lowercase font-normal">(Optional)</span>
+                  <label className="font-space text-[10px] text-[#6B7280] tracking-[2px] font-semibold uppercase mb-2 block">
+                    Mobile Number <span className="text-[#9CA3AF] lowercase font-normal">(Optional)</span>
                   </label>
                   <input
                     type="tel"
@@ -230,7 +230,7 @@ export default function Contact() {
 
                 {/* Message */}
                 <div>
-                  <label className="font-space text-[10px] text-white/40 tracking-[2px] font-semibold uppercase mb-2 block">
+                  <label className="font-space text-[10px] text-[#6B7280] tracking-[2px] font-semibold uppercase mb-2 block">
                     Message
                   </label>
                   <textarea
@@ -252,7 +252,7 @@ export default function Contact() {
                   whileTap={!sending && !sent ? { scale: 0.98 } : {}}
                   className={`w-full py-4 font-space text-xs tracking-widest font-bold uppercase transition-all duration-300 relative overflow-hidden cursor-pointer ${
                     sent 
-                      ? "bg-gradient-to-tr from-[#10b981]/30 to-[#10b981]/15 text-[#10b981] border border-[#10b981]/40 shadow-[0_8px_24px_rgba(16,185,129,0.2)] rounded-full" 
+                      ? "bg-gradient-to-tr from-[#10b981]/15 to-[#10b981]/10 text-[#10b981] border border-[#10b981]/30 shadow-md rounded-full" 
                       : "btn-neon btn-neon-primary"
                   }`}
                 >

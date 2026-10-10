@@ -72,15 +72,15 @@ export default function ScrollUI() {
                 width: "10px",
                 height: "10px",
                 borderRadius: "50%",
-                background: isActive ? "linear-gradient(180deg, #0ce6f2 0%, #8b5cf6 100%)" : "rgba(255,255,255,0.12)",
-                border: isActive ? "none" : "1px solid rgba(255,255,255,0.2)",
-                boxShadow: isActive ? "0 0 10px rgba(12, 230, 242, 0.4)" : "none",
+                background: isActive ? "linear-gradient(180deg, #2563EB 0%, #6366F1 100%)" : "rgba(0,0,0,0.08)",
+                border: isActive ? "none" : "1px solid rgba(0,0,0,0.12)",
+                boxShadow: isActive ? "0 0 10px rgba(37, 99, 235, 0.35)" : "none",
                 transition: "all 0.3s ease",
               }}
               aria-label={`Scroll to ${section.label}`}
             >
               <div
-                className={`absolute right-7 px-3 py-1.5 rounded-md bg-black/80 backdrop-blur-md text-white/90 text-xs font-space tracking-wider border border-white/10 opacity-0 transform translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none whitespace-nowrap shadow-lg ${isActive ? 'text-[#0ce6f2] border-[#0ce6f2]/30' : ''}`}
+                className={`absolute right-7 px-3 py-1.5 rounded-md bg-white shadow-md text-[#1A1A2E] text-xs font-space tracking-wider border border-[#E5E7EB] opacity-0 transform translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none whitespace-nowrap ${isActive ? 'text-[#2563EB] border-[#2563EB]/30' : ''}`}
               >
                 {section.label}
               </div>
@@ -123,8 +123,8 @@ export default function ScrollUI() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                background: "rgba(8, 7, 18, 0.9)",
-                border: "none",
+                background: "rgba(255,255,255,0.95)",
+                border: "1.5px solid #E5E7EB",
                 cursor: "pointer",
                 outline: "none",
                 backdropFilter: "blur(12px)",
@@ -144,8 +144,8 @@ export default function ScrollUI() {
               >
                 <defs>
                   <linearGradient id="chevron-grad" x1="0" y1="24" x2="0" y2="0">
-                    <stop offset="0%" stopColor="#8b5cf6" />
-                    <stop offset="100%" stopColor="#0ce6f2" />
+                    <stop offset="0%" stopColor="#6366F1" />
+                    <stop offset="100%" stopColor="#2563EB" />
                   </linearGradient>
                 </defs>
                 <polyline points="18 15 12 9 6 15" />

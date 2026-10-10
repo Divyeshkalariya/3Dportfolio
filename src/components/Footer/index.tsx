@@ -6,11 +6,11 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative border-t border-white/5 pt-10 pb-4 overflow-hidden">
+    <footer className="relative border-t border-[#E5E7EB] pt-10 pb-4 overflow-hidden bg-white">
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: "linear-gradient(to top, rgba(12, 230, 242, 0.01), transparent)",
+          background: "linear-gradient(to top, rgba(37, 99, 235, 0.02), transparent)",
         }}
       />
 
@@ -25,9 +25,9 @@ export default function Footer() {
           </motion.div>
 
           {/* Center text */}
-          <div className="font-inter text-xs text-white/30 flex items-center gap-2 flex-wrap justify-center">
+          <div className="font-inter text-xs text-[#9CA3AF] flex items-center gap-2 flex-wrap justify-center">
             <span>© {currentYear} Divyesh Patel</span>
-            <span className="text-white/10">·</span>
+            <span className="text-[#E5E7EB]">·</span>
             <span className="flex items-center gap-1">
               Built with <FaHeart size={10} className="text-[#f43f5e]" /> & Next.js
             </span>
@@ -45,7 +45,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="w-8 h-8 glass rounded-full flex items-center justify-center text-white/40 hover:text-[#0ce6f2] transition-all duration-300 hover:shadow-[0_4px_12px_rgba(0,0,0,0.2)]"
+                className="w-8 h-8 rounded-full flex items-center justify-center text-[#9CA3AF] hover:text-[#2563EB] border border-[#E5E7EB] transition-all duration-300 hover:border-[#2563EB]/30 hover:bg-[#EFF6FF]"
               >
                 <Icon size={14} />
               </a>
@@ -54,9 +54,9 @@ export default function Footer() {
         </div>
 
         {/* Bottom line */}
-        <div className="mt-8 h-[1px] bg-gradient-to-r from-transparent via-[#0ce6f2]/10 to-transparent" />
-        <p className="font-space text-[9px] text-center text-white/10 tracking-[4px] uppercase mt-4 font-semibold">
-          Liquid Glass Portfolio v2.0
+        <div className="mt-8 h-[1px] bg-gradient-to-r from-transparent via-[#2563EB]/15 to-transparent" />
+        <p className="font-space text-[9px] text-center text-[#D1D5DB] tracking-[4px] uppercase mt-4 font-semibold">
+          Professional Portfolio v3.0
         </p>
       </div>
     </footer>

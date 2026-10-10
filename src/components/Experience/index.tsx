@@ -68,12 +68,12 @@ export default function Experience() {
 
   return (
     <section id="experience" className="section-wrapper">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#080710] via-[#0b0a1b] to-[#080710]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#FAFAFA] via-[#F9FAFB] to-[#FAFAFA]" />
 
       {/* BG orbs */}
       <div
         className="orb w-96 h-96 top-20 left-10 opacity-[0.05]"
-        style={{ background: "radial-gradient(circle, #0ce6f2, transparent)" }}
+        style={{ background: "radial-gradient(circle, rgba(37,99,235,0.05), transparent)" }}
       />
 
       <div className="section-container">
@@ -85,14 +85,14 @@ export default function Experience() {
           transition={{ duration: 0.7 }}
           className="section-header"
         >
-          <p className="section-subtitle font-space font-semibold text-white/40">Where I&apos;ve Worked</p>
+          <p className="section-subtitle font-space font-semibold">Where I&apos;ve Worked</p>
           <h2 className="section-title">
             Work <span className="gradient-text">Experience</span>
           </h2>
           <div className="section-header-divider">
-            <div className="h-[1px] w-24 bg-gradient-to-r from-transparent to-[#0ce6f2]/50" />
-            <HiSparkles className="text-[#0ce6f2]" size={18} />
-            <div className="h-[1px] w-24 bg-gradient-to-l from-transparent to-[#0ce6f2]/50" />
+            <div className="h-[1px] w-24 bg-gradient-to-r from-transparent to-[#2563EB]/50" />
+            <HiSparkles className="text-[#2563EB]" size={18} />
+            <div className="h-[1px] w-24 bg-gradient-to-l from-transparent to-[#2563EB]/50" />
           </div>
         </motion.div>
 
@@ -118,7 +118,7 @@ export default function Experience() {
             >
               {/* Timeline node - sleek glass bead */}
               <div
-                className="absolute left-6 md:left-8 top-8 w-4 h-4 rounded-full -translate-x-1/2 z-10 glass border border-white/20 flex items-center justify-center"
+                className="absolute left-6 md:left-8 top-8 w-4 h-4 rounded-full -translate-x-1/2 z-10 bg-white border border-[#E5E7EB] flex items-center justify-center shadow-sm"
                 style={{
                   boxShadow: `0 0 16px ${exp.color}40`,
                 }}
@@ -132,7 +132,7 @@ export default function Experience() {
               {/* Card — full width */}
               <motion.div
                 whileHover={{ y: -3, scale: 1.005 }}
-                className="glass rounded-3xl p-7 lg:p-9 relative overflow-hidden group border border-white/8 transition-all duration-300"
+                className="bg-white rounded-3xl border border-[#E5E7EB] p-7 lg:p-9 relative overflow-hidden group shadow-sm hover:shadow-md transition-all duration-300"
               >
                 {/* Soft colored spotlight backlight on card hover */}
                 <div
@@ -145,23 +145,23 @@ export default function Experience() {
                 {/* Header */}
                 <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
                   <div>
-                    <h3 className="font-space text-lg font-bold mb-1.5 text-white">
+                    <h3 className="font-space text-lg font-bold mb-1.5 text-[#1A1A2E]">
                       {exp.role}
                     </h3>
                     <div className="flex items-center gap-2 mb-3">
-                      <FaBriefcase size={12} className="text-white/40" />
-                      <span className="font-space text-white/70 font-semibold text-xs tracking-wider uppercase">{exp.company}</span>
+                      <FaBriefcase size={12} className="text-[#9CA3AF]" />
+                      <span className="font-space text-[#4B5563] font-semibold text-xs tracking-wider uppercase">{exp.company}</span>
                     </div>
                     <div className="flex flex-wrap gap-4">
                       <div className="flex items-center gap-1.5">
-                        <FaCalendarAlt size={11} className="text-white/30" />
-                        <span className="font-space text-xs text-white/40">
+                        <FaCalendarAlt size={11} className="text-[#9CA3AF]" />
+                        <span className="font-space text-xs text-[#9CA3AF]">
                           {formatDateForDisplay(exp.startDate)} — {formatDateForDisplay(exp.endDate)}
                         </span>
                       </div>
                       <div className="flex items-center gap-1.5">
-                        <FaMapMarkerAlt size={11} className="text-white/30" />
-                        <span className="font-space text-xs text-white/40">{exp.location}</span>
+                        <FaMapMarkerAlt size={11} className="text-[#9CA3AF]" />
+                        <span className="font-space text-xs text-[#9CA3AF]">{exp.location}</span>
                       </div>
                     </div>
                   </div>
@@ -184,7 +184,7 @@ export default function Experience() {
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true, margin: "-50px" }}
                       transition={{ duration: 0.4, delay: 0.3, type: "spring", stiffness: 150 }}
-                      className="px-3 py-1 rounded-full font-space text-[10px] bg-white/2 border border-white/5 text-white/40 font-semibold tracking-wider uppercase"
+                      className="px-3 py-1 rounded-full font-space text-[10px] bg-[#F3F4F6] border border-[#E5E7EB] text-[#6B7280] font-semibold tracking-wider uppercase"
                     >
                       {exp.type}
                     </motion.span>
@@ -192,7 +192,7 @@ export default function Experience() {
                 </div>
 
                 {/* Description */}
-                <p className="font-inter text-white/50 text-sm leading-relaxed mb-6">
+                <p className="font-inter text-[#6B7280] text-sm leading-relaxed mb-6">
                   {exp.description}
                 </p>
 
@@ -212,7 +212,7 @@ export default function Experience() {
                         className="shrink-0 mt-0.5"
                         style={{ color: exp.color }}
                       />
-                      <span className="font-inter text-white/50 text-xs leading-relaxed">
+                      <span className="font-inter text-[#6B7280] text-xs leading-relaxed">
                         {achievement}
                       </span>
                     </motion.div>
@@ -230,8 +230,8 @@ export default function Experience() {
                       transition={{ duration: 0.3, delay: ti * 0.04, type: "spring", stiffness: 150 }}
                       className="px-3 py-1 rounded-full font-space text-[10px] font-semibold tracking-wider glass"
                       style={{
-                        borderColor: `${exp.color}20`,
-                        color: exp.color === "#ffffff" ? "rgba(255, 255, 255, 0.7)" : exp.color,
+                        borderColor: `${exp.color}30`,
+                        color: exp.color === "#ffffff" ? "#6B7280" : exp.color,
                       }}
                     >
                       {t}
