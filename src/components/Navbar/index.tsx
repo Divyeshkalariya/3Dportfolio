@@ -52,9 +52,9 @@ export default function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="fixed top-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-7xl z-40 rounded-full bg-white/30 backdrop-blur-md border border-[#E5E7EB] shadow-[0_4px_24px_rgba(0,0,0,0.06)]"
+        className="fixed top-4 left-1/2 -translate-x-1/2 w-[90vw] max-w-[90vw] z-40 rounded-full bg-white/30 backdrop-blur-md border border-[#E5E7EB] shadow-[0_4px_24px_rgba(0,0,0,0.06)]"
       >
-        <div className="max-w-7xl mx-auto py-3 px-4 flex items-center justify-between">
+        <div className="w-full mx-auto py-3 px-4 flex items-center justify-between">
           {/* Logo */}
           <motion.button
             onClick={() => scrollTo("#home")}
