@@ -46,18 +46,24 @@ export default function Contact() {
     setSending(true);
 
     try {
-      const response = await fetch('/api/contact', {
+      const endpoint = process.env.NEXT_PUBLIC_API_URL
+        ? `${process.env.NEXT_PUBLIC_API_URL}/api/contact`
+        : '/api/contact';
+
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
+
+      const data = await response.json().catch(() => null);
 
       if (response.ok) {
         setSent(true);
         setTimeout(() => setSent(false), 4000);
         setFormData({ name: "", email: "", mobile: "", message: "" });
       } else {
-        alert("Failed to send email");
+        alert(data?.message || "Failed to send email");
       }
     } catch (error) {
       console.error("Submission error:", error);

@@ -1,16 +1,29 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+};
+
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 200,
+    headers: corsHeaders,
+  });
+}
+
 export async function POST(req: Request) {
   try {
     const { name, email, mobile, message } = await req.json();
 
     if (!name || !email || !message) {
-      return NextResponse.json({ message: 'Missing required fields' }, { status: 400 });
+      return NextResponse.json({ message: 'Missing required fields' }, { status: 400, headers: corsHeaders });
     }
 
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-      return NextResponse.json({ message: 'Server email credentials are not configured' }, { status: 500 });
+      return NextResponse.json({ message: 'Server email credentials are not configured' }, { status: 500, headers: corsHeaders });
     }
 
     // Configure the nodemailer service
@@ -78,9 +91,9 @@ export async function POST(req: Request) {
 
     await transporter.sendMail(mailOptions);
 
-    return NextResponse.json({ message: 'Email sent successfully!' }, { status: 200 });
+    return NextResponse.json({ message: 'Email sent successfully!' }, { status: 200, headers: corsHeaders });
   } catch (error: any) {
     console.error('Error sending email:', error);
-    return NextResponse.json({ message: 'Failed to send email', error: error.message }, { status: 500 });
+    return NextResponse.json({ message: 'Failed to send email', error: error.message }, { status: 500, headers: corsHeaders });
   }
 }
