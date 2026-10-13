@@ -48,7 +48,9 @@ export default function Contact() {
     try {
       const endpoint = process.env.NEXT_PUBLIC_API_URL
         ? `${process.env.NEXT_PUBLIC_API_URL}/api/contact`
-        : '/api/contact';
+        : (process.env.NODE_ENV === 'production'
+            ? 'https://3d-portfolio-psi-blond.vercel.app/api/contact'
+            : '/api/contact');
 
       const response = await fetch(endpoint, {
         method: 'POST',
