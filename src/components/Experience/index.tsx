@@ -21,16 +21,24 @@ const experiences = [
     type: "Full-Time",
     color: "#0ce6f2",
     description:
-      "Leading frontend development for enterprise-grade web applications including CRM systems, admin dashboards, and client-facing portals. Working closely with design and backend teams to deliver performant, accessible, and visually compelling UI/UX.",
+      "Leading frontend development and managing a team of developers to build scalable, enterprise-grade web applications, including CRM systems, admin dashboards, and client-facing portals. Responsible for frontend architecture, technical decisions, task allocation, code quality, and cross-project collaboration. Hands-on in implementing complex application architectures, optimizing performance, and delivering maintainable, high-quality user experiences.",
     achievements: [
-      "Built a comprehensive Tiles Catalogue CRM system from scratch",
+      "Lead and mentor a team of 4 frontend developers, managing task allocation, progress, and delivery",
+      "Manage end-to-end frontend development across multiple projects",
+      "Design and implement complex frontend architectures for scalable and maintainable applications",
+      "Built comprehensive Orbatic Catalogue software from scratch",
       "Developed the SitePace.ai frontend dashboard with real-time analytics",
-      "Created SMS Gateway campaign management UI for bulk messaging",
-      "Implemented complex state management with Redux Toolkit",
+      "Created SMS Gateway campaign management interfaces for bulk messaging",
+      "Implement complex state management using Redux Toolkit",
       "Migrated legacy codebases to Next.js App Router architecture",
       "Improved page load performance by 40% through code splitting and lazy loading",
+      "Integrated WebSockets for real-time data updates and dynamic UI rendering",
+      "Integrated Firebase Cloud Messaging (FCM) for real-time push notifications and enhanced user engagement through timely notifications",
+      "Collaborate with backend developers, designers, and other teams to deliver features across projects",
+      "Maintain frontend code quality, reusable components, performance, and development standards"
+
     ],
-    tech: ["React", "Next.js", "TypeScript", "Redux Toolkit", "Bootstrap", "MUI", "Scss", "Tailwind CSS"],
+    tech: ["React", "Next.js", "TypeScript", "Redux Toolkit", "Bootstrap", "MUI", "SCSS", "Tailwind CSS", "WebSockets", "Firebase"],
   },
   {
     role: "Web Designer",

@@ -13,6 +13,7 @@ function ProjectCard({
   index: number;
 }) {
   const isLastOdd = index === projects.length - 1 && projects.length % 2 !== 0;
+  const color = project.color;
 
   return (
     <motion.div
@@ -25,21 +26,21 @@ function ProjectCard({
       {/* Accent top bar */}
       <div
         className="h-[3px] w-full flex-shrink-0"
-        style={{ background: `linear-gradient(90deg, ${project.color}66, ${project.color})` }}
+        style={{ background: `linear-gradient(90deg, ${color}66, ${color})` }}
       />
 
       <div className="p-7 lg:p-9 flex flex-col flex-1 relative">
         {/* Soft spotlight on hover */}
         <div
           className="absolute -bottom-24 -right-24 w-52 h-52 rounded-full blur-[60px] opacity-0 group-hover:opacity-15 transition-opacity duration-700 pointer-events-none"
-          style={{ background: project.color }}
+          style={{ background: color }}
         />
 
         {/* Number watermark */}
         <div className="absolute top-6 right-7">
           <span
             className="font-space text-8xl font-black select-none leading-none"
-            style={{ color: project.color, opacity: 0.1 }}
+            style={{ color: color, opacity: 0.1 }}
           >
             {String(project.id).padStart(2, "0")}
           </span>
@@ -49,7 +50,7 @@ function ProjectCard({
         <div className="flex items-start gap-3 mb-4 pr-10">
           <span
             className="mt-[6px] flex-shrink-0 w-2.5 h-2.5 rounded-full transition-transform duration-300 group-hover:scale-125"
-            style={{ backgroundColor: project.color, boxShadow: `0 0 0 3px ${project.color}30` }}
+            style={{ backgroundColor: color, boxShadow: `0 0 0 3px ${color}30` }}
           />
           <h3 className="font-space text-lg font-bold text-[#1A1A2E] leading-snug">
             {project.title}
@@ -73,9 +74,9 @@ function ProjectCard({
               whileHover={{ scale: 1.06, y: -1 }}
               className="px-3 py-1 rounded-full font-space text-[10px] font-semibold tracking-wider border transition-all duration-300"
               style={{
-                color: project.color === "#ffffff" ? "#6B7280" : project.color,
-                borderColor: `${project.color}35`,
-                backgroundColor: `${project.color}0D`,
+                color: color === "#ffffff" ? "#6B7280" : color,
+                borderColor: `${color}35`,
+                backgroundColor: `${color}0D`,
               }}
             >
               {tech}
@@ -97,14 +98,14 @@ function ProjectCard({
               whileTap={{ scale: 0.97 }}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-space text-[11px] font-bold tracking-widest uppercase text-white transition-all duration-300"
               style={{
-                background: `linear-gradient(135deg, ${project.color}CC, ${project.color})`,
-                boxShadow: `0 4px 14px ${project.color}35`,
+                background: `linear-gradient(135deg, ${color}CC, ${color})`,
+                boxShadow: `0 4px 14px ${color}35`,
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.boxShadow = `0 6px 20px ${project.color}55`;
+                (e.currentTarget as HTMLAnchorElement).style.boxShadow = `0 6px 20px ${color}55`;
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.boxShadow = `0 4px 14px ${project.color}35`;
+                (e.currentTarget as HTMLAnchorElement).style.boxShadow = `0 4px 14px ${color}35`;
               }}
             >
               <FaExternalLinkAlt size={9} />
@@ -120,7 +121,7 @@ function ProjectCard({
           {project.live && (
             <span
               className="text-xs font-space font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-x-2 group-hover:translate-x-0"
-              style={{ color: project.color }}
+              style={{ color: color }}
             >
               View →
             </span>
